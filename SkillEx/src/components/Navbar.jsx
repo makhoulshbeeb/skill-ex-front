@@ -1,6 +1,9 @@
 import Button from "./Button";
 import Input from "./Input";
-import { FaSearch } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
+
 import "./styles/Navbar.css"
 import { Link } from "react-router-dom";
 
@@ -15,11 +18,10 @@ export default function Navbar() {
                     <Link>Discover</Link>
                     <Link>Community</Link>
                     <Link>About Us</Link>
-                    <Link>Contact Us</Link>
                 </nav>
             </div>
             <div className="right">
-                <FaSearch />
+                <FontAwesomeIcon icon={faSearch} fontSize={"1.2rem"} color="var(--background-light)"></FontAwesomeIcon>
                 <Input name={"nav-search"} id={"nav-search"} placeholder={"Search . . ."}></Input>
                 <Button
                     bgColor="--primary-light"
