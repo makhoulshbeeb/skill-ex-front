@@ -24,8 +24,8 @@ header>div.left>nav {
 header a {
     text-decoration: none;
     color: var(--background-color);
-    /* transform: translateY(0.15rem); */
     display: flex;
+    text-wrap: nowrap;
 }
 
 header a.active {
