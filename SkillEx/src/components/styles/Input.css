@@ -1,0 +1,25 @@
+input {
+    all: unset;
+}
+
+input {
+    font-size: 1.1rem;
+    padding: 0.8rem 1.4rem;
+    width: calc(100% - 2.8rem);
+    border-radius: 1rem;
+    border: 0.15rem solid var(--text-light);
+    background-color: var(--background-light);
+    color: var(--text-color);
+}
+
+input::placeholder {
+    color: var(--text-light);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: all 5000s ease-in-out 0s;
+    font-size: 1.1rem;
+}
