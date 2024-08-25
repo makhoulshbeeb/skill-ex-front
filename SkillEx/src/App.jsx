@@ -10,6 +10,16 @@ function App() {
     return (
         <BrowserRouter>
             <Navbar></Navbar>
+            <Routes>
+                <Route path='/' />
+                <Route path='/auth/:sign' />
+                <Route path='/about' />
+                <Route path='/discover' />
+                <Route path='/community' />
+                <Route path='/search/:search' />
+                <Route path='/chat' />
+                <Route path='/session' />
+            </Routes>
         </BrowserRouter>
     )
 }
