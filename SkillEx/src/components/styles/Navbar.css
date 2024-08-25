@@ -1,0 +1,46 @@
+header {
+    width: 80%;
+    padding: 0.5rem 1.6rem;
+    background-color: var(--primary-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 1rem 2rem -0.5rem var(--shadow-color),
+        0 0 0.5rem 0 var(--shadow-color);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+header>div.left>nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+header a {
+    text-decoration: none;
+    color: var(--background-color);
+    transform: translateY(0.15rem);
+    display: flex;
+}
+
+header a.active {
+    text-decoration: underline;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+header a:hover {
+    font-weight: bold;
+    color: var(--secondary-color);
+    scale: 1.05;
+}
+
+header .logo {
+    height: 100%;
+    cursor: pointer;
+}
