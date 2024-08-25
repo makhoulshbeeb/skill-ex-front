@@ -1,4 +1,6 @@
 import Button from "./Button";
+import Input from "./Input";
+import { FaSearch } from "react-icons/fa";
 import "./styles/Navbar.css"
 import { Link } from "react-router-dom";
 
@@ -17,6 +19,8 @@ export default function Navbar() {
                 </nav>
             </div>
             <div className="right">
+                <FaSearch />
+                <Input name={"nav-search"} id={"nav-search"} placeholder={"Search . . ."}></Input>
                 <Button
                     bgColor="--primary-light"
                     text="Log In"

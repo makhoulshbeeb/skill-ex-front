@@ -4,6 +4,7 @@ button {
     padding: 0.6rem 1.2rem;
     border: 0.15rem solid var(--primary-light);
     cursor: pointer;
+    text-wrap: nowrap;
 }
 
 button:hover {
