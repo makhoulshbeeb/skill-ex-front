@@ -1,3 +1,4 @@
+import Button from "./Button";
 import "./styles/Navbar.css"
 import { Link } from "react-router-dom";
 
@@ -16,7 +17,24 @@ export default function Navbar() {
                 </nav>
             </div>
             <div className="right">
-
+                <Button
+                    bgColor="--primary-light"
+                    text="Log In"
+                    textColor="--background-color"
+                    borderRadius="2rem"
+                    onClick={() => {
+                        navigate("/form/login");
+                    }}
+                ></Button>
+                <Button
+                    bgColor="--primary-color"
+                    text="Sign Up"
+                    textColor="--background-color"
+                    borderRadius="2rem"
+                    onClick={() => {
+                        navigate("/form/signup");
+                    }}
+                ></Button>
             </div>
         </header>
     )

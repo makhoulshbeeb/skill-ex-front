@@ -1,7 +1,12 @@
 button {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border: 0.15rem solid var(--primary-light);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--primary-dark) !important;
     font-weight: bold;
-    padding: 0.7rem 1.3rem;
-    border: 0.25rem solid var(--primary-color);
-    cursor:pointer;
 }

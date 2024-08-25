@@ -24,7 +24,7 @@ header>div.left>nav {
 header a {
     text-decoration: none;
     color: var(--background-color);
-    transform: translateY(0.15rem);
+    /* transform: translateY(0.15rem); */
     display: flex;
 }
 
@@ -43,4 +43,10 @@ header a:hover {
 header .logo {
     height: 100%;
     cursor: pointer;
+}
+
+header>div.right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
