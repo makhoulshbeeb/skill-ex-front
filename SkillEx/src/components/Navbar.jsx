@@ -40,7 +40,7 @@ export default function Navbar() {
                     bgColor="--primary-light"
                     text="Log In"
                     textColor="--background-color"
-                    borderRadius="2rem"
+                    borderRadius="1rem"
                     onClick={() => {
                         navigate("/auth/login");
                     }}
@@ -49,7 +49,7 @@ export default function Navbar() {
                     bgColor="--primary-color"
                     text="Sign Up"
                     textColor="--background-color"
-                    borderRadius="2rem"
+                    borderRadius="1rem"
                     onClick={() => {
                         navigate("/auth/signup");
                     }}

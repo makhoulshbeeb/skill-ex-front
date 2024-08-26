@@ -17,9 +17,9 @@ function App() {
                 <Route path='/discover' />
                 <Route path='/community' />
                 <Route path='/search/:search' />
-                <Route path='/user/:username' />
-                <Route path='/chat' />
-                <Route path='/session' />
+                <Route path='/users/:username' />
+                <Route path='/chats' />
+                <Route path='/sessions' />
             </Routes>
         </BrowserRouter>
     )

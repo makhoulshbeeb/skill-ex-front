@@ -18,25 +18,27 @@ header {
 header>div.left>nav {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.2rem;
 }
 
 header a {
     text-decoration: none;
     color: var(--background-color);
+    font-weight: 400;
     display: flex;
     text-wrap: nowrap;
 }
 
 header a.active {
-    text-decoration: underline;
-    font-weight: bold;
+    text-shadow: 0.4px 0.4px 0.6px var(--secondary-color),
+        -0.4px -0.4px 0.6px var(--secondary-color);
     color: var(--secondary-color);
 }
 
 header a:hover {
-    font-weight: bold;
     color: var(--secondary-color);
+    text-shadow: 0.4px 0.4px 0.6px var(--secondary-color),
+        -0.4px -0.4px 0.6px var(--secondary-color);
     scale: 1.05;
 }
 
