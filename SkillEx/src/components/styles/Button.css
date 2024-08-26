@@ -8,6 +8,11 @@ button {
 }
 
 button:hover {
-    background-color: var(--primary-dark) !important;
     scale: 1.05;
+    transition: 0.1s;
+}
+
+button:active {
+    filter: brightness(90%);
+    scale: 1;
 }

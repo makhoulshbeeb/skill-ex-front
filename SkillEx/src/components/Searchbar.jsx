@@ -1,4 +1,4 @@
-import './styles/Input.css'
+import './styles/Searchbar.css'
 
 export default function Input({ name, id, placeholder, change }) {
     return (

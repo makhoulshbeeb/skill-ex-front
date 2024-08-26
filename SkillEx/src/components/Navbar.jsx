@@ -1,5 +1,5 @@
 import Button from "./Button";
-import Input from "./Input";
+import Input from "./Searchbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
