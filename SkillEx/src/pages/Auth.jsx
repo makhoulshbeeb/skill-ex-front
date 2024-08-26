@@ -1,9 +1,12 @@
-import AuthForm from "../components/AuthForm";
+import Login from "../components/Login";
+import Signup from "../components/Signup";
+
 import { useParams } from "react-router-dom";
+
 
 export default function Auth() {
     const { sign } = useParams()
     return (
-        <AuthForm sign={sign} ></AuthForm>
+        sign == 'login' ? <Login ></Login> : <Signup></Signup>
     )
 }

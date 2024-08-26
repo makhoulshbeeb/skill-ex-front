@@ -1,7 +1,7 @@
 import './styles/Searchbar.css'
 
-export default function Input({ name, id, placeholder, change }) {
+export default function Searchbar({ name, id, placeholder, change }) {
     return (
-        <input name={name} id={id} placeholder={placeholder} onChange={change} />
+        <input name={name} className='search-bar' id={id} placeholder={placeholder} onChange={change} />
     );
 }

@@ -1,8 +1,8 @@
-input {
+input.search-bar {
     all: unset;
 }
 
-input {
+input.search-bar {
     font-size: 0.9rem;
     padding: 0.5rem 1.2rem;
     width: calc(100% - 2.8rem);
@@ -12,14 +12,14 @@ input {
     color: var(--text-color);
 }
 
-input::placeholder {
+input.search-bar::placeholder {
     color: var(--text-light);
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
+input.search-bar:-webkit-autofill,
+input.search-bar:-webkit-autofill:hover,
+input.search-bar:-webkit-autofill:focus,
+input.search-bar:-webkit-autofill:active {
     transition: all 5000s ease-in-out 0s;
     font-size: 1.1rem;
 }

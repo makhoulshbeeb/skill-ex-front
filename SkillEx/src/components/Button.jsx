@@ -3,8 +3,9 @@ import "./styles/Button.css";
 export default function Button({
     bgColor,
     text,
-    borderRadius = "0rem",
     textColor = "--text-color",
+    borderRadius = "0rem",
+    borderColor = '--primary-light',
     onClick,
 }) {
     return (
@@ -13,6 +14,7 @@ export default function Button({
             style={{
                 backgroundColor: `var(${bgColor})`,
                 borderRadius: borderRadius,
+                borderColor: `var(${borderColor})`,
                 color: `var(${textColor})`,
             }}
 
