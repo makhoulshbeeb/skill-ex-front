@@ -1,3 +1,5 @@
+import "../styles/Login.css"
+
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import { useSignupMutation } from "../api/AuthApi";
@@ -40,23 +42,37 @@ export default function Signup() {
 
     return (
         <div className="form-container">
-            <h2 className="title">Sign up</h2>
-            <hr />
             <form className="input-form" onSubmit={handleSubmit(signupHandler)}>
-                <input type="text" id={'displayName'} placeholder={'Display Name'} {...register('displayName')} required />
-                <input type="text" id={'username'} placeholder={'Username'} {...register('username')} required />
-                <input type="text" id={'email'} placeholder={'email@example.com'} {...register('email')} required />
+                <h2 className="title">Sign up</h2>
                 <div>
+                    <label>Display Name</label>
+                    <input type="text" id={'displayName'} placeholder={'Display Name'} {...register('displayName')} required />
+                </div>
+                <div>
+                    <label>Username</label>
+                    <input type="text" id={'username'} placeholder={'Username'} {...register('username')} required />
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input type="text" id={'email'} placeholder={'email@example.com'} {...register('email')} required />
+                </div>
+                {/* <div>
                     <input type="radio" id={'male'} value={'male'} {...register('gender')} required />
                     <input type="radio" id={'female'} value={'female'} {...register('gender')} required />
+                </div> */}
+                <div>
+                    <label>Password</label>
+                    <input type="password" id={'password'} placeholder={'Password'} {...register('password')} required />
                 </div>
-                <input type="password" id={'password'} placeholder={'Password'} {...register('password')} required />
-                <input type="password" id={'confirmPassword'} placeholder={'Confirm Password'} {...register('confirmPassword')} required />
+                <div>
+                    <label>Confirm Password</label>
+                    <input type="password" id={'confirmPassword'} placeholder={'Confirm Password'} {...register('confirmPassword')} required />
+                </div>
                 {isLoading
-                    ? <input type="submit" disabled value={<FontAwesomeIcon icon={faSpinner} />} />
-                    : <input type="submit" value={"Sign up"} />}
+                    ? <button disabled> <FontAwesomeIcon icon={faSpinner} spinPulse /></button>
+                    : <button>Sign up</button>}
             </form>
-            <div className="have-account">Don't have an account?<span onClick={() => navigate('/auth/signup')}>Sign up</span></div>
+            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/signup')}>Sign up</span></div>
         </div>
     )
 }

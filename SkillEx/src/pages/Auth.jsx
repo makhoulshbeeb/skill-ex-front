@@ -7,6 +7,9 @@ import { useParams } from "react-router-dom";
 export default function Auth() {
     const { sign } = useParams()
     return (
-        sign == 'login' ? <Login ></Login> : <Signup></Signup>
+        <div className="auth-container">
+            {sign == 'login' ? <Login ></Login> : <Signup></Signup>}
+        </div>
+
     )
 }

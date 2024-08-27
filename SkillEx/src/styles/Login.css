@@ -1,0 +1,63 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    height: 100%;
+    width: 20dvw;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.input-form>h2 {
+    width: 80%;
+    text-align: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.1rem solid var(--background-light);
+}
+
+.input-form input[type="text"],
+.input-form input[type="password"] {
+    all: unset;
+}
+
+.input-form input[type="text"],
+.input-form input[type="password"] {
+    font-size: 1rem;
+    padding: 0.5rem 1.2rem;
+    width: calc(100% - 2.4rem);
+    border-radius: 0.5rem;
+    background-color: var(--background-light);
+    color: var(--text-color);
+}
+
+.input-form input[type="text"],
+.input-form input[type="password"]::placeholder {
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+.input-form input[type="text"],
+.input-form input[type="password"]:-webkit-autofill,
+.input-form input[type="text"],
+.input-form input[type="password"]:-webkit-autofill:hover,
+.input-form input[type="text"],
+.input-form input[type="password"]:-webkit-autofill:focus,
+.input-form input[type="text"],
+.input-form input[type="password"]:-webkit-autofill:active {
+    transition: all 5000s ease-in-out 0s;
+    font-size: 1rem;
+}
+
+.have-account>span {
+    text-decoration: underline;
+    color: var(--primary-color);
+    cursor: pointer;
+}

@@ -1,4 +1,4 @@
-import './styles/Searchbar.css'
+import '../styles/Searchbar.css'
 
 export default function Searchbar({ name, id, placeholder, change }) {
     return (

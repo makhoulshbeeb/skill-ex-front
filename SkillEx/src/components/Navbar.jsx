@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 
-import "./styles/Navbar.css"
+import "../styles/Navbar.css"
 
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
