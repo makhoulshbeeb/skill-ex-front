@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import { useSignupMutation } from "../api/AuthApi";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import toast from 'react-hot-toast';
 
@@ -13,18 +15,25 @@ export default function Signup() {
     const [signup, { data: res, isSuccess, isLoading, isError, error }] = useSignupMutation();
 
     if (isLoading) {
-        toast.loading("Signing up...");
+        toast.loading("Signing up...", {
+            id: "loading"
+        });
     }
     if (isError) {
-        toast.error(error.data.error);
+        toast.dismiss("loading");
+        toast.error(error.data.error, {
+            id: "error"
+        });
     }
     if (isSuccess) {
-        toast.success("Welcome to SkillEx!");
+        toast.dismiss("loading");
+        toast.success("Welcome to SkillEx!", {
+            id: "success"
+        });
         setTimeout(() => { navigate('/') }, 1000)
     }
 
     const signupHandler = async (data, e) => {
-        console.log(e);
         e.preventDefault();
         signup(data);
     }
@@ -37,14 +46,15 @@ export default function Signup() {
                 <input type="text" id={'displayName'} placeholder={'Display Name'} {...register('displayName')} required />
                 <input type="text" id={'username'} placeholder={'Username'} {...register('username')} required />
                 <input type="text" id={'email'} placeholder={'email@example.com'} {...register('email')} required />
-                <input type="date" id={'date'} {...register('birthday')} required />
                 <div>
                     <input type="radio" id={'male'} value={'male'} {...register('gender')} required />
                     <input type="radio" id={'female'} value={'female'} {...register('gender')} required />
                 </div>
                 <input type="password" id={'password'} placeholder={'Password'} {...register('password')} required />
                 <input type="password" id={'confirmPassword'} placeholder={'Confirm Password'} {...register('confirmPassword')} required />
-                <input type="submit" />
+                {isLoading
+                    ? <input type="submit" disabled value={<FontAwesomeIcon icon={faSpinner} />} />
+                    : <input type="submit" value={"Sign up"} />}
             </form>
             <div className="have-account">Don't have an account?<span onClick={() => navigate('/auth/signup')}>Sign up</span></div>
         </div>
