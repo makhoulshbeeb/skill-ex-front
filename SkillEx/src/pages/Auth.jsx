@@ -11,7 +11,7 @@ export default function Auth() {
     return (
         <div className="auth-container">
             <img src="/SkillEx Logo with Text.png"></img>
-            {sign == 'login' ? <Login ></Login> : <Signup></Signup>}
+            <div className="auth-form">{sign == 'login' ? <Login ></Login> : <Signup></Signup>}</div>
         </div>
 
     )

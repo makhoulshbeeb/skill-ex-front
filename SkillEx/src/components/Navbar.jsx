@@ -12,6 +12,7 @@ import { useState } from "react";
 export default function Navbar() {
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
+
     return (
         <header>
             <div className="left">

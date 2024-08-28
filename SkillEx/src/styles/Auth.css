@@ -3,10 +3,20 @@
     justify-content: space-between;
     align-items: center;
 
-    width: 80%;
-    height: 100%;
+    width: 80dvw;
+    height: 80dvh;
+    margin-left: 10dvw;
 }
 
 .auth-container>img {
     align-self: flex-start;
+}
+
+.auth-form {
+    width: 36%;
+    height: 92%;
+    padding: 1rem 2rem 2rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0.1rem 0.2rem 0.5rem 0.2rem var(--shadow-color);
+
 }
