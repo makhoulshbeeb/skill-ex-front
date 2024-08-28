@@ -3,10 +3,9 @@ import "../styles/Login.css"
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import { useSignupMutation } from "../api/AuthApi";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import toast from 'react-hot-toast';
+import SubmitButton from "./SubmitButton";
 
 export default function Signup() {
     const navigate = useNavigate();
@@ -68,11 +67,9 @@ export default function Signup() {
                     <label>Confirm Password</label>
                     <input type="password" id={'confirmPassword'} placeholder={'Confirm Password'} {...register('confirmPassword')} required />
                 </div>
-                {isLoading
-                    ? <button disabled> <FontAwesomeIcon icon={faSpinner} spinPulse /></button>
-                    : <button>Sign up</button>}
+                <SubmitButton text={"Sign up"} isLoading={isLoading}></SubmitButton>
             </form>
-            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/signup')}>Sign up</span></div>
+            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/login')}>Log in</span></div>
         </div>
     )
 }

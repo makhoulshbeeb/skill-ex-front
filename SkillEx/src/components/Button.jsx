@@ -9,7 +9,7 @@ export default function Button({
     onClick,
 }) {
     return (
-        <button
+        <button className="nav-button"
             onClick={onClick}
             style={{
                 backgroundColor: `var(${bgColor})`,

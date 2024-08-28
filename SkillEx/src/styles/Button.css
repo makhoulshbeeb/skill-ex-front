@@ -1,4 +1,4 @@
-button {
+button.nav-button {
     font-size: 0.9rem;
     font-weight: 400;
     padding: 0.5rem 1rem;
@@ -7,12 +7,12 @@ button {
     text-wrap: nowrap;
 }
 
-button:hover {
+button.nav-button:hover {
     scale: 1.05;
     transition: 0.1s;
 }
 
-button:active {
+button.nav-button:active {
     filter: brightness(90%);
     scale: 1;
 }

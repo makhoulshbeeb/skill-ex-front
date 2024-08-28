@@ -3,10 +3,9 @@ import "../styles/Login.css"
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useLoginMutation } from "../api/AuthApi";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import toast from 'react-hot-toast';
+import SubmitButton from "./SubmitButton";
 
 
 export default function Login() {
@@ -56,12 +55,10 @@ export default function Login() {
                     <input type="password" id={'password'} placeholder={'Password'} {...register('password')} required />
                 </div>
                 <a>Forgot password?</a>
-                {isLoading
-                    ? <button disabled> <FontAwesomeIcon icon={faSpinner} spinPulse /></button>
-                    : <button>Log in</button>}
+                <SubmitButton text={"Log in"} isLoading={isLoading}></SubmitButton>
             </form>
 
-            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/login')}>Log in</span></div>
+            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/signup')}>Sign up</span></div>
 
         </div>
     )
