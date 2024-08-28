@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const chatsApi = createApi({
     reducerPath: "chatsApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:5000/api/",
+        baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api/`,
         headers: {
             'Content-Type': 'application/json'
         }
