@@ -10,15 +10,15 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/home' element={<Navbar />}>
-                    <Route path='/home' />
-                    <Route path='/home/about' />
-                    <Route path='/home/discover' />
-                    <Route path='/home/community' />
-                    <Route path='/home/search/:search' />
-                    <Route path='/home/users/:username' />
-                    <Route path='/home/chats' />
-                    <Route path='/home/sessions' />
+                <Route path='/app' element={<Navbar />}>
+                    <Route path='/app/home' />
+                    <Route path='/app/about' />
+                    <Route path='/app/discover' />
+                    <Route path='/app/community' />
+                    <Route path='/app/search/:search' />
+                    <Route path='/app/users/:username' />
+                    <Route path='/app/chats' />
+                    <Route path='/app/sessions' />
                 </Route>
                 <Route path='/auth/:sign' element={<Auth />} />
             </Routes>

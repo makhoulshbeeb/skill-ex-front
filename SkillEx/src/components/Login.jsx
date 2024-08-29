@@ -42,24 +42,27 @@ export default function Login() {
     }
 
     return (
-        <div className="form-container" onSubmit={handleSubmit(loginHandler)}>
+        <>
+            <div className="form-container" onSubmit={handleSubmit(loginHandler)}>
 
-            <form className="input-form">
-                <h2 className="title">Log in</h2>
-                <div>
-                    <label>Email or Username</label>
-                    <input type="text" id={'credential'} placeholder={'Email or Username'} {...register('credential')} required />
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" id={'password'} placeholder={'Password'} {...register('password')} required />
-                </div>
-                <a>Forgot password?</a>
-                <SubmitButton text={"Log in"} isLoading={isLoading}></SubmitButton>
-            </form>
+                <form className="input-form">
+                    <h2 className="title">Log in</h2>
+                    <div>
+                        <label>Email or Username</label>
+                        <input type="text" id={'credential'} placeholder={'Email or Username'} {...register('credential')} required />
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input type="password" id={'password'} placeholder={'Password'} {...register('password')} required />
+                    </div>
+                    <a>Forgot password?</a>
+                    <SubmitButton text={"Log in"} isLoading={isLoading}></SubmitButton>
+                </form>
 
-            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/signup')}>Sign up</span></div>
+                <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/signup')}>Sign up</span></div>
 
-        </div>
+            </div>
+            <img src="/SkillEx Background 2.png" alt="Login Background" className="bg" />
+        </>
     )
 }

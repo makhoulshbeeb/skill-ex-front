@@ -1,5 +1,5 @@
 .submit-button {
-    width: 40%;
+    width: 35%;
     text-align: center;
     padding: 1rem;
     background-color: var(--primary-color);
@@ -8,5 +8,9 @@
     text-wrap: nowrap;
     cursor: pointer;
     border-radius: 1rem;
+    border: unset;
+}
 
+.submit-button:active {
+    scale: 0.95;
 }
