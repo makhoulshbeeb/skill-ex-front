@@ -9,6 +9,7 @@ export default function Chat() {
             <ChatSidebar />
             <hr />
             <ChatLog />
+            <img src="/SkillEx Background 1.png" alt="Main Background" className="bg" />
         </div>
     )
 }

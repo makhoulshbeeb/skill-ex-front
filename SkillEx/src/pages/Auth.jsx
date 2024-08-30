@@ -12,6 +12,9 @@ export default function Auth() {
         <div className="auth-container" style={{ flexDirection: `${sign == 'login' ? 'row' : 'row-reverse'}` }}>
             <img src="/SkillEx Logo with Text.png"></img>
             <div className="auth-form">{sign == 'login' ? <Login ></Login> : <Signup></Signup>}</div>
+            {sign == 'login'
+                ? <img src="/SkillEx Background 2.png" alt="Login Background" className="bg" />
+                : <img src="/SkillEx Background 3.png" alt="Signup Background" className="bg" />}
         </div>
 
     )

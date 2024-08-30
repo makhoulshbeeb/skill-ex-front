@@ -40,39 +40,36 @@ export default function Signup() {
     }
 
     return (
-        <>
-            <div className="form-container">
-                <form className="input-form" onSubmit={handleSubmit(signupHandler)}>
-                    <h2 className="title">Sign up</h2>
-                    <div>
-                        <label>Display Name</label>
-                        <input type="text" id={'displayName'} placeholder={'Display Name'} {...register('displayName')} required />
-                    </div>
-                    <div>
-                        <label>Username</label>
-                        <input type="text" id={'username'} placeholder={'Username'} {...register('username')} required />
-                    </div>
-                    <div>
-                        <label>Email</label>
-                        <input type="text" id={'email'} placeholder={'email@example.com'} {...register('email')} required />
-                    </div>
-                    {/* <div>
+        <div className="form-container">
+            <form className="input-form" onSubmit={handleSubmit(signupHandler)}>
+                <h2 className="title">Sign up</h2>
+                <div>
+                    <label>Display Name</label>
+                    <input type="text" id={'displayName'} placeholder={'Display Name'} {...register('displayName')} required />
+                </div>
+                <div>
+                    <label>Username</label>
+                    <input type="text" id={'username'} placeholder={'Username'} {...register('username')} required />
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input type="text" id={'email'} placeholder={'email@example.com'} {...register('email')} required />
+                </div>
+                {/* <div>
                     <input type="radio" id={'male'} value={'male'} {...register('gender')} required />
                     <input type="radio" id={'female'} value={'female'} {...register('gender')} required />
                 </div> */}
-                    <div>
-                        <label>Password</label>
-                        <input type="password" id={'password'} placeholder={'Password'} {...register('password')} required />
-                    </div>
-                    <div>
-                        <label>Confirm Password</label>
-                        <input type="password" id={'confirmPassword'} placeholder={'Confirm Password'} {...register('confirmPassword')} required />
-                    </div>
-                    <SubmitButton text={"Sign up"} isLoading={isLoading}></SubmitButton>
-                </form>
-                <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/login')}>Log in</span></div>
-            </div>
-            <img src="/SkillEx Background 3.png" alt="Login Background" className="bg" />
-        </>
+                <div>
+                    <label>Password</label>
+                    <input type="password" id={'password'} placeholder={'Password'} {...register('password')} required />
+                </div>
+                <div>
+                    <label>Confirm Password</label>
+                    <input type="password" id={'confirmPassword'} placeholder={'Confirm Password'} {...register('confirmPassword')} required />
+                </div>
+                <SubmitButton text={"Sign up"} isLoading={isLoading}></SubmitButton>
+            </form>
+            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/login')}>Log in</span></div>
+        </div>
     )
 }
