@@ -14,6 +14,7 @@ const receiverSlice = createSlice({
     reducers: {
         setReceiver(state, action) {
             state = action.payload;
+            return state;
         }
     }
 });

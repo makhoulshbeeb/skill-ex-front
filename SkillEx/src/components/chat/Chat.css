@@ -11,8 +11,14 @@
 
     background-color: var(--background-color);
     border-radius: 1rem;
+    box-shadow: 0.1rem 0.2rem 0.5rem 0.1rem var(--shadow-color);
 
     transition: 0.3s ease-in-out;
+}
+
+.chat-container hr {
+    width: 80%;
+    border: 0.05rem solid var(--background-dark);
 }
 
 /********* Chat Sidebar *********/
@@ -21,10 +27,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
 
     width: 35%;
     height: 100%;
+    padding: 1rem;
 }
 
 .chat-search {
@@ -33,7 +40,6 @@
     gap: 0.5rem;
 
     width: 100%;
-    padding: 1rem;
 }
 
 .chat-search input {
@@ -41,6 +47,33 @@
 }
 
 .chat-list {
-    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
     overflow-y: scroll;
+}
+
+
+/********* Chat Panel *********/
+
+.chat-panel {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    font-weight: 400;
+
+    cursor: pointer;
+}
+
+.chat-panel>img {
+    object-fit: contain;
+    width: 72px;
+    height: 72px;
 }
