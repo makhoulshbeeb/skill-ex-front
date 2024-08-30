@@ -39,6 +39,14 @@
     border: 0.05rem solid var(--background-dark);
 }
 
+.chat-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    width: 100%;
+}
+
 .chat-list {
     display: flex;
     flex-direction: column;

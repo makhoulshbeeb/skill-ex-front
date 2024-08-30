@@ -4,14 +4,16 @@ import Searchbar from "../common/Searchbar";
 import ChatPanel from "./ChatPanel";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useGetChatsQuery } from "../../api/ChatsApi";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 export default function ChatSidebar() {
     const [chatSearch, setChatSearch] = useState('');
     const { data, isLoading, isSuccess, isError, error } = useGetChatsQuery();
+    const navigate = useNavigate();
 
     var chats = data;
 
@@ -23,7 +25,16 @@ export default function ChatSidebar() {
     console.log('chats: ', chats);
     return (
         <dv className="chat-sidebar">
-            <Searchbar placeholder={"Search..."} change={(e) => setChatSearch(e.target.value)} />
+            <div className="chat-search">
+                <FontAwesomeIcon
+                    icon={faArrowLeft}
+                    fontSize={"1.2rem"}
+                    color="var(--background-color)"
+                    style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.6rem", borderRadius: "1.5rem" }}
+                    onClick={(e) => navigate(-1)}
+                ></FontAwesomeIcon>
+                <Searchbar placeholder={"Search..."} change={(e) => setChatSearch(e.target.value)} />
+            </div>
             <div className="chat-list">
                 {chats
                     ? chats.map((chat) => {
