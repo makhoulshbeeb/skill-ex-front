@@ -7,6 +7,7 @@ export default function Chat() {
     return (
         <div className="chat-container">
             <ChatSidebar />
+            <hr />
             <ChatLog />
         </div>
     )
