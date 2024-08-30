@@ -25,15 +25,10 @@ export default function Navbar() {
                 </nav>
             </div>
             <div className="right">
-                <FontAwesomeIcon
-                    icon={faSearch}
-                    fontSize={"1.2rem"}
-                    color="var(--background-light)"
-                    onClick={() => navigate(`search/${search}`)}
-                ></FontAwesomeIcon>
                 <Seachbar
                     placeholder={"Search . . ."}
                     change={(e) => { setSearch(e.target.value) }}
+                    navigate={() => navigate(`search/${search}`)}
                 ></Seachbar>
                 <Button
                     bgColor="--primary-light"
