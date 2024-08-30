@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    receiverId: '',
+    _id: '',
     displayName: '',
     username: '',
     email: '',
+    picture: '',
 }
 
 const receiverSlice = createSlice({
