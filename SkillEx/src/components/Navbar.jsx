@@ -1,5 +1,5 @@
 import Button from "./Button";
-import Input from "./Searchbar";
+import Seachbar from "./Searchbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -31,12 +31,10 @@ export default function Navbar() {
                     color="var(--background-light)"
                     onClick={() => navigate(`search/${search}`)}
                 ></FontAwesomeIcon>
-                <Input
-                    name={"nav-search"}
-                    id={"nav-search"}
+                <Seachbar
                     placeholder={"Search . . ."}
                     change={(e) => { setSearch(e.target.value) }}
-                ></Input>
+                ></Seachbar>
                 <Button
                     bgColor="--primary-light"
                     text="Log In"
