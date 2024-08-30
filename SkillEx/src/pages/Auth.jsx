@@ -1,7 +1,7 @@
-import "../styles/Auth.css"
+import "../components/auth/Auth.css"
 
-import Login from "../components/Login";
-import Signup from "../components/Signup";
+import Login from "../components/auth/Login";
+import Signup from "../components/auth/Signup";
 
 import { useParams } from "react-router-dom";
 

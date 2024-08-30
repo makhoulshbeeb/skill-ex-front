@@ -1,3 +1,34 @@
+/********* AUTH *********/
+
+.auth-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 80dvw;
+    height: 80dvh;
+    margin-left: 10dvw;
+
+    transition: 0.3s ease-in-out;
+}
+
+.auth-container>img {
+    align-self: flex-start;
+}
+
+.auth-form {
+    width: 40%;
+    height: 100%;
+    padding: 1rem 2rem 2rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0.1rem 0.2rem 0.5rem 0.1rem var(--shadow-color);
+    background-color: var(--background-color);
+}
+
+
+/********* FORM *********/
+
+
 .form-container {
     display: flex;
     flex-direction: column;

@@ -3,7 +3,7 @@ import './App.css'
 
 import { Route, BrowserRouter, Routes, useParams } from "react-router-dom";
 
-import Navbar from './components/Navbar.jsx'
+import Navbar from './components/common/Navbar.jsx'
 import Auth from './pages/Auth.jsx';
 
 function App() {

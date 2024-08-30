@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Searchbar from "./Searchbar";
-import { useGetChatsQuery } from "../api/ChatsApi";
+import Searchbar from "../common/Searchbar";
+import { useGetChatsQuery } from "../../api/ChatsApi";
 import ChatPanel from "./ChatPanel";
 import { useDispatch } from "react-redux";
-import { setReceiver } from "../app/slices/receiverSlice";
+import { setReceiver } from "../../app/slices/receiverSlice";
 
 export default function ChatList() {
     const [chatSearch, setChatSearch] = useState('');

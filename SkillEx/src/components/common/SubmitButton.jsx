@@ -1,4 +1,4 @@
-import "../styles/SubmitButton.css"
+import "./styles/SubmitButton.css"
 
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

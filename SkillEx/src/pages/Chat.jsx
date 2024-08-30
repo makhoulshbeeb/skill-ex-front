@@ -1,12 +1,11 @@
-import ChatList from "../components/ChatList";
-import ChatMessages from "../components/ChatMessages";
-
+import ChatList from "../components/chat/ChatList";
+import ChatLog from "../components/chat/ChatLog";
 
 export default function Chat() {
     return (
         <div className="chat-container">
             <ChatList />
-            <ChatMessages />
+            <ChatLog />
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import "../styles/Button.css";
+import "./styles/Button.css";
 
 export default function Button({
     bgColor,

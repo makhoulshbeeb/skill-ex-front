@@ -1,11 +1,11 @@
-import "../styles/Login.css"
+import "./Auth.css"
 
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
-import { useSignupMutation } from "../api/AuthApi";
+import { useSignupMutation } from "../../api/AuthApi";
 
 import toast from 'react-hot-toast';
-import SubmitButton from "./SubmitButton";
+import SubmitButton from "../common/SubmitButton";
 
 export default function Signup() {
     const navigate = useNavigate();
