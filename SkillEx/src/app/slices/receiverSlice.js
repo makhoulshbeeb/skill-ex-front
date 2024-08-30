@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    receiverId: ''
+    receiverId: '',
+    displayName: '',
+    username: '',
+    email: '',
 }
 
 const receiverSlice = createSlice({
@@ -9,7 +12,7 @@ const receiverSlice = createSlice({
     initialState,
     reducers: {
         setReceiver(state, action) {
-            state.receiverId = action.payload;
+            state = action.payload;
         }
     }
 });
