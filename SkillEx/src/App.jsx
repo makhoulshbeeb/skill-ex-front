@@ -5,6 +5,7 @@ import { Route, BrowserRouter, Routes, useParams } from "react-router-dom";
 
 import Navbar from './components/common/Navbar.jsx'
 import Auth from './pages/Auth.jsx';
+import Chat from './pages/Chat.jsx';
 
 function App() {
     return (
@@ -17,10 +18,10 @@ function App() {
                     <Route path='/app/community' />
                     <Route path='/app/search/:search' />
                     <Route path='/app/users/:username' />
-                    <Route path='/app/chats' />
                     <Route path='/app/sessions' />
                 </Route>
                 <Route path='/auth/:sign' element={<Auth />} />
+                <Route path='/chats' element={<Chat />} />
             </Routes>
         </BrowserRouter>
     )

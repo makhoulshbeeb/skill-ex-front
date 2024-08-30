@@ -1,0 +1,46 @@
+/********* Chat *********/
+
+.chat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 80dvw;
+    height: 80dvh;
+    margin-left: 10dvw;
+
+    background-color: var(--background-color);
+    border-radius: 1rem;
+
+    transition: 0.3s ease-in-out;
+}
+
+/********* Chat Sidebar *********/
+
+.chat-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+
+    width: 35%;
+    height: 100%;
+}
+
+.chat-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    width: 100%;
+    padding: 1rem;
+}
+
+.chat-search input {
+    flex-grow: 1;
+}
+
+.chat-list {
+    padding: 0 1rem;
+    overflow-y: scroll;
+}
