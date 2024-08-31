@@ -1,5 +1,3 @@
-import "./Chat.css"
-
 import Searchbar from "../common/Searchbar";
 import ChatPanel from "./ChatPanel";
 

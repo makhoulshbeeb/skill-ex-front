@@ -3,12 +3,16 @@ import "./Auth.css"
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import { useSignupMutation } from "../../api/AuthApi";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../app/slices/userSlice";
 
 import toast from 'react-hot-toast';
 import SubmitButton from "../common/SubmitButton";
 
+
 export default function Signup() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const form = useForm();
 
     const { register, handleSubmit } = form;
@@ -31,6 +35,7 @@ export default function Signup() {
         toast.success("Welcome to SkillEx!", {
             id: "success"
         });
+        dispatch(setUser(res));
         setTimeout(() => { navigate('/') }, 1000)
     }
 
