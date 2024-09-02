@@ -12,7 +12,7 @@ export const messagesApi = createApi({
     tagTypes: ['Messages'],
     endpoints: (builder) => ({
         getMessages: builder.query({
-            query: ({ receiver_id }) => `messages/${receiver_id}`,
+            query: (receiver_id) => `messages/${receiver_id}`,
             providesTags: (result, error, arg) =>
                 result
                     ? [...result.map(({ id }) => ({ type: 'Messages', id })), 'Messages']
