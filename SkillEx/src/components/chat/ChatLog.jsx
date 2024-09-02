@@ -1,4 +1,5 @@
 import ChatHeader from "./ChatHeader";
+import ChatInput from "./ChatInput";
 
 export default function ChatLog() {
 
@@ -8,9 +9,7 @@ export default function ChatLog() {
             <div className="chat-messages">
 
             </div>
-            <div className="chat-input">
-
-            </div>
+            <ChatInput />
         </div>
     )
 }

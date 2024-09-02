@@ -129,4 +129,33 @@
     height: 4.5rem;
     padding: 1rem;
 
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.chat-input>input {
+    all: unset;
+}
+
+.chat-input>input {
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+    width: calc(100% - 2.4rem);
+    border-radius: 1rem;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    flex-grow: 1;
+}
+
+.chat-input>input::placeholder {
+    color: var(--text-light);
+}
+
+.chat-input>input:-webkit-autofill,
+.chat-input>input:-webkit-autofill:hover,
+.chat-input>input:-webkit-autofill:focus,
+.chat-input>input:-webkit-autofill:active {
+    transition: all 5000s ease-in-out 0s;
+    font-size: 1rem;
 }

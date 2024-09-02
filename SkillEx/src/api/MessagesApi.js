@@ -6,7 +6,8 @@ export const messagesApi = createApi({
         baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api/`,
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include'
     }),
     tagTypes: ['Messages'],
     endpoints: (builder) => ({
@@ -18,8 +19,8 @@ export const messagesApi = createApi({
                     : ['Messages'],
         }),
         sendMessage: builder.mutation({
-            query: (receiver_id, data) => ({
-                url: `messages/${receiver_id}`,
+            query: (data) => ({
+                url: `messages/send/${data.receiverId}`,
                 method: 'POST',
                 body: data
             }),
