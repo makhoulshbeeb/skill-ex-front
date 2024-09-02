@@ -42,7 +42,12 @@ export default function ChatSidebar() {
                                 <ChatPanel chat={chat} />
                             </>)
                     })
-                    : <FontAwesomeIcon icon={faSpinner} spinPulse />}
+                    : <FontAwesomeIcon
+                        icon={faSpinner}
+                        fontSize={"1.2rem"}
+                        color="var(--text-light)"
+                        spinPulse />
+                }
             </div>
         </dv>
     )

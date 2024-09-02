@@ -1,5 +1,3 @@
-import "./Chat.css"
-
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux";
 import { setReceiver } from "../../app/slices/receiverSlice";

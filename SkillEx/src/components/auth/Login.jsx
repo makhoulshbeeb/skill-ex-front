@@ -17,7 +17,7 @@ export default function Login() {
 
     const { register, handleSubmit } = form;
 
-    const [login, { isSuccess, isLoading, isError, error }] = useLoginMutation();
+    const [login, { data: res, isSuccess, isLoading, isError, error }] = useLoginMutation();
 
     if (isLoading) {
         toast.dismiss(error);
