@@ -8,27 +8,28 @@ import "./styles/Navbar.css"
 
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
-
+    const user = useSelector(state => state.user);
     return (
         <header>
             <div className="left">
                 <nav>
                     <img src={'/SkillEx Logo Light with Text.png'} className="logo" onClick={() => navigate('/')}></img>
-                    <Link to={'/'}>Home</Link>
-                    <Link to={'/discover'}>Discover</Link>
-                    <Link to={'/community'}>Community</Link>
-                    <Link to={'/about'}>About Us</Link>
+                    <Link to={'/app/'}>Home</Link>
+                    <Link to={'/app/discover'}>Discover</Link>
+                    <Link to={'/app/community'}>Community</Link>
+                    <Link to={'/app/about'}>About Us</Link>
                 </nav>
             </div>
             <div className="right">
                 <Seachbar
                     placeholder={"Search . . ."}
                     change={(e) => { setSearch(e.target.value) }}
-                    navigate={() => navigate(`search/${search}`)}
+                    navigate={() => navigate(`/app/search/${search}`)}
                 ></Seachbar>
                 <Button
                     bgColor="--primary-light"

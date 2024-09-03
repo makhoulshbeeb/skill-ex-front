@@ -8,8 +8,12 @@ export const usersApi = createApi({
             'Content-Type': 'application/json'
         }
     }),
-    tagTypes: ['User'],
+    tagTypes: ['User', 'Me'],
     endpoints: (builder) => ({
+        getUserByToken: builder.query({
+            query: () => 'users/me',
+            providesTags: ['Me']
+        }),
         getUsersBySearch: builder.query({
             query: ({ search }) => `users/search/${search}`,
             providesTags: (result, error, arg) =>
@@ -19,10 +23,7 @@ export const usersApi = createApi({
         }),
         getUserByUsername: builder.query({
             query: ({ username }) => `users/${username}`,
-            providesTags: (result, error, arg) =>
-                result
-                    ? [...result.map(({ id }) => ({ type: 'User', id })), 'User']
-                    : ['User'],
+            providesTags: ['User'],
         }),
         getUsersByMatch: builder.query({
             query: () => `users/match/`,
@@ -37,14 +38,14 @@ export const usersApi = createApi({
                 method: 'PATCH',
                 body: data
             }),
-            invalidatesTags: (result, error, arg) => [{ type: 'User', id: arg.id }],
+            invalidatesTags: ['Me'],
         }),
         deleteUser: builder.mutation({
             query: ({ id }) => ({
                 url: `users/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: (result, error, arg) => [{ type: 'User', id: arg.id }],
+            invalidatesTags: ['Me'],
         })
     }),
 });
