@@ -6,7 +6,8 @@ export const reviewsApi = createApi({
         baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api/`,
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include'
     }),
     tagTypes: ['Reviews'],
     endpoints: (builder) => ({

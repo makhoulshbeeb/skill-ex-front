@@ -20,7 +20,6 @@ export default function ChatSidebar() {
             return el.participants[0].displayName.match(`.*${chatSearch}.*`);
         })
     }
-    console.log('chats: ', chats);
     return (
         <dv className="chat-sidebar">
             <div className="chat-search">
@@ -37,7 +36,7 @@ export default function ChatSidebar() {
                 {chats
                     ? chats.map((chat) => {
                         return (
-                            <div key={chat.receiverId}>
+                            <div key={chat._id}>
                                 <hr />
                                 <ChatPanel chat={chat} />
                             </div>)

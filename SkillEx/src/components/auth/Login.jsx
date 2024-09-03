@@ -3,8 +3,6 @@ import "./Auth.css"
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useLoginMutation } from "../../api/AuthApi";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../app/slices/userSlice";
 
 import toast from 'react-hot-toast';
 import SubmitButton from "../common/SubmitButton";
@@ -12,7 +10,6 @@ import SubmitButton from "../common/SubmitButton";
 
 export default function Login() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const form = useForm();
 
     const { register, handleSubmit } = form;
@@ -36,7 +33,6 @@ export default function Login() {
         toast.success("Welcome back!", {
             id: "success"
         });
-        dispatch(setUser(res));
         setTimeout(() => { navigate('/app') }, 1000)
     }
 

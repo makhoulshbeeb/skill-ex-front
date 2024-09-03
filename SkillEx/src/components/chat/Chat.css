@@ -153,13 +153,15 @@
 
 .message>p {
     color: var(--text-light);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    padding: 0 0.5rem;
 }
 
 .message>div {
     color: var(--text-color);
     padding: 0.5rem 1rem;
-    max-width: fit-content;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 .sent {
@@ -168,7 +170,7 @@
 }
 
 .sent>div {
-    background-color: var(--primary-color);
+    background-color: var(--primary-light);
     color: var(--background-color);
     border-radius: 1rem 1rem 0 1rem;
 }

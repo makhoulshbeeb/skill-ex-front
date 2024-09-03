@@ -6,7 +6,6 @@ import { messagesApi } from "../api/MessagesApi";
 import { chatsApi } from "../api/ChatsApi";
 import { reviewsApi } from "../api/ReviewsApi";
 import { receiverReducer } from "./slices/receiverSlice";
-import { userReducer } from "./slices/userSlice";
 
 const store = configureStore({
     enhancers: (getDefaultEnhancers) =>
@@ -20,7 +19,6 @@ const store = configureStore({
         [messagesApi.reducerPath]: messagesApi.reducer,
         [reviewsApi.reducerPath]: reviewsApi.reducer,
         receiver: receiverReducer,
-        user: userReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat([

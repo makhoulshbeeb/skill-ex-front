@@ -7,7 +7,6 @@ import { useSendMessageMutation } from "../../api/MessagesApi";
 export default function ChatInput({ chat_id }) {
     const [sendMessage] = useSendMessageMutation();
     const ref = useRef();
-    const user = useSelector(state => state.user);
     const receiver = useSelector(state => state.receiver);
     return (
         <div className="chat-input">

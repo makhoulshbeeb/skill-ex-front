@@ -6,7 +6,8 @@ export const usersApi = createApi({
         baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api/`,
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        credentials: 'include'
     }),
     tagTypes: ['User', 'Me'],
     endpoints: (builder) => ({
@@ -22,7 +23,7 @@ export const usersApi = createApi({
                     : ['User'],
         }),
         getUserByUsername: builder.query({
-            query: ({ username }) => `users/${username}`,
+            query: ({ username }) => `users/user/${username}`,
             providesTags: ['User'],
         }),
         getUsersByMatch: builder.query({
