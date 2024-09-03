@@ -37,10 +37,10 @@ export default function ChatSidebar() {
                 {chats
                     ? chats.map((chat) => {
                         return (
-                            <>
+                            <div key={chat.receiverId}>
                                 <hr />
                                 <ChatPanel chat={chat} />
-                            </>)
+                            </div>)
                     })
                     : <FontAwesomeIcon
                         icon={faSpinner}

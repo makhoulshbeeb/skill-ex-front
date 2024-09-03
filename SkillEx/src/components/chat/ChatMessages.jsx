@@ -10,7 +10,7 @@ export default function ChatMessages() {
             <div className="chat-reverse">
                 {messages?.map((element) => {
                     return (
-                        <div className={`message ${element.senderId.toString().localeCompare(user._id.toString()) ? "sent" : "recieved"}`}>
+                        <div key={element._id} className={`message ${element.senderId.toString().localeCompare(user._id.toString()) ? "sent" : "recieved"}`}>
                             <div>{element.message}</div>
                             <p>{element.createdAt}</p>
                         </div>
