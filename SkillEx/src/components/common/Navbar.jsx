@@ -1,7 +1,7 @@
 import Button from "./Button";
 import Seachbar from "./Searchbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faInbox, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 
 import "./styles/Navbar.css"
@@ -9,11 +9,12 @@ import "./styles/Navbar.css"
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useGetUserByTokenQuery } from "../../api/UsersApi";
 
 export default function Navbar() {
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
-    const user = useSelector(state => state.user);
+    const user = useGetUserByTokenQuery();
     return (
         <header>
             <div className="left">
@@ -31,15 +32,24 @@ export default function Navbar() {
                     change={(e) => { setSearch(e.target.value) }}
                     navigate={() => navigate(`/app/search/${search}`)}
                 ></Seachbar>
-                <Button
-                    bgColor="--primary-light"
-                    text="Log In"
-                    textColor="--background-color"
-                    borderRadius="1rem"
-                    onClick={() => {
-                        navigate("/auth/login");
-                    }}
-                ></Button>
+                {user._id != ''
+                    ? <FontAwesomeIcon
+                        icon={faInbox}
+                        color="var(--background-color)"
+                        fontSize={"1.5rem"}
+                        onClick={() => {
+                            navigate("/chats");
+                        }}
+                    />
+                    : <Button
+                        bgColor="--primary-light"
+                        text="Log In"
+                        textColor="--background-color"
+                        borderRadius="1rem"
+                        onClick={() => {
+                            navigate("/auth/login");
+                        }}
+                    ></Button>}
                 <Button
                     bgColor="--primary-color"
                     text="Sign Up"
