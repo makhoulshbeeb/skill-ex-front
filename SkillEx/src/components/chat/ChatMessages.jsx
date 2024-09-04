@@ -34,7 +34,10 @@ export default function ChatMessages() {
                 {isLoading
                     ? <FontAwesomeIcon
                         icon={faSpinner}
-                        spinPulse />
+                        fontSize={"2rem"}
+                        color={"var(--background-dark)"}
+                        spinPulse
+                    />
                     : messages?.map((element) => {
                         return (
                             <div key={element._id} className={`message ${element.senderId.toString() == user._id.toString() ? "sent" : "recieved"}`}>

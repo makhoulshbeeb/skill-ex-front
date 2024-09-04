@@ -13,6 +13,10 @@ export const messagesApi = createApi({
     endpoints: (builder) => ({
         getMessages: builder.query({
             query: (receiver_id) => `messages/${receiver_id}`,
+            providesTags: (result, error, arg) =>
+                result
+                    ? [...result.map(({ id }) => ({ type: 'Messages', id })), 'Messages']
+                    : ['Messages'],
         }),
         sendMessage: builder.mutation({
             query: (data) => ({
