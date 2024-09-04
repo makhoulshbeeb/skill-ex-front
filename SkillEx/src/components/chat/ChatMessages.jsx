@@ -23,24 +23,26 @@ export default function ChatMessages() {
 
     useEffect(() => {
         socket?.on("newMessage", (newMessage) => {
-            setMessages([...messages, newMessage]);
+            if (newMessage.senderId == receiver._id || newMessage.senderId == user._id) setMessages([...messages, newMessage]);
         });
         return () => socket?.off("newMessage");
     }, [socket, setMessages, messages]);
 
     return (
-        <div className="chat-messages">
+        <div className="chat-messages" style={{ justifyContent: isLoading ? 'center' : 'flex-start' }}>
             <div className="chat-reverse">
                 {isLoading
-                    ? <FontAwesomeIcon
-                        icon={faSpinner}
-                        fontSize={"2rem"}
-                        color={"var(--background-dark)"}
-                        spinPulse
-                    />
+                    ? <center>
+                        <FontAwesomeIcon
+                            icon={faSpinner}
+                            fontSize={"2rem"}
+                            color={"var(--background-dark)"}
+                            spinPulse
+                        />
+                    </center>
                     : messages?.map((element) => {
                         return (
-                            <div key={element._id} className={`message ${element.senderId.toString() == user._id.toString() ? "sent" : "recieved"}`}>
+                            <div key={element._id} className={`message ${element.senderId == user._id ? "sent" : "recieved"}`}>
                                 <div>{element.message}</div>
                                 <p>{dateToString(element.createdAt)}</p>
                             </div>
