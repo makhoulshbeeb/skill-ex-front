@@ -10,7 +10,7 @@ import Chat from './pages/Chat.jsx';
 function App() {
     return (
         <BrowserRouter>
-            <Routes>
+            <Routes path='/'>
                 <Route path='/app' element={<Navbar />}>
                     <Route path='/app/home' />
                     <Route path='/app/about' />

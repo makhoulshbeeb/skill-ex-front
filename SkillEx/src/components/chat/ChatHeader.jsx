@@ -10,7 +10,7 @@ export default function ChatHeader() {
     return (
         <div className="chat-header">
             <div
-                onClick={() => navigate(`user/${receiver.username}`)}>
+                onClick={() => navigate(`app/user/${receiver.username}`, { relative: "path" })}>
                 <img src={receiver.picture} alt={`${receiver.username}'s Picture`}
                 />
                 <h3 style={{ color: "var(--background-color)", fontWeight: "600" }}>{receiver.displayName}</h3>

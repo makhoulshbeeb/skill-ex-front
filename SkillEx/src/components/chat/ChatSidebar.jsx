@@ -21,7 +21,7 @@ export default function ChatSidebar() {
         })
     }
     return (
-        <dv className="chat-sidebar">
+        <div className="chat-sidebar">
             <div className="chat-search">
                 <FontAwesomeIcon
                     icon={faArrowLeft}
@@ -48,6 +48,6 @@ export default function ChatSidebar() {
                         spinPulse />
                 }
             </div>
-        </dv>
+        </div>
     )
 }
