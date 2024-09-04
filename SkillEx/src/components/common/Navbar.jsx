@@ -10,11 +10,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useGetUserByTokenQuery } from "../../api/UsersApi";
+import UserTag from "./UserTag";
 
 export default function Navbar() {
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
-    const user = useGetUserByTokenQuery();
+    const { data: user, isSuccess } = useGetUserByTokenQuery();
     return (
         <header>
             <div className="left">
@@ -32,11 +33,12 @@ export default function Navbar() {
                     change={(e) => { setSearch(e.target.value) }}
                     navigate={() => navigate(`/app/search/${search}`)}
                 ></Seachbar>
-                {user._id != ''
+                {isSuccess
                     ? <FontAwesomeIcon
                         icon={faInbox}
                         color="var(--background-color)"
                         fontSize={"1.5rem"}
+                        style={{ padding: '0.25rem', cursor: 'pointer' }}
                         onClick={() => {
                             navigate("/chats");
                         }}
@@ -50,15 +52,17 @@ export default function Navbar() {
                             navigate("/auth/login");
                         }}
                     ></Button>}
-                <Button
-                    bgColor="--primary-color"
-                    text="Sign Up"
-                    textColor="--background-color"
-                    borderRadius="1rem"
-                    onClick={() => {
-                        navigate("/auth/signup");
-                    }}
-                ></Button>
+                {isSuccess
+                    ? <UserTag user={user} />
+                    : <Button
+                        bgColor="--primary-color"
+                        text="Sign Up"
+                        textColor="--background-color"
+                        borderRadius="1rem"
+                        onClick={() => {
+                            navigate("/auth/signup");
+                        }}
+                    ></Button>}
             </div>
         </header>
     )
