@@ -11,16 +11,14 @@ import Home from './pages/Home.jsx';
 function App() {
     return (
         <BrowserRouter>
-            <Routes path='/'>
-                <Route path='/app' element={<Navbar />}>
-                    <Route path='/app/home' element={<Home />} />
-                    <Route path='/app/about' />
-                    <Route path='/app/discover' />
-                    <Route path='/app/community' />
-                    <Route path='/app/search/:search' />
-                    <Route path='/app/users/:username' />
-                    <Route path='/app/sessions' />
-                </Route>
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/about' />
+                <Route path='/discover' />
+                <Route path='/community' />
+                <Route path='/search/:search' />
+                <Route path='/users/:username' />
+                <Route path='/sessions' />
                 <Route path='/auth/:sign' element={<Auth />} />
                 <Route path='/chats' element={<Chat />} />
             </Routes>
