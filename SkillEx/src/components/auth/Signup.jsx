@@ -43,7 +43,7 @@ export default function Signup() {
     return (
         <div className="form-container">
             <form className="input-form" onSubmit={handleSubmit(signupHandler)}>
-                <h2 className="title">Sign up</h2>
+                <h2 className="title">Sign Up</h2>
                 <div>
                     <label>Display Name</label>
                     <input type="text" id={'displayName'} placeholder={'Display Name'} {...register('displayName')} required />
@@ -68,9 +68,9 @@ export default function Signup() {
                     <label>Confirm Password</label>
                     <input type="password" id={'confirmPassword'} placeholder={'Confirm Password'} {...register('confirmPassword')} required />
                 </div>
-                <SubmitButton text={"Sign up"} isLoading={isLoading}></SubmitButton>
+                <SubmitButton text={"Sign Up"} isLoading={isLoading}></SubmitButton>
             </form>
-            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/login')}>Log in</span></div>
+            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/login')}>Login</span></div>
         </div>
     )
 }

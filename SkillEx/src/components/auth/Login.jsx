@@ -45,7 +45,7 @@ export default function Login() {
         <div className="form-container" onSubmit={handleSubmit(loginHandler)}>
 
             <form className="input-form">
-                <h2 className="title">Log in</h2>
+                <h2 className="title">Login</h2>
                 <div>
                     <label>Email or Username</label>
                     <input type="text" id={'credential'} placeholder={'Email or Username'} {...register('credential')} required />
@@ -55,10 +55,10 @@ export default function Login() {
                     <input type="password" id={'password'} placeholder={'Password'} {...register('password')} required />
                 </div>
                 <a>Forgot password?</a>
-                <SubmitButton text={"Log in"} isLoading={isLoading}></SubmitButton>
+                <SubmitButton text={"Login"} isLoading={isLoading}></SubmitButton>
             </form>
 
-            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/signup')}>Sign up</span></div>
+            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/signup')}>Sign Up</span></div>
 
         </div>
     )

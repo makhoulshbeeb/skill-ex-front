@@ -2,9 +2,11 @@ import { useSelector } from "react-redux";
 import ChatHeader from "./ChatHeader";
 import ChatInput from "./ChatInput";
 import ChatMessages from "./ChatMessages";
+import { useState } from "react";
 
 export default function ChatLog() {
     const receiver = useSelector(state => state.receiver);
+    const [messages, setMessages] = useState([]);
 
     return (
         receiver._id == ''
@@ -14,8 +16,8 @@ export default function ChatLog() {
             </div>
             : <div className="chat-log">
                 <ChatHeader />
-                <ChatMessages />
-                <ChatInput />
+                <ChatMessages messages={messages} setMessages={setMessages} />
+                <ChatInput messages={messages} setMessages={setMessages} />
             </div>
     )
 }

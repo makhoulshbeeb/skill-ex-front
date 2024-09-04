@@ -7,10 +7,9 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-export default function ChatMessages() {
+export default function ChatMessages({ messages, setMessages }) {
     const { socket } = useSocketContext();
     const receiver = useSelector(state => state.receiver);
-    const [messages, setMessages] = useState([]);
 
     const { data: user } = useGetUserByTokenQuery();
     const { data, isLoading, isSuccess, isError, error } = useGetMessagesQuery(receiver._id, { refetchOnMountOrArgChange: true });
@@ -23,7 +22,7 @@ export default function ChatMessages() {
 
     useEffect(() => {
         socket?.on("newMessage", (newMessage) => {
-            if (newMessage.senderId == receiver._id || newMessage.senderId == user._id) setMessages([...messages, newMessage]);
+            if (newMessage.senderId == receiver._id) setMessages([...messages, newMessage]);
         });
         return () => socket?.off("newMessage");
     }, [socket, setMessages, messages]);
@@ -40,9 +39,9 @@ export default function ChatMessages() {
                             spinPulse
                         />
                     </center>
-                    : messages?.map((element) => {
+                    : messages?.map((element, index) => {
                         return (
-                            <div key={element._id} className={`message ${element.senderId == user._id ? "sent" : "recieved"}`}>
+                            <div key={index} className={`message ${element.senderId == user._id ? "sent" : "recieved"}`}>
                                 <div>{element.message}</div>
                                 <p>{dateToString(element.createdAt)}</p>
                             </div>

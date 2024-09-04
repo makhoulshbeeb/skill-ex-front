@@ -117,7 +117,7 @@
     object-fit: cover;
     height: 60%;
     align-self: center;
-    padding: 2rem;
+    padding: 0 2rem 3rem 2rem;
 }
 
 .chat-log>h1 {
