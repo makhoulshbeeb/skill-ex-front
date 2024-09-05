@@ -1,4 +1,4 @@
-/********* Home *********/
+/********* HERO SECTION *********/
 
 .hero-section {
     width: 100dvw;
@@ -15,4 +15,107 @@
     height: 100%;
     position: absolute;
     z-index: -1;
+}
+
+.hero-section>div {
+    height: 70%;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-section>div>img {
+    object-fit: contain;
+    width: 100%;
+}
+
+.hero-slogan {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hero-slogan>h1 {
+    color: var(--primary-color);
+    font-size: 2.4rem;
+}
+
+.hero-slogan>p {
+    color: var(--primary-light);
+    font-size: 1.25rem;
+}
+
+/********* DISPLAY *********/
+
+.display>h2 {
+    font-size: 2.5rem;
+    padding: 0 2rem;
+    align-self: flex-start;
+
+}
+
+.scroll-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    gap: 2rem;
+    padding: 1rem 2rem 2rem 2rem;
+    border-radius: 2rem;
+}
+
+.scroll-display::-webkit-scrollbar {
+    display: none;
+}
+
+.panel {
+    justify-content: flex-end;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-shrink: 0;
+    height: 320px;
+    width: 18vw;
+    min-width: 360px;
+    box-shadow: -0.2vw 0.8vh 1vh 0.5vh var(--shadow-color);
+    background-color: white;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    padding-bottom: 2rem;
+    font-size: 1.2rem;
+}
+
+.panel:hover {
+    scale: 1.05;
+}
+
+.panel>h3 {
+    font-weight: bolder;
+    color: var(--background-color);
+    font-size: 2rem;
+    align-self: center;
+    margin-bottom: 3rem;
+    text-shadow: -2.5px 2.5px var(--shadow-color);
+    text-decoration: solid;
+}
+
+.panel>img {
+    height: 70%;
+    min-width: 100%;
+    top: 0;
+    justify-self: flex-start;
+    align-self: center;
+}
+
+.course-panel-row {
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
 }

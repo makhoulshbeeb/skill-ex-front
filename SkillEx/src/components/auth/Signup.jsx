@@ -56,10 +56,13 @@ export default function Signup() {
                     <label>Email</label>
                     <input type="text" id={'email'} placeholder={'email@example.com'} {...register('email')} required />
                 </div>
-                {/* <div>
+                <div style={{ display: "flex", gap: '0.25rem' }}>
                     <input type="radio" id={'male'} value={'male'} {...register('gender')} required />
+                    <label>Male</label>
+                    <br></br>
                     <input type="radio" id={'female'} value={'female'} {...register('gender')} required />
-                </div> */}
+                    <label>Female</label>
+                </div>
                 <div>
                     <label>Password</label>
                     <input type="password" id={'password'} placeholder={'Password'} {...register('password')} required />
@@ -70,7 +73,7 @@ export default function Signup() {
                 </div>
                 <SubmitButton text={"Sign Up"} isLoading={isLoading}></SubmitButton>
             </form>
-            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/login')}>Login</span></div>
+            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/login')}>Log in</span></div>
         </div>
     )
 }

@@ -43,9 +43,9 @@ export default function Login() {
 
     return (
         <div className="form-container" onSubmit={handleSubmit(loginHandler)}>
-
+            <h2 className="title">Login</h2>
             <form className="input-form">
-                <h2 className="title">Login</h2>
+
                 <div>
                     <label>Email or Username</label>
                     <input type="text" id={'credential'} placeholder={'Email or Username'} {...register('credential')} required />

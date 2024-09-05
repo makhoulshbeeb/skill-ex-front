@@ -7,7 +7,7 @@ export default function HeroSection() {
                 <img src={'/Hero image.png'} alt="Hero Image" />
                 <div className='hero-slogan'>
                     <h1>Unleash Potential, Share Skills, Grow Together</h1>
-                    <p>Connect with passionate individuals from diverse backgrounds, share your expertise, and learn new skills that elevate your potential.</p>
+                    <p>Connect with passionate individuals from diverse backgrounds, share your expertise, learn new skills, and unleash your potential.</p>
                 </div>
             </div>
         </div>

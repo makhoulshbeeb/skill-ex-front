@@ -16,6 +16,11 @@
     align-self: flex-start;
 }
 
+.auth-logo {
+    object-fit: contain;
+    height: 7rem;
+}
+
 .auth-form {
     width: 40%;
     height: 100%;
@@ -45,9 +50,10 @@
     align-items: center;
     gap: 0.75rem;
     width: 100%;
+    min-height: 65%;
 }
 
-.input-form>h2 {
+.title {
     width: 75%;
     text-align: center;
     padding-bottom: 0.5rem;
