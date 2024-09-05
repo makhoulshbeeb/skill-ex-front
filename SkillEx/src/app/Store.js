@@ -5,6 +5,7 @@ import { usersApi } from "../api/UsersApi";
 import { messagesApi } from "../api/MessagesApi";
 import { chatsApi } from "../api/ChatsApi";
 import { reviewsApi } from "../api/ReviewsApi";
+import { categoriesApi } from "../api/CategoriesApi";
 import { receiverReducer } from "./slices/receiverSlice";
 
 const store = configureStore({
@@ -18,6 +19,7 @@ const store = configureStore({
         [chatsApi.reducerPath]: chatsApi.reducer,
         [messagesApi.reducerPath]: messagesApi.reducer,
         [reviewsApi.reducerPath]: reviewsApi.reducer,
+        [categoriesApi.reducerPath]: categoriesApi.reducer,
         receiver: receiverReducer,
     },
     middleware: (getDefaultMiddleware) =>
@@ -26,7 +28,8 @@ const store = configureStore({
             usersApi.middleware,
             chatsApi.middleware,
             messagesApi.middleware,
-            reviewsApi.middleware
+            reviewsApi.middleware,
+            categoriesApi.middleware,
         ])
 })
 
