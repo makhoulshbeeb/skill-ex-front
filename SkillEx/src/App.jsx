@@ -14,7 +14,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/about' />
-                <Route path='/discover' />
+                <Route path='/explore/:type' />
                 <Route path='/community' />
                 <Route path='/search/:search' />
                 <Route path='/users/:username' />

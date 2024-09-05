@@ -6,7 +6,7 @@ export default function DisplayPanel({ category }) {
 
         <div onClick={() => { navigate(`/category/${category.name}`) }} className="category-panel">
             <img src={`${category.picture}`} />
-            <h2>{category.name}</h2>
+            <h3>{category.name}</h3>
         </div>
 
     );
