@@ -1,5 +1,3 @@
-import "./Auth.css"
-
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 import { useSignupMutation } from "../../api/AuthApi";
