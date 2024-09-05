@@ -1,4 +1,4 @@
-import "../components/auth/Auth.css"
+import "./styles/Auth.css"
 
 import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup";
