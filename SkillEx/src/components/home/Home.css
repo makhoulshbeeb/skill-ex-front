@@ -1,8 +1,17 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
 /********* HERO SECTION *********/
 
 .hero-section {
-    width: 100dvw;
+    width: 100%;
     height: 100dvh;
+    box-shadow: 0 1rem 2rem -0.5rem var(--shadow-color) inset,
+        0 0 0.5rem 0 inset var(--shadow-color);
 
     display: flex;
     align-items: center;
@@ -26,8 +35,9 @@
 }
 
 .hero-section>div>img {
-    object-fit: contain;
+    object-fit: cover;
     width: 100%;
+
 }
 
 .hero-slogan {
@@ -51,8 +61,12 @@
 
 /********* DISPLAY *********/
 
+.display {
+    width: 70%;
+}
+
 .display>h2 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     padding: 0 2rem;
     align-self: flex-start;
 
@@ -72,31 +86,39 @@
     display: none;
 }
 
-.panel {
-    justify-content: flex-end;
-    background-repeat: no-repeat;
-    background-size: cover;
-    flex-shrink: 0;
-    height: 320px;
-    width: 18vw;
-    min-width: 360px;
-    box-shadow: -0.2vw 0.8vh 1vh 0.5vh var(--shadow-color);
-    background-color: white;
-    border-radius: 1.5rem;
-    overflow: hidden;
+/* CATEGORIES PANEL */
+
+.category-panel {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+
+    height: 20rem;
+    width: 16rem;
+    min-width: 360px;
+
+    background-color: white;
+    border-radius: 1.5rem;
+    box-shadow: 0 1rem 2rem -0.5rem var(--shadow-color),
+        0 0 0.5rem 0 var(--shadow-color);
+
+    overflow: hidden;
     cursor: pointer;
-    padding-bottom: 2rem;
-    font-size: 1.2rem;
 }
 
-.panel:hover {
-    scale: 1.05;
+.category-panel:hover {
+    scale: 1.01;
 }
 
-.panel>h3 {
+.category-panel>h2 {
+    height: 20%;
+    align-content: center;
+    padding-bottom: 0.5rem;
+}
+
+/* .category-panel>h3 {
     font-weight: bolder;
     color: var(--background-color);
     font-size: 2rem;
@@ -104,17 +126,17 @@
     margin-bottom: 3rem;
     text-shadow: -2.5px 2.5px var(--shadow-color);
     text-decoration: solid;
-}
+} */
 
-.panel>img {
-    height: 70%;
+.category-panel>img {
+    height: 80%;
     min-width: 100%;
     top: 0;
     justify-self: flex-start;
     align-self: center;
 }
 
-.course-panel-row {
+.category-panel-row {
     padding: 0 2rem;
     display: flex;
     justify-content: space-between;
