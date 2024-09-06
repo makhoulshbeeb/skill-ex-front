@@ -29,6 +29,10 @@
 
 }
 
+.explore-header>h2 {
+    font-size: 2rem;
+}
+
 .explore-header>div {
     width: 20dvw;
 }

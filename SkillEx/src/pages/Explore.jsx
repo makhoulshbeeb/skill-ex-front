@@ -30,7 +30,7 @@ export default function Explore() {
             <div className="explore-page">
                 <Navbar />
                 <div className="explore-header">
-                    <h1>{type}</h1>
+                    <h2>{type}</h2>
                     <Searchbar placeholder={`Search ${type}`} change={(e) => setItemSearch(e.target.value)} />
                 </div>
                 <hr />
