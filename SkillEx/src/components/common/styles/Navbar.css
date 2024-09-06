@@ -10,9 +10,9 @@ header {
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    top: 1.5rem;
+    /* top: 1.5rem;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); */
 }
 
 header>div.left>nav {
