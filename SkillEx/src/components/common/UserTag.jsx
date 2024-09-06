@@ -10,7 +10,7 @@ export default function UserTag({ user }) {
                 color="var(--background-color)"
                 fontSize={"0.75rem"}
             />
-            <p>{user.displayName}</p>
+            <p>{user.displayName.split(' ')[0]}</p>
             <img src={user.picture} alt={`${user.username}'s picture`} />
         </div>
     )

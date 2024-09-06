@@ -22,7 +22,7 @@ export default function ChatSidebar() {
 
     if (data) {
         chats = data.filter(function (el) {
-            return el.participants[0].displayName.match(new RegExp(String.raw`.*${chatSearch}.*`, "i"));
+            return el.participants[0].displayName.match(new RegExp(String.raw`.*${chatSearch.trim()}.*`, "i"));
         })
     }
 

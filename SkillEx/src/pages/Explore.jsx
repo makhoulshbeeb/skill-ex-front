@@ -21,7 +21,7 @@ export default function Explore() {
 
     if (data) {
         items = data.filter(function (el) {
-            return el.name.match(new RegExp(String.raw`.*${itemSearch}.*`, "i"));
+            return el.name.match(new RegExp(String.raw`.*${itemSearch.trim()}.*`, "i"));
         })
     }
     return (
