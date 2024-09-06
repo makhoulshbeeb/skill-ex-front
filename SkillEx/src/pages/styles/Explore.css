@@ -1,0 +1,25 @@
+.explore-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100dvw;
+    height: 100dvh;
+}
+
+.explore-page>div {
+    width: 60%;
+    height: 65%
+}
+
+.explore-header {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0.75rem 0;
+}
+
+.explore-header>div {
+    width: 20dvw;
+}
