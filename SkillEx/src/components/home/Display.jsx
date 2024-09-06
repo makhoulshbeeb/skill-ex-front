@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import CategoryDisplayPanel from './CategoryDisplayPanel';
+import CategoryDisplayPanel from '../common/CategoryDisplayPanel';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 

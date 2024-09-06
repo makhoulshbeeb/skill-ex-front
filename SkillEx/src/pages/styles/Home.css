@@ -4,15 +4,15 @@
     align-items: center;
     gap: 2rem;
 
-    width: 100dvw;
+    width: 99.5dvw;
 }
 
 /********* HERO SECTION *********/
 
 .hero-section {
-    width: 100%;
     height: 100dvh;
-    box-shadow: 0 0 1rem 0 inset var(--shadow-color);
+    width: 100%;
+    box-shadow: 0.2rem -0.5rem 0.5rem 0 inset var(--shadow-color);
 
     display: flex;
     align-items: center;
@@ -21,8 +21,8 @@
 
 .hero-section>img {
     object-fit: cover;
-    width: 100%;
     height: 100dvh;
+    width: 100%;
     position: absolute;
     z-index: -1;
 }
@@ -57,7 +57,8 @@
 
 .hero-slogan>p {
     color: var(--primary-light);
-    font-size: 1.25rem;
+    width: 90%;
+    font-size: 1.5rem;
 }
 
 /********* DISPLAY *********/
@@ -92,59 +93,4 @@
 
 .scroll-display::-webkit-scrollbar {
     display: none;
-}
-
-/* CATEGORIES PANEL */
-
-.category-panel {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-
-    height: 16rem;
-    width: 12rem;
-
-    background-color: white;
-    border-radius: 1.5rem;
-    box-shadow: 0 1rem 2rem -0.5rem var(--shadow-color),
-        0 0 0.5rem 0 var(--shadow-color);
-
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.category-panel:hover {
-    scale: 1.02;
-}
-
-.category-panel>h3 {
-    height: 30%;
-    align-content: center;
-    text-align: center;
-    padding: 0.5rem;
-    padding-top: 0;
-}
-
-/* .category-panel>h3 {
-    font-weight: bolder;
-    color: var(--background-color);
-    font-size: 2rem;
-    align-self: center;
-    margin-bottom: 3rem;
-    text-shadow: -2.5px 2.5px var(--shadow-color);
-    text-decoration: solid;
-} */
-
-.category-panel>img {
-    object-fit: cover;
-    height: 70%;
-    min-width: 100%;
-}
-
-.category-panel-row {
-    padding: 0 2rem;
-    display: flex;
-    justify-content: space-between;
 }
