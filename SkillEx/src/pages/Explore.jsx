@@ -1,10 +1,11 @@
 import "./styles/Explore.css"
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/common/Navbar";
 import Searchbar from "../components/common/Searchbar";
 import { useGetCategoriesQuery } from "../api/CategoriesApi";
 import ExploreDisplay from "../components/explore/ExploreDisplay";
+import { useState } from "react";
 
 const types = {
     Categories: useGetCategoriesQuery,
@@ -12,7 +13,17 @@ const types = {
 
 export default function Explore() {
     const { type } = useParams();
-    const { data: items, isLoading, isSuccess, isError, error } = types[type]();
+    const [itemSearch, setItemSearch] = useState('');
+    const { data, isLoading, isSuccess, isError, error } = types[type]();
+    const navigate = useNavigate();
+
+    var items = data;
+
+    if (data) {
+        items = data.filter(function (el) {
+            return el.name.match(new RegExp(String.raw`.*${itemSearch}.*`, "i"));
+        })
+    }
     return (
         <>
             <img src="/SkillEx Background 4.png" alt="Explore Page Background" className="bg" />
@@ -20,7 +31,7 @@ export default function Explore() {
                 <Navbar />
                 <div className="explore-header">
                     <h1>{type}</h1>
-                    <Searchbar placeholder={`Search ${type}`} />
+                    <Searchbar placeholder={`Search ${type}`} change={(e) => setItemSearch(e.target.value)} />
                 </div>
                 <hr />
                 {isSuccess && <ExploreDisplay items={items} type={type} />}

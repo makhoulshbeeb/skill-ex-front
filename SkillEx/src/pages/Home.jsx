@@ -8,8 +8,9 @@ export default function Home() {
     const { data: categories, isLoading, isSuccess, isError, error } = useGetCategoriesQuery({}, { refetchOnMountOrArgChange: true });
     return (
         <>
-            <Navbar />
             <div className="home-page">
+                <Navbar />
+
                 <HeroSection />
                 {isSuccess && <Display displayTitle={"Categories"} items={categories} type={'Categories'} />}
 
