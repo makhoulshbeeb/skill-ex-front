@@ -6,16 +6,17 @@ import Searchbar from "../components/common/Searchbar";
 import { useGetCategoriesQuery } from "../api/CategoriesApi";
 import ExploreDisplay from "../components/explore/ExploreDisplay";
 import { useState } from "react";
+import { useGetUsersByMatchQuery } from "../api/UsersApi";
 
 const types = {
     Categories: useGetCategoriesQuery,
+    Matches: useGetUsersByMatchQuery
 }
 
 export default function Explore() {
     const { type } = useParams();
     const [itemSearch, setItemSearch] = useState('');
     const { data, isLoading, isSuccess, isError, error } = types[type]();
-    const navigate = useNavigate();
 
     var items = data;
 

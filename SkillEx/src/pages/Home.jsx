@@ -5,14 +5,30 @@ import HeroSection from "../components/home/HeroSection"
 import "./styles/Home.css"
 
 export default function Home() {
-    const { data: categories, isLoading, isSuccess, isError, error } = useGetCategoriesQuery({}, { refetchOnMountOrArgChange: true });
+    const {
+        data: categories,
+        isLoading: isLoadingCategories,
+        isSuccess: isSuccessCategories,
+        isError: isErrorCategories,
+        error: errorCategories
+    } = useGetCategoriesQuery({}, { refetchOnMountOrArgChange: true });
+
+    const {
+        data: matches,
+        isLoading: isLoadingMatches,
+        isSuccess: isSuccessMatches,
+        isError: isErrorMatches,
+        error: errorMatches
+    } = useGetMatchesQuery({}, { refetchOnMountOrArgChange: true });
+
     return (
         <>
             <div className="home-page">
                 <Navbar />
 
                 <HeroSection />
-                {isSuccess && <Display displayTitle={"Categories"} items={categories} type={'Categories'} />}
+                {isSuccessCategories && <Display displayTitle={"Categories"} items={categories} type={'Categories'} />}
+                {isSuccessMatches && <Display displayTitle={"Matches"} items={matches} type={'Matches'} />}
 
             </div>
         </>

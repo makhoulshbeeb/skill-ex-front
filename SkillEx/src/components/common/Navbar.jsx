@@ -8,7 +8,6 @@ import "./styles/Navbar.css"
 
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { useGetUserByTokenQuery } from "../../api/UsersApi";
 import UserTag from "./UserTag";
 
