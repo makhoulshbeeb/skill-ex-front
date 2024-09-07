@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CategoryDisplayPanel from '../common/CategoryDisplayPanel';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import UserDisplayPanel from '../common/UserDisplayPanel';
 
 
 
@@ -26,6 +27,11 @@ export default function Display({ displayTitle, items, type }) {
                         if (type == 'Categories') {
                             return (
                                 <CategoryDisplayPanel category={item} key={item.id} />
+                            )
+                        }
+                        if (type == 'Matches') {
+                            return (
+                                <UserDisplayPanel user={item} key={item.id} />
                             )
                         }
                     }

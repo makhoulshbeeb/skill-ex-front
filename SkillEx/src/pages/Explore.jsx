@@ -20,9 +20,14 @@ export default function Explore() {
 
     var items = data;
 
-    if (data) {
-        items = data.filter(function (el) {
-            return el.name.match(new RegExp(String.raw`.*${itemSearch.trim()}.*`, "i"));
+    if (items) {
+        items = items.filter(function (el) {
+            if (type == "Categories") {
+                return el.name.match(new RegExp(String.raw`.*${itemSearch.trim()}.*`, "i"));
+            }
+            if (type == "Matches") {
+                return el.displayName.match(new RegExp(String.raw`.*${itemSearch.trim()}.*`, "i"));
+            }
         })
     }
     return (

@@ -1,4 +1,5 @@
 import { useGetCategoriesQuery } from "../api/CategoriesApi"
+import { useGetUsersByMatchQuery } from "../api/UsersApi"
 import Navbar from "../components/common/Navbar"
 import Display from "../components/home/Display"
 import HeroSection from "../components/home/HeroSection"
@@ -19,7 +20,9 @@ export default function Home() {
         isSuccess: isSuccessMatches,
         isError: isErrorMatches,
         error: errorMatches
-    } = useGetMatchesQuery({}, { refetchOnMountOrArgChange: true });
+    } = useGetUsersByMatchQuery({}, { refetchOnMountOrArgChange: true });
+
+    console.log(matches);
 
     return (
         <>
