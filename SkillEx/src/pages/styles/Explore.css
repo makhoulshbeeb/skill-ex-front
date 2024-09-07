@@ -49,5 +49,5 @@
 
     overflow-y: scroll;
     flex-grow: 1;
-    padding-bottom: 1.5rem;
+    padding: 1rem 0;
 }
