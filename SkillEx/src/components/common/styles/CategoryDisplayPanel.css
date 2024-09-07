@@ -6,14 +6,13 @@
     flex-shrink: 0;
 
     height: 16rem;
-    width: 12rem;
+    width: 13rem;
 
     background-color: white;
     border-radius: 1.5rem;
     box-shadow: 0 1rem 2rem -0.5rem var(--shadow-color),
         0 0 0.5rem 0 var(--shadow-color);
 
-    z-index: -2;
     overflow: hidden;
     scroll-snap-align: start;
     cursor: pointer;
