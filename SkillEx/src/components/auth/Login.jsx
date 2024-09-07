@@ -31,7 +31,7 @@ export default function Login() {
         toast.success("Welcome back!", {
             id: "success"
         });
-        setTimeout(() => { navigate('/app') }, 1000)
+        setTimeout(() => { navigate('/') }, 1000)
     }
 
     const loginHandler = async (data, e) => {

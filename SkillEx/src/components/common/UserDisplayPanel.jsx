@@ -15,6 +15,7 @@ export default function UserDisplayPanel({ user }) {
             </div>
             <div>
                 <h2>{user.displayName}</h2>
+                <h3>{user.learn[0].category.name}</h3>
                 <div>
                     {[1, 2, 3, 4, 5].map((el) => {
                         if (user.avgRating - el >= 0) {
