@@ -16,7 +16,7 @@ export default function UserDisplayPanel({ user }) {
             <div>
                 <h2>{user.displayName}</h2>
                 <h3>{user.learn[0].category.name}</h3>
-                <div>
+                <div className="user-panel-rating">
                     {[1, 2, 3, 4, 5].map((el) => {
                         if (user.avgRating - el >= 0) {
                             return (<FontAwesomeIcon icon={faStar} color="gold" />)
@@ -27,8 +27,9 @@ export default function UserDisplayPanel({ user }) {
                         }
 
                     })}
-                    <span>{user.avgRating}</span>
+                    <span>{Math.round(user.avgRating * 10) / 10}</span>
                 </div>
+                <p>{user.bio}</p>
             </div>
         </div>
 
