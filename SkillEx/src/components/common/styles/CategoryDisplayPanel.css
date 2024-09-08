@@ -6,12 +6,12 @@
     flex-shrink: 0;
 
     height: 16rem;
-    width: 13rem;
+    width: 12rem;
 
     background-color: white;
     border-radius: 1.5rem;
-    box-shadow: 0 0.5rem 1.5rem -0.5rem var(--shadow-color),
-        0 0 0.5rem 0 var(--shadow-color);
+    /* box-shadow: 0 0.5rem 1.5rem -0.5rem var(--shadow-color),
+        0 0 0.5rem 0 var(--shadow-color); */
 
     overflow: hidden;
     scroll-snap-align: start;
@@ -27,11 +27,11 @@
     align-content: center;
     text-align: center;
     padding: 0.5rem;
-    padding-top: 0;
 }
 
 .category-panel>img {
-    object-fit: cover;
-    height: 70%;
-    min-width: 100%;
+    object-fit: contain;
+    height: 12rem;
+    min-width: 12rem;
+    clip-path: circle();
 }

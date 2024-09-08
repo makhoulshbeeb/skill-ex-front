@@ -31,7 +31,7 @@
 .user-panel-picture>img {
     object-fit: cover;
     width: 100%;
-    border-radius: 50%;
+    clip-path: circle();
 }
 
 .user-panel-details {
