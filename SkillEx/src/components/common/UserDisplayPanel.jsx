@@ -10,7 +10,7 @@ export default function UserDisplayPanel({ user }) {
     return (
 
         <div className="user-panel" onClick={() => { navigate(`/user/${user.username}`) }} >
-            <div className="user-panel-picture" style={{ backgroundImage: 'url(/User Panel Background.png)' }}>
+            <div className="user-panel-picture" >
                 <img src={`${user.picture}`} alt={`${user.username}'s Picture`} />
             </div>
             <div className="user-panel-details">

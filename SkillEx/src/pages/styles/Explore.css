@@ -6,7 +6,7 @@
 
     width: 100dvw;
     height: 100dvh;
-    padding-bottom: 1.5rem;
+    padding: 1.5rem 0;
 }
 
 .explore-page>header {
@@ -15,26 +15,56 @@
 
 /********* EXPLORE HEADER *********/
 
-.explore-page>div {
-    width: 60%;
-}
-
-.explore-page>hr {
-    width: 60%;
+.explore-page>* {
+    width: 80%;
 }
 
 .explore-header {
     display: flex;
     justify-content: space-between;
+    padding: 0 1.5rem;
 
 }
 
-.explore-header>h2 {
+.explore-title {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.2rem;
+}
+
+.explore-title>h2 {
+    position: relative;
     font-size: 2rem;
 }
 
+.explore-title>h2::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    content: "";
+
+    width: 90%;
+    height: 0.4rem;
+    border-radius: 0.2rem;
+    background-image: linear-gradient(to right, var(--primary-color), var(--primary-light));
+}
+
+.explore-title>h2::before {
+    position: absolute;
+    bottom: -0.75rem;
+    left: 0;
+    z-index: -1;
+    content: "";
+
+    width: 60%;
+    height: 0.4rem;
+    border-radius: 0.2rem;
+    background-image: linear-gradient(to right, var(--primary-color), var(--primary-light));
+}
+
 .explore-header>div {
-    width: 20dvw;
+    width: 30dvw;
 }
 
 /********* EXPLORE DISPLAY *********/
@@ -43,6 +73,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: flex-start;
     gap: 1.5rem;
 
     /* box-shadow: -0.2rem -0.5rem 0.5rem 0 inset var(--shadow-color); */

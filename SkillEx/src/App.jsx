@@ -7,6 +7,7 @@ import Auth from './pages/Auth.jsx';
 import Chat from './pages/Chat.jsx';
 import Home from './pages/Home.jsx';
 import Explore from './pages/Explore.jsx';
+import User from './pages/User.jsx';
 
 function App() {
     return (
@@ -17,7 +18,7 @@ function App() {
                 <Route path='/explore/:type' element={<Explore />} />
                 <Route path='/community' />
                 <Route path='/search/:search' />
-                <Route path='/users/:username' />
+                <Route path='/user/:username' element={<User />} />
                 <Route path='/sessions' />
                 <Route path='/auth/:sign' element={<Auth />} />
                 <Route path='/chats' element={<Chat />} />

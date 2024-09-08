@@ -7,6 +7,8 @@ import { useGetCategoriesQuery } from "../api/CategoriesApi";
 import ExploreDisplay from "../components/explore/ExploreDisplay";
 import { useState } from "react";
 import { useGetUsersByMatchQuery } from "../api/UsersApi";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const types = {
     Categories: useGetCategoriesQuery,
@@ -17,6 +19,7 @@ export default function Explore() {
     const { type } = useParams();
     const [itemSearch, setItemSearch] = useState('');
     const { data, isLoading, isSuccess, isError, error } = types[type]();
+    const navigate = useNavigate();
 
     var items = data;
 
@@ -34,12 +37,19 @@ export default function Explore() {
         <>
             <img src="/SkillEx Background 4.png" alt="Explore Page Background" className="bg" />
             <div className="explore-page">
-                <Navbar />
                 <div className="explore-header">
-                    <h2>{type}</h2>
+                    <div className="explore-title">
+                        <FontAwesomeIcon
+                            icon={faArrowLeft}
+                            fontSize={"1.2rem"}
+                            color="var(--background-color)"
+                            style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.6rem", borderRadius: "1.5rem" }}
+                            onClick={(e) => navigate(-1)}
+                        ></FontAwesomeIcon>
+                        <h2>{type}</h2>
+                    </div>
                     <Searchbar placeholder={`Search ${type}`} change={(e) => setItemSearch(e.target.value)} />
                 </div>
-                <hr />
                 {isSuccess && <ExploreDisplay items={items} type={type} />}
             </div>
         </>
