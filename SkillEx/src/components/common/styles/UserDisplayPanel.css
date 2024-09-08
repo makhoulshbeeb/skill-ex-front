@@ -67,4 +67,5 @@
     overflow: hidden;
     text-overflow: ellipsis;
     color: var(--text-light);
+    height: 40%;
 }
