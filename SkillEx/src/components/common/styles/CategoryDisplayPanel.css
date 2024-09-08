@@ -15,6 +15,7 @@
 
     overflow: hidden;
     scroll-snap-align: start;
+    scroll-snap-type: x proximity;
     cursor: pointer;
 }
 
