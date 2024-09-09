@@ -16,7 +16,7 @@
 /********* EXPLORE HEADER *********/
 
 .explore-page>* {
-    width: 64%;
+    width: 72%;
 }
 
 .explore-header {
@@ -80,5 +80,5 @@
 
     overflow-y: scroll;
     flex-grow: 1;
-    padding: 1rem 0;
+    padding: 1rem;
 }
