@@ -1,7 +1,7 @@
 import Searchbar from "../common/Searchbar";
 import ChatPanel from "./ChatPanel";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGetChatsQuery } from "../../api/ChatsApi";
 
