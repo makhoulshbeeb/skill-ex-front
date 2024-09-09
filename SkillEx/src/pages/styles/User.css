@@ -101,12 +101,32 @@
 
 /********* USER PROFIEL REVIEWS *********/
 
+.user-profile-reviews {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.user-profile-reviews>div {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+.user-profile-reviews>div>div {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
 .review-container {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 
     padding: 1rem;
+    scroll-snap-align: start;
+    scroll-snap-type: y proximity;
 }
 
 .reviewer-tag {

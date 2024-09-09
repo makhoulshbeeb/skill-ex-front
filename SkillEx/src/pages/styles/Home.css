@@ -86,7 +86,7 @@
     flex-direction: row;
     justify-content: flex-start;
     overflow-x: scroll;
-    scroll-snap-type: x proximity;
+    scroll-snap-type: x mandatory;
     scroll-padding-inline-start: 2em;
     scroll-padding-inline-end: 2em;
 
