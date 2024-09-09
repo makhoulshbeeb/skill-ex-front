@@ -4,7 +4,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 
 export default function DropDownMenu({ menuItems, open }) {
     return (
-        <div className="dropdown-menu-container" style={{ height: open ? 'fit-content' : 0 }}>
+        <div className="dropdown-menu-container" style={{ height: open ? `${menuItems.length * 3.6}rem` : 0 }}>
             {menuItems.map((item, index) => {
                 return (
                     <div
