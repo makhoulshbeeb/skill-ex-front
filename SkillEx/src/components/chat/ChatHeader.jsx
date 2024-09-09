@@ -18,12 +18,12 @@ export default function ChatHeader() {
             <div>
                 <FontAwesomeIcon
                     icon={faVideo}
-                    fontSize={"1.5rem"}
+                    fontSize={"1.8rem"}
                     color="var(--background-color)"
                 ></FontAwesomeIcon>
                 <FontAwesomeIcon
                     icon={faEllipsisVertical}
-                    fontSize={"1.5rem"}
+                    fontSize={"1.8rem"}
                     color="var(--background-color)"
                 ></FontAwesomeIcon>
             </div>

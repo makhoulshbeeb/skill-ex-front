@@ -31,7 +31,7 @@ export default function ChatInput({ messages, setMessages }) {
                 <FontAwesomeIcon
                     icon={faPaperPlane}
                     color="var(--background-color)"
-                    fontSize={"1.2rem"}
+                    fontSize={"1.6rem"}
                 />
             </div>
         </div>
