@@ -24,9 +24,11 @@
 
 .user-panel-picture {
     width: 40%;
-    padding: 2.75rem;
+    padding: 3rem;
     background-image: url(../../../../public/User\ Panel\ Background.png);
-    background-size: cover;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .user-panel-picture>img {
