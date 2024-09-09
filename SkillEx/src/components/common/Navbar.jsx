@@ -14,7 +14,7 @@ import UserTag from "./UserTag";
 export default function Navbar() {
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
-    const { data: user, isSuccess } = useGetUserByTokenQuery();
+    const { data: user, isSuccess } = useGetUserByTokenQuery({}, { refetchOnMountOrArgChange: true });
     return (
         <header>
             <div className="left">

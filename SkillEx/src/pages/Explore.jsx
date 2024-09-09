@@ -1,7 +1,6 @@
 import "./styles/Explore.css"
 
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from "../components/common/Navbar";
 import Searchbar from "../components/common/Searchbar";
 import { useGetCategoriesQuery } from "../api/CategoriesApi";
 import ExploreDisplay from "../components/explore/ExploreDisplay";

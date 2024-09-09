@@ -11,7 +11,7 @@ export const useSocketContext = () => {
 export const SocketContextProvider = ({ children }) => {
     const [socket, setSocket] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState([]);
-    const { data: user, isSuccess } = useGetUserByTokenQuery();
+    const { data: user, isSuccess } = useGetUserByTokenQuery({}, { refetchOnMountOrArgChange: true });
 
     useEffect(() => {
         if (isSuccess) {

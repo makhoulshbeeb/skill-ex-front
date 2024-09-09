@@ -6,6 +6,7 @@ export const authApi = createApi({
         baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api/auth/`,
         credentials: 'include'
     }),
+    tagTypes: ['Me'],
     endpoints: (builder) => ({
         signup: builder.mutation({
             query: (data) => ({
@@ -26,6 +27,7 @@ export const authApi = createApi({
                 url: "logout",
                 method: "POST",
             }),
+            invalidatesTags: ['Me']
         }),
     }),
 });
