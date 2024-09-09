@@ -32,7 +32,7 @@ export default function ChatSidebar() {
             <div className="chat-search">
                 <FontAwesomeIcon
                     icon={faArrowLeft}
-                    fontSize={"1.2rem"}
+                    fontSize={"1.5rem"}
                     color="var(--background-color)"
                     style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.6rem", borderRadius: "1.5rem" }}
                     onClick={(e) => navigate(-1)}

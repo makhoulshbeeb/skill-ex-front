@@ -40,7 +40,7 @@ export default function UserSidePanel({ user }) {
                     <h2>{user.displayName}</h2>
                     <FontAwesomeIcon
                         icon={faEnvelope}
-                        fontSize={"1.2rem"}
+                        fontSize={"1.5rem"}
                         color="var(--background-color)"
                         style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.5rem", borderRadius: "100%" }}
                         onClick={(e) => handleCreateChat()}
@@ -52,11 +52,11 @@ export default function UserSidePanel({ user }) {
             <div className="user-page-rating">
                 {[1, 2, 3, 4, 5].map((el) => {
                     if (user.avgRating - el >= 0) {
-                        return (<FontAwesomeIcon icon={faStar} color="gold" />)
+                        return (<FontAwesomeIcon icon={faStar} color="gold" fontSize={"1.25rem"} />)
                     } else if (user.avgRating - el <= -1) {
-                        return (<FontAwesomeIcon icon={faStarOutline} color="gold" />)
+                        return (<FontAwesomeIcon icon={faStarOutline} color="gold" fontSize={"1.25rem"} />)
                     } else {
-                        return (<FontAwesomeIcon icon={faStarHalfStroke} color="gold" />)
+                        return (<FontAwesomeIcon icon={faStarHalfStroke} color="gold" fontSize={"1.25rem"} />)
                     }
 
                 })}

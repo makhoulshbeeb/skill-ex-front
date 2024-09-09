@@ -24,6 +24,7 @@
 
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }
 
 .user-page-picture {
@@ -93,10 +94,7 @@
     line-clamp: 6;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--text-color);
-    height: 36%;
-    max-lines: 6;
+    height: fit-content;
 }
 
 /********* USER PROFILE REVIEWS *********/
