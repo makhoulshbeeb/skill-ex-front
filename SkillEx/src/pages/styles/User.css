@@ -58,22 +58,34 @@
     border-radius: 100%;
 }
 
-.user-side-panel>div>h2 {
-    font-size: 1.6rem;
-    line-height: 1.8rem;
+.user-page-contact {
+    position: relative;
 }
 
-.user-side-panel>div>h3 {
+.user-page-contact>div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-page-contact>div>h2 {
+    font-size: 1.6rem;
+}
+
+.user-page-contact>h3 {
     color: var(--text-light);
     font-weight: 500;
+    line-height: 1.8rem;
 }
 
 .user-side-panel>p {
     display: -webkit-box;
-    -webkit-line-clamp: 7;
-    line-clamp: 7;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    text-overflow: ellipsis;
     color: var(--text-color);
-    height: 40%;
+    height: 36%;
+    max-lines: 6;
 }
