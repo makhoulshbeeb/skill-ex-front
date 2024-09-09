@@ -1,7 +1,7 @@
 import "./styles/UserTag.css"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
+import { faChevronDown, faInbox, faRightFromBracket, faUser } from "@fortawesome/free-solid-svg-icons"
 import DropDownMenu from "./DropDownMenu"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
@@ -18,20 +18,48 @@ export default function UserTag({ user }) {
         navigate("/");
         location.reload();
     };
-    const viewProfileHandler = () => {
-        navigate(`/user/${user.username}`)
-    };
     return (
         <div className="user-tag" onClick={() => setOpen(!open)}>
             <FontAwesomeIcon
                 icon={faChevronDown}
                 color="var(--background-color)"
-                fontSize={"0.75rem"}
+                fontSize={"0.8rem"}
             />
             <p>{user.displayName.split(' ')[0]}</p>
             <img src={user.picture} alt={`${user.username}'s picture`} />
             <DropDownMenu
-                menuItems={[{ title: "View Profile", action: viewProfileHandler }, { title: "Log out", action: logoutHandler }]}
+                menuItems={[
+                    {
+                        title: "Inbox",
+                        action: () => navigate("/chats"),
+                        icon:
+                            <FontAwesomeIcon
+                                icon={faInbox}
+                                fontSize={"1.4rem"}
+                                style={{ padding: '0.25rem', cursor: 'pointer' }}
+
+                            />
+                    },
+                    {
+                        title: "View Profile",
+                        action: () => navigate(`/user/${user.username}`),
+                        icon:
+                            <FontAwesomeIcon
+                                icon={faUser}
+                                fontSize={"1.4rem"}
+                                style={{ padding: '0.25rem', cursor: 'pointer' }}
+                            />
+                    },
+                    {
+                        title: "Log out",
+                        action: logoutHandler,
+                        icon:
+                            <FontAwesomeIcon
+                                icon={faRightFromBracket}
+                                fontSize={"1.4rem"}
+                                style={{ padding: '0.25rem', cursor: 'pointer' }}
+                            />
+                    }]}
                 open={open} />
         </div>
     )

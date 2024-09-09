@@ -22,13 +22,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    gap: 2.5rem;
 
     width: 100%;
 }
 
 .dropdown-menu-item:hover {
     background-color: var(--primary-light);
+    color: var(--background-color);
+}
+
+.dropdown-menu-item svg {
+    color: var(--text-light);
+}
+
+.dropdown-menu-item:hover svg {
     color: var(--background-color);
 }
 
@@ -45,6 +53,10 @@
 
 .dropdown-menu-item>span {
     text-wrap: nowrap;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    gap: 0.5rem;
 }

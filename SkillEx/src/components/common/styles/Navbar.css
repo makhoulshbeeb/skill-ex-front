@@ -19,6 +19,7 @@ header>div.left>nav {
     display: flex;
     align-items: center;
     gap: 1.2rem;
+    font-size: 1.25rem;
 }
 
 header a {
@@ -55,5 +56,5 @@ header>div.right {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    width: 44%;
+    width: 36%;
 }

@@ -161,8 +161,8 @@
 .user-categories-display>div {
     overflow-y: scroll;
     scroll-padding-inline-start: 1em;
-    height: 90%;
     padding: 0.5rem 0;
+    height: 84%;
 
     display: flex;
     flex-wrap: wrap;

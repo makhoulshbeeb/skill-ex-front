@@ -33,15 +33,7 @@ export default function Navbar() {
                     navigate={() => navigate(`/search/${search}`)}
                 ></Seachbar>
                 {isSuccess
-                    ? <FontAwesomeIcon
-                        icon={faInbox}
-                        color="var(--background-color)"
-                        fontSize={"1.5rem"}
-                        style={{ padding: '0.25rem', cursor: 'pointer' }}
-                        onClick={() => {
-                            navigate("/chats");
-                        }}
-                    />
+                    ? ""
                     : <Button
                         bgColor="--primary-light"
                         text="Log In"

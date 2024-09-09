@@ -8,7 +8,7 @@ export default function Searchbar({ placeholder, change, navigate }) {
         <div className="search">
             <FontAwesomeIcon
                 icon={faSearch}
-                fontSize={"1rem"}
+                fontSize={"1.2rem"}
                 color="var(--text-light)"
                 onClick={navigate}
             ></FontAwesomeIcon>

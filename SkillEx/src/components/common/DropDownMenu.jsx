@@ -10,7 +10,7 @@ export default function DropDownMenu({ menuItems, open }) {
                     <div
                         className="dropdown-menu-item"
                         onClick={item.action}>
-                        <span>{item.title}</span>
+                        <span>{item.icon}{item.title}</span>
                         <FontAwesomeIcon
                             icon={faChevronRight}
                             fontSize={"0.8rem"} />

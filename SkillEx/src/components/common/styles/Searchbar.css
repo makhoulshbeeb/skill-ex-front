@@ -16,13 +16,15 @@ input.search-bar {
 }
 
 input.search-bar {
-    font-size: 0.9rem;
-    padding: 0.5rem 1.2rem 0.5rem 3rem;
+    font-size: 1.2rem;
+    padding: 0.6rem 1.4rem 0.6rem 3rem;
     width: calc(100% - 2.4rem);
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     background-color: var(--background-light);
     color: var(--text-color);
     flex-grow: 1;
+
+    vertical-align: middle;
 }
 
 input.search-bar::placeholder {
