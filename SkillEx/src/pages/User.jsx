@@ -5,6 +5,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import UserProfileReviews from "../components/user/UserProfileReviews";
 import { useGetUserByUsernameQuery, usersApi } from "../api/UsersApi";
+import UserProfileTeaching from "../components/user/UserProfileTeaching";
 
 export default function User() {
     const navigate = useNavigate();
@@ -27,6 +28,9 @@ export default function User() {
 
                     <UserSidePanel user={user} />
                     <UserProfileReviews reviews={user.reviews} />
+                    <div className="user-categories">
+                        <UserProfileTeaching teach={user.teach} />
+                    </div>
                 </>}
             </div>
         </>
