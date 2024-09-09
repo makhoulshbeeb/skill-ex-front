@@ -3,15 +3,33 @@ import { useGetUserByUsernameQuery } from "../../api/UsersApi";
 import { useSocketContext } from "../../context/SocketContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faMessage } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { useCreateChatMutation } from "../../api/ChatsApi";
+import { setReceiver } from "../../app/slices/receiverSlice";
 
 export default function UserSidePanel() {
     const { onlineUsers } = useSocketContext();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [createChat] = useCreateChatMutation();
 
     const { username } = useParams();
     const { data: user, isLoading, isSuccess, isError, error } = useGetUserByUsernameQuery({ username });
 
     const online = onlineUsers.includes(user ? user._id : "");
+
+    const handleCreateChat = () => {
+        dispatch(setReceiver({
+            _id: user._id,
+            displayName: user.displayName,
+            username: user.username,
+            email: user.email,
+            picture: user.picture,
+        }));
+        createChat({ receiver_id: user._id });
+        navigate("/chats")
+    };
+
     return (
         <div className="user-side-panel">
             {isSuccess && <>
@@ -29,7 +47,7 @@ export default function UserSidePanel() {
                             fontSize={"1.2rem"}
                             color="var(--background-color)"
                             style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.5rem", borderRadius: "100%" }}
-                            onClick={(e) => navigate("/chats")}
+                            onClick={(e) => handleCreateChat()}
                         ></FontAwesomeIcon>
                     </div>
                     <h3>@{user.username}</h3>
