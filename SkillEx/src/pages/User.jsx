@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import UserProfileReviews from "../components/user/UserProfileReviews";
 import { useGetUserByUsernameQuery, usersApi } from "../api/UsersApi";
 import UserProfileTeaching from "../components/user/UserProfileTeaching";
+import UserProfileLearning from "../components/user/UserProfileLearning";
 
 export default function User() {
     const navigate = useNavigate();
@@ -30,6 +31,7 @@ export default function User() {
                     <UserProfileReviews reviews={user.reviews} />
                     <div className="user-categories">
                         <UserProfileTeaching teach={user.teach} />
+                        <UserProfileLearning learn={user.learn} />
                     </div>
                 </>}
             </div>
