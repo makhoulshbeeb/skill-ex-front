@@ -8,7 +8,7 @@ export default function UserProfileReviews({ reviews }) {
     console.log(reviews)
     return (
         <div className='user-profile-reviews'>
-            <h2>Reviews</h2>
+            <h2>Reviews <span>({reviews.length})</span></h2>
             <div>
                 <div>
                     {reviews.map(review => {

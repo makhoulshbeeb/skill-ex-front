@@ -1,7 +1,7 @@
 import "./styles/UserTag.css"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChevronDown, faInbox, faRightFromBracket, faUser } from "@fortawesome/free-solid-svg-icons"
+import { faChevronDown, faChevronUp, faInbox, faRightFromBracket, faUser } from "@fortawesome/free-solid-svg-icons"
 import DropDownMenu from "./DropDownMenu"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
@@ -19,9 +19,12 @@ export default function UserTag({ user }) {
         location.reload();
     };
     return (
-        <div className="user-tag" onClick={() => setOpen(!open)}>
+        <div className="user-tag"
+            tabIndex={0}
+            onClick={() => setOpen(!open)}
+            onBlur={() => setOpen(false)}>
             <FontAwesomeIcon
-                icon={faChevronDown}
+                icon={open ? faChevronUp : faChevronDown}
                 color="var(--background-color)"
                 fontSize={"0.8rem"}
             />

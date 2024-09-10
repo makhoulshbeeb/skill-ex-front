@@ -16,7 +16,6 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/about' />
                 <Route path='/explore/:type' element={<Explore />} />
-                <Route path='/community' />
                 <Route path='/search/:search' />
                 <Route path='/user/:username' element={<User />} />
                 <Route path='/sessions' />

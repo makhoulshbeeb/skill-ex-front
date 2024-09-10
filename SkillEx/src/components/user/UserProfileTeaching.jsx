@@ -2,7 +2,7 @@
 export default function UserProfileTeaching({ teach }) {
     return (
         <div className="user-categories-display">
-            <h2>Categories Taught</h2>
+            <h2>Categories Teaching</h2>
             <div>
                 {teach.map(subject => {
                     return (

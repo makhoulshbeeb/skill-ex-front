@@ -105,6 +105,11 @@
     width: 40%;
 }
 
+.user-profile-reviews>h2>span {
+    color: var(--text-light);
+    font-weight: 400;
+}
+
 .user-profile-reviews>div {
     display: flex;
     flex-direction: column;
