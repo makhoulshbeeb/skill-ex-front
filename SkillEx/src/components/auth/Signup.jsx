@@ -4,7 +4,7 @@ import { useSignupMutation } from "../../api/AuthApi";
 
 import toast from 'react-hot-toast';
 import SubmitButton from "../common/SubmitButton";
-import AddCategories from "./AddCategories";
+import AddCategories from "../common/AddCategories";
 import { useUpdateUserMutation } from "../../api/UsersApi";
 import { useState } from "react";
 
@@ -27,7 +27,7 @@ export default function Signup() {
 
     const [openCategoriesTab, setOpenCategoriesTab] = useState(true);
 
-    if (isLoading) {
+    if (isLoading || isLoadingCategories) {
         toast.loading("Signing up...", {
             id: "loading"
         });
@@ -40,10 +40,23 @@ export default function Signup() {
     }
     if (isSuccess) {
         toast.dismiss("loading");
-        toast.success("Welcome to SkillEx!", {
+        toast.success("One step left to go!", {
             id: "success"
         });
         setTimeout(() => { setOpenCategoriesTab(true) }, 1000)
+    }
+    if (isSuccessCategories) {
+        toast.dismiss("loading");
+        toast.success("Welcome to SkillEx!", {
+            id: "success"
+        });
+        setTimeout(() => { navigate("/") }, 1000)
+    }
+    if (isErrorCategories) {
+        toast.dismiss("loading");
+        toast.error(error.data.error, {
+            id: "error"
+        });
     }
 
     const signupHandler = async (data, e) => {
@@ -54,7 +67,7 @@ export default function Signup() {
     return (
 
         openCategoriesTab
-            ? <AddCategories />
+            ? <AddCategories title={"Start your Journey!"} submit={addcategories} />
             : <div className="form-container">
                 <div className="form-top">
                     <h2 className="title">Sign Up</h2>
