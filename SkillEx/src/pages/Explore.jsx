@@ -45,7 +45,7 @@ export default function Explore() {
                             style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.6rem", borderRadius: "1.5rem" }}
                             onClick={(e) => navigate(-1)}
                         ></FontAwesomeIcon>
-                        <h2>{type}</h2>
+                        <h2 className="underline">{type}</h2>
                     </div>
                     <Searchbar placeholder={`Search ${type}`} change={(e) => setItemSearch(e.target.value)} />
                 </div>

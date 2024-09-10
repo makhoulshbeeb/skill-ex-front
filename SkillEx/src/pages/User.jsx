@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import UserProfileReviews from "../components/user/UserProfileReviews";
-import { useGetUserByUsernameQuery, usersApi } from "../api/UsersApi";
+import { useGetUserByUsernameQuery } from "../api/UsersApi";
 import UserProfileTeaching from "../components/user/UserProfileTeaching";
 import UserProfileLearning from "../components/user/UserProfileLearning";
 

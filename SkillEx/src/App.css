@@ -7,3 +7,35 @@
     top: 0;
     left: 0;
 }
+
+.underline {
+    position: relative;
+    width: fit-content;
+    z-index: 2;
+}
+
+.underline::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    content: "";
+
+    width: 90%;
+    height: 0.4rem;
+    border-radius: 0.2rem;
+    background-image: linear-gradient(to right, var(--primary-color), var(--primary-light));
+}
+
+.underline::before {
+    position: absolute;
+    bottom: -0.75rem;
+    left: 0;
+    z-index: -1;
+    content: "";
+
+    width: 60%;
+    height: 0.4rem;
+    border-radius: 0.2rem;
+    background-image: linear-gradient(to right, var(--primary-color), var(--primary-light));
+}

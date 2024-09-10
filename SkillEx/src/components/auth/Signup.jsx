@@ -25,7 +25,7 @@ export default function Signup() {
         error: errorCategories
     }] = useUpdateUserMutation();
 
-    const [openCategoriesTab, setOpenCategoriesTab] = useState(false);
+    const [openCategoriesTab, setOpenCategoriesTab] = useState(true);
 
     if (isLoading) {
         toast.loading("Signing up...", {

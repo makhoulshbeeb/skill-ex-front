@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useGetUserByTokenQuery } from "../../api/UsersApi";
+import { useGetCategoriesQuery } from "../../api/CategoriesApi"
+
+import UserAuthCategories from "./UserAuthCategories";
 
 export default function AddCategories() {
 
@@ -26,6 +29,10 @@ export default function AddCategories() {
 
 
     return (
-        <div>AddCategories</div>
+        <div className="signup-add-categories">
+            <h1>Start your Journey!</h1>
+            {isSuccessTeachCategories && <UserAuthCategories dataList={teachCategories} categories={teach} setCategories={setTeach} title={"Teach"} />}
+            {isSuccessLearnCategories && <UserAuthCategories dataList={learnCategories} categories={learn} setCategories={setLearn} title={"Learn"} />}
+        </div>
     )
 }
