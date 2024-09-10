@@ -40,38 +40,43 @@ export default function Signup() {
 
     return (
         <div className="form-container">
-            <form className="input-form" onSubmit={handleSubmit(signupHandler)}>
+            <div className="form-top">
                 <h2 className="title">Sign Up</h2>
-                <div>
-                    <label>Display Name</label>
-                    <input type="text" id={'displayName'} placeholder={'Display Name'} {...register('displayName')} required />
-                </div>
-                <div>
-                    <label>Username</label>
-                    <input type="text" id={'username'} placeholder={'Username'} {...register('username')} required />
-                </div>
-                <div>
-                    <label>Email</label>
-                    <input type="text" id={'email'} placeholder={'email@example.com'} {...register('email')} required />
-                </div>
-                <div style={{ display: "flex", gap: '0.25rem' }}>
-                    <input type="radio" id={'male'} value={'male'} {...register('gender')} required />
-                    <label>Male</label>
-                    <br></br>
-                    <input type="radio" id={'female'} value={'female'} {...register('gender')} required />
-                    <label>Female</label>
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" id={'password'} placeholder={'Password'} {...register('password')} required />
-                </div>
-                <div>
-                    <label>Confirm Password</label>
-                    <input type="password" id={'confirmPassword'} placeholder={'Confirm Password'} {...register('confirmPassword')} required />
-                </div>
-                <SubmitButton text={"Sign Up"} isLoading={isLoading}></SubmitButton>
-            </form>
-            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/login')}>Log in</span></div>
+                <form className="input-form" onSubmit={handleSubmit(signupHandler)}>
+                    <div>
+                        <label>Display Name</label>
+                        <input type="text" id={'displayName'} placeholder={'Display Name'} {...register('displayName')} required />
+                    </div>
+                    <div>
+                        <label>Username</label>
+                        <input type="text" id={'username'} placeholder={'Username'} {...register('username')} required />
+                    </div>
+                    <div>
+                        <label>Email</label>
+                        <input type="text" id={'email'} placeholder={'email@example.com'} {...register('email')} required />
+                    </div>
+                    <div>
+                        <label>Gender</label>
+                        <select {...register('gender')}>
+                            <option >Gender</option>
+                            <option value={"male"}>Male</option>
+                            <option value={"female"}>Female</option>
+                            <option value={"other"}>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input type="password" id={'password'} placeholder={'Password'} {...register('password')} required />
+                    </div>
+                    <div>
+                        <label>Confirm Password</label>
+                        <input type="password" id={'confirmPassword'} placeholder={'Confirm Password'} {...register('confirmPassword')} required />
+                    </div>
+                    <SubmitButton text={"Sign Up"} isLoading={isLoading}></SubmitButton>
+                </form>
+            </div>
+
+            <div className="have-account">Don't have an account? <span onClick={() => navigate('/auth/login')}>Login</span></div>
         </div>
     )
 }
