@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useGetUserByTokenQuery } from "../../api/UsersApi";
 
 export default function AddCategories() {
 
     const [learn, setLearn] = useState([]);
     const [teach, setTeach] = useState([]);
+
+    const user = useGetUserByTokenQuery();
 
     const {
         data: learnCategories,
