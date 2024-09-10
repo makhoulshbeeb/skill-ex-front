@@ -60,7 +60,7 @@ export default function UserSidePanel({ user }) {
                     }
 
                 })}
-                <span>&nbsp;&nbsp;{Math.round(user.avgRating * 10) / 10}</span>
+                <span style={{ fontSize: "1.1rem" }}>&nbsp;&nbsp;{Math.round(user.avgRating * 10) / 10}</span>
             </div>
             <p>{user.bio}</p>
         </div>

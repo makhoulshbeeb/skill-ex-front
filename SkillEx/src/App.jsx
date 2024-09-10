@@ -20,6 +20,7 @@ function App() {
                 <Route path='/user/:username' element={<User />} />
                 <Route path='/sessions' />
                 <Route path='/auth/:sign' element={<Auth />} />
+                <Route path='/auth/signup/categories' element={<Auth />} />
                 <Route path='/chats' element={<Chat />} />
             </Routes>
         </BrowserRouter>

@@ -31,7 +31,7 @@
     width: 100%;
     height: 50%;
     padding: 4.75dvw;
-    background-image: url(../../../../public/User\ Panel\ Background.png);
+    background-image: url(/User\ Panel\ Background.png);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
