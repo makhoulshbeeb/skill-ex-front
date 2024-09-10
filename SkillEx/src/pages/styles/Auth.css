@@ -136,14 +136,3 @@
     color: var(--primary-color);
     cursor: pointer;
 }
-
-/********* CATEGORY SELECTION *********/
-
-.signup-add-categories {
-    height: 100%;
-    padding: 1rem 2rem;
-
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}

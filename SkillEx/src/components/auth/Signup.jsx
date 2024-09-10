@@ -15,7 +15,16 @@ export default function Signup() {
 
     const { register, handleSubmit } = form;
 
-    const [signup, { data: res, isSuccess, isLoading, isError, error }] = useSignupMutation();
+    const [openCategoriesTab, setOpenCategoriesTab] = useState(true);
+
+
+    const [signup, {
+        data: res,
+        isSuccess,
+        isLoading,
+        isError,
+        error
+    }] = useSignupMutation();
 
     const [addcategories, {
         data: resCategories,
@@ -25,7 +34,6 @@ export default function Signup() {
         error: errorCategories
     }] = useUpdateUserMutation();
 
-    const [openCategoriesTab, setOpenCategoriesTab] = useState(true);
 
     if (isLoading || isLoadingCategories) {
         toast.loading("Signing up...", {
@@ -67,7 +75,11 @@ export default function Signup() {
     return (
 
         openCategoriesTab
-            ? <AddCategories title={"Start your Journey!"} submit={addcategories} />
+            ? <AddCategories
+                title={"Start your Journey!"}
+                submit={addcategories}
+                learnInitialState={[]}
+                teachInitialState={[]} />
             : <div className="form-container">
                 <div className="form-top">
                     <h2 className="title">Sign Up</h2>

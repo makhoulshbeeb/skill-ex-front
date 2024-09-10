@@ -4,16 +4,15 @@ import { useState } from "react";
 import { useGetUserByTokenQuery } from "../../api/UsersApi";
 import { useGetCategoriesQuery } from "../../api/CategoriesApi"
 
-import UserAuthCategories from "../auth/UserAuthCategories";
+import UserAuthCategories from "./UserAuthCategories";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-export default function AddCategories({ title, submit }) {
+export default function AddCategories({ title, submit, learnInitialState, teachInitialState }) {
+    const [learn, setLearn] = useState(learnInitialState);
+    const [teach, setTeach] = useState(teachInitialState);
 
-    const [learn, setLearn] = useState([]);
-    const [teach, setTeach] = useState([]);
-
-    const user = useGetUserByTokenQuery();
+    console.log(learnInitialState)
 
     const {
         data: learnCategories,
@@ -31,20 +30,27 @@ export default function AddCategories({ title, submit }) {
         error: errorTeachCategories
     } = useGetCategoriesQuery({}, { refetchOnMountOrArgChange: true });
 
+    const submitHandler = (oldLearn, oldTeach) => {
+        const learn = [];
+        const teach = [];
+        oldLearn.forEach(el => learn.push({ category: el._id }));
+        oldTeach.forEach(el => teach.push({ category: el._id }));
+        submit({ learn, teach });
+    }
 
     return (
-        <div className="signup-add-categories">
-            <div className="add-categories-title">
-                <h1>{title}</h1>
-                <div>Continue
-                    <FontAwesomeIcon
-                        icon={faArrowRight}
-                        fontSize={"1.5rem"}
-                    />
-                </div>
-            </div>
+        <div className="add-categories">
+            <h1>{title}</h1>
             {isSuccessTeachCategories && <UserAuthCategories dataList={teachCategories} categories={teach} setCategories={setTeach} title={"Teach"} />}
             {isSuccessLearnCategories && <UserAuthCategories dataList={learnCategories} categories={learn} setCategories={setLearn} title={"Learn"} />}
+            <div
+                className="add-categories-submit"
+                onClick={() => submitHandler(learn, teach)}
+            >Continue
+                <FontAwesomeIcon
+                    icon={faArrowRight}
+                />
+            </div>
         </div>
     )
 }

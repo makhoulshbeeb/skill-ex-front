@@ -9,9 +9,6 @@ export default function UserAuthCategories({ dataList, categories, setCategories
     var newDataList = dataList.filter((data) => {
         return !categories.includes(data);
     });
-    console.log(categories)
-
-    console.log(newDataList);
     return (
         <div className="auth-categories">
             <div className="auth-categories-selector">
