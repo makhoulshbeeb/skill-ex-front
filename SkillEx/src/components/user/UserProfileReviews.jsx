@@ -95,22 +95,26 @@ export default function UserProfileReviews({ reviews, me, user }) {
                     </div>
                 </div>
                     <textarea placeholder='Write some feedback...' ref={ref}></textarea>
-                    <div className='add-reviews-button' onClick={() => {
-                        rating == 0
-                            ? toast.error("No rating was provided", {
-                                id: "error"
-                            })
-                            : ref.current == ''
-                                ? toast.error("No feedback was provided", {
-                                    id: "error"
-                                })
-                                : submitReview({ receiverId: user._id, rating, feedback: ref.current.value });
+                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                        <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)" }} onClick={() => setAddReview(false)}>Cancel</div>
+                        <div className='add-reviews-button' style={{ scale: "0.9" }}
+                            onClick={() => {
+                                rating == 0
+                                    ? toast.error("No rating was provided", {
+                                        id: "error"
+                                    })
+                                    : ref.current == ''
+                                        ? toast.error("No feedback was provided", {
+                                            id: "error"
+                                        })
+                                        : submitReview({ receiverId: user._id, rating, feedback: ref.current.value });
 
-                    }}
-                    >Submit
-                        <FontAwesomeIcon
-                            icon={faArrowRight}
-                        />
+                            }}
+                        >Submit
+                            <FontAwesomeIcon
+                                icon={faArrowRight}
+                            />
+                        </div>
                     </div>
                 </div></dialog>
         </div>

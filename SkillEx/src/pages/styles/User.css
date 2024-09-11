@@ -170,7 +170,7 @@
 
 /* USER ADD REVIEWS PANEL */
 
-.add-reviews-panel {
+.add-reviews-panel[open] {
     border: unset;
     display: flex;
     justify-content: center;
