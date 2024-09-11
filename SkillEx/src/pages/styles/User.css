@@ -117,7 +117,7 @@
     font-weight: 400;
 }
 
-.user-profile-reviews>span>div {
+.add-reviews-button {
     display: flex;
     align-items: center;
     gap: 0.8rem;

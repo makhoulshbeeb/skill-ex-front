@@ -6,11 +6,12 @@ import React, { useState } from 'react'
 
 export default function UserProfileReviews({ reviews, me }) {
     const [addReview, setAddReview] = useState(false);
+
     return (
         <div className='user-profile-reviews'>
             <span>
                 <h2>Reviews <span>({reviews.length})</span></h2>
-                {!me && <div onClick={() => { setAddReview(true) }}
+                {!me && <div className='add-reviews-button' onClick={() => { setAddReview(true) }}
                 >
                     <FontAwesomeIcon
                         icon={faPlus}
@@ -47,6 +48,7 @@ export default function UserProfileReviews({ reviews, me }) {
                     })}
                 </div>
             </div>
+            <dialog open={addReview}> This is a dialog</dialog>
         </div>
     )
 }
