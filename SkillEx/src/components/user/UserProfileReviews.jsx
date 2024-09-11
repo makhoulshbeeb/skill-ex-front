@@ -1,14 +1,22 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faStarHalfStroke } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faStar, faStarHalfStroke } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarOutline } from "@fortawesome/free-regular-svg-icons";
 
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function UserProfileReviews({ reviews }) {
-    console.log(reviews)
+export default function UserProfileReviews({ reviews, me }) {
+    const [addReview, setAddReview] = useState(false);
     return (
         <div className='user-profile-reviews'>
-            <h2>Reviews <span>({reviews.length})</span></h2>
+            <span>
+                <h2>Reviews <span>({reviews.length})</span></h2>
+                {!me && <div onClick={() => { setAddReview(true) }}
+                >
+                    <FontAwesomeIcon
+                        icon={faPlus}
+                    />Add Review
+                </div>}
+            </span>
             <div>
                 <div>
                     {reviews.map(review => {

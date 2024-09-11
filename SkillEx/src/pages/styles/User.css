@@ -106,9 +106,32 @@
     width: 40%;
 }
 
-.user-profile-reviews>h2>span {
+.user-profile-reviews>span {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.user-profile-reviews>span>h2>span {
     color: var(--text-light);
     font-weight: 400;
+}
+
+.user-profile-reviews>span>div {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    align-self: flex-end;
+
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--background-color);
+
+    background-color: var(--primary-color);
+    padding: 0.5rem 0.8rem;
+    border-radius: 2rem;
+
+    cursor: pointer;
 }
 
 .user-profile-reviews>div {

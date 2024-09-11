@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import UserProfileReviews from "../components/user/UserProfileReviews";
-import { useGetUserByUsernameQuery, useUpdateUserMutation } from "../api/UsersApi";
+import { useGetUserByTokenQuery, useGetUserByUsernameQuery, useUpdateUserMutation } from "../api/UsersApi";
 import UserProfileTeaching from "../components/user/UserProfileTeaching";
 import UserProfileLearning from "../components/user/UserProfileLearning";
 import { useState } from "react";
@@ -15,6 +15,7 @@ export default function User() {
     const navigate = useNavigate();
     const { username } = useParams();
     const { data: user, isLoading, isSuccess, isError, error } = useGetUserByUsernameQuery({ username }, { refetchOnMountOrArgChange: true });
+    const { data: viewer } = useGetUserByTokenQuery();
 
     const [editCategories, setEditCategories] = useState(false);
 
@@ -67,18 +68,18 @@ export default function User() {
                         onClick={(e) => navigate(-1)}
                     ></FontAwesomeIcon>
 
-                    <UserSidePanel user={user} me={user.username == username} />
-                    <UserProfileReviews reviews={user.reviews} />
+                    <UserSidePanel user={user} me={user.username == viewer.username} />
+                    <UserProfileReviews reviews={user.reviews} me={user.username == viewer.username} />
                     <div className="user-categories">
                         {editCategories
                             ? <AddCategories title={''} learnInitialState={learnInitialState} teachInitialState={teachInitialState} submit={addcategories} />
-                            : <><FontAwesomeIcon
+                            : <>{user.username == viewer.username && <FontAwesomeIcon
                                 icon={faEdit}
                                 fontSize={"1rem"}
                                 color="var(--background-color)"
                                 style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.5rem", borderRadius: "100%", cursor: "pointer" }}
                                 onClick={() => { setEditCategories(true) }}
-                            ></FontAwesomeIcon>
+                            ></FontAwesomeIcon>}
                                 <UserProfileTeaching teach={user.teach} me={user.username == username} />
                                 <UserProfileLearning learn={user.learn} me={user.username == username} />
                             </>}</div>
