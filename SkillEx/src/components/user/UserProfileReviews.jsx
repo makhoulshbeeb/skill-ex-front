@@ -3,10 +3,13 @@ import { faPlus, faStar, faStarHalfStroke } from "@fortawesome/free-solid-svg-ic
 import { faStar as faStarOutline } from "@fortawesome/free-regular-svg-icons";
 
 import React, { useState } from 'react'
+import { useGetUserByTokenQuery } from '../../api/UsersApi'
 
 export default function UserProfileReviews({ reviews, me }) {
     const [addReview, setAddReview] = useState(false);
 
+    const { data: viewer } = useGetUserByTokenQuery();
+    const [rating, setRating] = useState(0);
     return (
         <div className='user-profile-reviews'>
             <span>
@@ -48,7 +51,27 @@ export default function UserProfileReviews({ reviews, me }) {
                     })}
                 </div>
             </div>
-            <dialog open={addReview}> This is a dialog</dialog>
+            <dialog open={addReview} className='add-reviews-panel'>
+                <div><div className='reviewer-tag'>
+                    <img src={viewer.picture} />
+                    <div>
+                        <h4>{viewer.displayName}</h4>
+                        <div className="user-page-rating add-rating">
+                            {[5, 4, 3, 2, 1].map((el) => {
+                                if (rating - el >= 0) {
+                                    return (<FontAwesomeIcon icon={faStar} id={`star${el}`} color="gold" onClick={() => setRating(el)} />)
+                                } else if (rating - el <= -1) {
+                                    return (<FontAwesomeIcon icon={faStarOutline} id={`star${el}`} color="gold" onClick={() => setRating(el)} />)
+                                } else {
+                                    return (<FontAwesomeIcon icon={faStarHalfStroke} id={`star${el}`} color="gold" onClick={() => setRating(el)} />)
+                                }
+
+                            })}
+                        </div>
+                    </div>
+                </div>
+                    <textarea></textarea>
+                </div></dialog>
         </div>
     )
 }
