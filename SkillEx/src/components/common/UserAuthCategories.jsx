@@ -5,15 +5,15 @@ import toast from "react-hot-toast";
 
 export default function UserAuthCategories({ dataList, categories, setCategories, title }) {
     const ref = useRef();
-
+    console.log(dataList, categories);
     var newDataList = dataList.filter((data) => {
-        return !categories.includes(data);
+        return categories.findIndex(value => value._id == data._id) == -1;
     });
     return (
         <div className="auth-categories">
             <div className="auth-categories-selector">
                 <h2 className="underline">{title}</h2>
-                <div className="input-form">
+                <div className="input-form" style={{ padding: "unset" }}>
                     <select ref={ref}>
                         {newDataList.map(data => {
                             return (

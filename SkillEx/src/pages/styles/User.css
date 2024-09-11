@@ -1,5 +1,6 @@
 .user-page {
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
 
     width: 80dvw;
@@ -149,6 +150,7 @@
 .user-categories {
     width: 30%;
     height: 100%;
+    position: relative;
 
     display: flex;
     flex-direction: column;
@@ -156,9 +158,21 @@
     overflow: hidden;
 }
 
+.user-categories>svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 .user-categories-display {
     height: 50%;
 
+}
+
+.user-categories-display>span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .user-categories-display>div {

@@ -34,9 +34,9 @@ export default function ChatSidebar() {
                     icon={faArrowLeft}
                     fontSize={"1.5rem"}
                     color="var(--background-color)"
-                    style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.6rem", borderRadius: "1.5rem" }}
+                    style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.6rem", borderRadius: "1.5rem", cursor: "pointer" }}
                     onClick={(e) => navigate(-1)}
-                ></FontAwesomeIcon>
+                />
                 <Searchbar placeholder={"Search..."} change={(e) => setChatSearch(e.target.value)} />
             </div>
             <div className="chat-list">

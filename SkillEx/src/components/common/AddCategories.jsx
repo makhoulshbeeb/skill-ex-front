@@ -12,7 +12,7 @@ export default function AddCategories({ title, submit, learnInitialState, teachI
     const [learn, setLearn] = useState(learnInitialState);
     const [teach, setTeach] = useState(teachInitialState);
 
-    console.log(learnInitialState)
+    console.log(teach, learn)
 
     const {
         data: learnCategories,
@@ -41,8 +41,10 @@ export default function AddCategories({ title, submit, learnInitialState, teachI
     return (
         <div className="add-categories">
             <h1>{title}</h1>
-            {isSuccessTeachCategories && <UserAuthCategories dataList={teachCategories} categories={teach} setCategories={setTeach} title={"Teach"} />}
-            {isSuccessLearnCategories && <UserAuthCategories dataList={learnCategories} categories={learn} setCategories={setLearn} title={"Learn"} />}
+            <div style={{ height: title ? "80%" : "88%" }}>
+                {isSuccessTeachCategories && <UserAuthCategories dataList={teachCategories} categories={teach} setCategories={setTeach} title={"Teach"} />}
+                {isSuccessLearnCategories && <UserAuthCategories dataList={learnCategories} categories={learn} setCategories={setLearn} title={"Learn"} />}
+            </div>
             <div
                 className="add-categories-submit"
                 onClick={() => submitHandler(learn, teach)}

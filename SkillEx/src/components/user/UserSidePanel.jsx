@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useSocketContext } from "../../context/SocketContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faStar, faStarHalfStroke } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faEnvelope, faStar, faStarHalfStroke } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarOutline } from "@fortawesome/free-regular-svg-icons";
 import { useDispatch } from "react-redux";
 import { useCreateChatMutation } from "../../api/ChatsApi";
 import { setReceiver } from "../../app/slices/receiverSlice";
 
-export default function UserSidePanel({ user }) {
+export default function UserSidePanel({ user, me }) {
     const { onlineUsers } = useSocketContext();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -27,6 +27,10 @@ export default function UserSidePanel({ user }) {
         navigate("/chats")
     };
 
+    const handleEditProfile = () => {
+
+    };
+
     return (
         <div className="user-side-panel">
             <div className="user-page-picture" >
@@ -39,11 +43,11 @@ export default function UserSidePanel({ user }) {
                 <div>
                     <h2>{user.displayName}</h2>
                     <FontAwesomeIcon
-                        icon={faEnvelope}
+                        icon={me ? faEdit : faEnvelope}
                         fontSize={"1.5rem"}
                         color="var(--background-color)"
-                        style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.5rem", borderRadius: "100%" }}
-                        onClick={(e) => handleCreateChat()}
+                        style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.5rem", borderRadius: "100%", cursor: "pointer" }}
+                        onClick={() => me ? handleEditProfile() : handleCreateChat()}
                     ></FontAwesomeIcon>
                 </div>
                 <h3>@{user.username}</h3>

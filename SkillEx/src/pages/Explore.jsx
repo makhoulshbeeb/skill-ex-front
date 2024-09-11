@@ -42,9 +42,9 @@ export default function Explore() {
                             icon={faArrowLeft}
                             fontSize={"1.5rem"}
                             color="var(--background-color)"
-                            style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.6rem", borderRadius: "1.5rem" }}
+                            style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.6rem", borderRadius: "1.5rem", cursor: "pointer" }}
                             onClick={(e) => navigate(-1)}
-                        ></FontAwesomeIcon>
+                        />
                         <h2 className="underline">{type}</h2>
                     </div>
                     <Searchbar placeholder={`Search ${type}`} change={(e) => setItemSearch(e.target.value)} />

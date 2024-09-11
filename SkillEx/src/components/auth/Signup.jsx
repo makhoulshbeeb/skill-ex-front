@@ -15,7 +15,7 @@ export default function Signup() {
 
     const { register, handleSubmit } = form;
 
-    const [openCategoriesTab, setOpenCategoriesTab] = useState(true);
+    const [openCategoriesTab, setOpenCategoriesTab] = useState(false);
 
 
     const [signup, {
@@ -35,7 +35,7 @@ export default function Signup() {
     }] = useUpdateUserMutation();
 
 
-    if (isLoading || isLoadingCategories) {
+    if (isLoading) {
         toast.loading("Signing up...", {
             id: "loading"
         });
@@ -52,6 +52,11 @@ export default function Signup() {
             id: "success"
         });
         setTimeout(() => { setOpenCategoriesTab(true) }, 1000)
+    }
+    if (isLoadingCategories) {
+        toast.loading("Loading...", {
+            id: "loading"
+        });
     }
     if (isSuccessCategories) {
         toast.dismiss("loading");
