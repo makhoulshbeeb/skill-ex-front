@@ -23,7 +23,7 @@ export default function UserSidePanel({ user, me }) {
             email: user.email,
             picture: user.picture,
         }));
-        createChat({ receiver_id: user._id });
+        createChat({ receiverId: user._id });
         navigate("/chats")
     };
 

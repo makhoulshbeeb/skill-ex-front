@@ -69,7 +69,7 @@ export default function User() {
                     ></FontAwesomeIcon>
 
                     <UserSidePanel user={user} me={user.username == viewer.username} />
-                    <UserProfileReviews reviews={user.reviews} me={user.username == viewer.username} />
+                    <UserProfileReviews reviews={user.reviews} me={user.username == viewer.username} user={user} />
                     <div className="user-categories">
                         {editCategories
                             ? <AddCategories title={''} learnInitialState={learnInitialState} teachInitialState={teachInitialState} submit={addcategories} />

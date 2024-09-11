@@ -28,7 +28,7 @@ export const chatsApi = createApi({
         }),
         deleteChat: builder.mutation({
             query: ({ reciever_id }) => ({
-                url: `chats/${receiver_id}`,
+                url: `chats/${receiverId}`,
                 method: "DELETE",
             }),
             invalidatesTags: (result, error, arg) => [{ type: "Chat", id: arg.id }, 'Messages'],

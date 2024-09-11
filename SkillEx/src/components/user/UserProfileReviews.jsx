@@ -1,15 +1,39 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faStar, faStarHalfStroke } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faPlus, faStar, faStarHalfStroke } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarOutline } from "@fortawesome/free-regular-svg-icons";
 
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useGetUserByTokenQuery } from '../../api/UsersApi'
+import { useSendReviewMutation } from '../../api/ReviewsApi';
+import toast from 'react-hot-toast';
 
-export default function UserProfileReviews({ reviews, me }) {
+export default function UserProfileReviews({ reviews, me, user }) {
     const [addReview, setAddReview] = useState(false);
+    const ref = useRef();
 
     const { data: viewer } = useGetUserByTokenQuery();
+    const [submitReview, { data: submittedReview, isLoading, isSuccess, isError, error }] = useSendReviewMutation();
     const [rating, setRating] = useState(0);
+
+    if (isLoading) {
+        toast.dismiss(error);
+        toast.loading("Loading...", {
+            id: "loading"
+        });
+    }
+    if (isError) {
+        toast.dismiss("loading");
+        toast.error(error.data.error, {
+            id: "error"
+        });
+    }
+    if (isSuccess) {
+        toast.dismiss("loading");
+        toast.success("Review submitted!", {
+            id: "success"
+        });
+        setTimeout(() => { setAddReview(false) }, 1000)
+    }
     return (
         <div className='user-profile-reviews'>
             <span>
@@ -70,7 +94,24 @@ export default function UserProfileReviews({ reviews, me }) {
                         </div>
                     </div>
                 </div>
-                    <textarea></textarea>
+                    <textarea placeholder='Write some feedback...' ref={ref}></textarea>
+                    <div className='add-reviews-button' onClick={() => {
+                        rating == 0
+                            ? toast.error("No rating was provided", {
+                                id: "error"
+                            })
+                            : ref.current == ''
+                                ? toast.error("No feedback was provided", {
+                                    id: "error"
+                                })
+                                : submitReview({ receiverId: user._id, rating, feedback: ref.current.value });
+
+                    }}
+                    >Submit
+                        <FontAwesomeIcon
+                            icon={faArrowRight}
+                        />
+                    </div>
                 </div></dialog>
         </div>
     )

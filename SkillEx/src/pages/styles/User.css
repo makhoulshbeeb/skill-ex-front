@@ -238,7 +238,16 @@
     mask: url("/Star.svg");
 }
 
-.add-reviews-panel>div>textarea {}
+.add-reviews-panel>div>textarea {
+    all: unset;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+    width: calc(100% - 2.4rem);
+    border-radius: 0.5rem;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    height: 65%;
+}
 
 /********* USER PROFILE CATEGORIES *********/
 

@@ -12,15 +12,15 @@ export const reviewsApi = createApi({
     tagTypes: ['Reviews'],
     endpoints: (builder) => ({
         getReviews: builder.query({
-            query: ({ receiver_id }) => `reviews/${receiver_id}`,
+            query: ({ receiverId }) => `reviews/${receiverId}`,
             providesTags: (result, error, arg) =>
                 result
                     ? [...result.map(({ id }) => ({ type: 'Reviews', id })), 'Reviews']
                     : ['Reviews'],
         }),
         sendReview: builder.mutation({
-            query: (receiver_id, data) => ({
-                url: `reviews/${receiver_id}`,
+            query: (data) => ({
+                url: `reviews/${data.receiverId}`,
                 method: 'POST',
                 body: data
             }),
