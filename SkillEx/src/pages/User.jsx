@@ -80,7 +80,7 @@ export default function User() {
 
                     <UserSidePanel user={user} me={viewerVerified && user.username == viewer.username} />
                     <UserProfileReviews reviews={user.reviews} me={viewerVerified && user.username == viewer.username} user={user} />
-                    <div className="user-categories">
+                    <div className="user-categories" style={{ position: viewerVerified && user.username == viewer.username ? 'relative' : '' }}>
                         {editCategories
                             ? <AddCategories title={''} learnInitialState={learnInitialState} teachInitialState={teachInitialState} submit={addcategories} />
                             : <>{viewerVerified && user.username == viewer.username && <FontAwesomeIcon
@@ -90,7 +90,7 @@ export default function User() {
                                 style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.5rem", borderRadius: "100%", cursor: "pointer" }}
                                 onClick={() => { setEditCategories(true) }}
                             ></FontAwesomeIcon>}
-                                <UserProfileTeaching teach={user.teach} me={viewerVerified && user.username == viewer.username} />
+                                <UserProfileTeaching user={user} me={viewerVerified && user.username == viewer.username} />
                                 <UserProfileLearning learn={user.learn} me={viewerVerified && user.username == viewer.username} />
                             </>}</div>
                 </>}

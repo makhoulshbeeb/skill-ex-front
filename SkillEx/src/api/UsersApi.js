@@ -33,6 +33,14 @@ export const usersApi = createApi({
                     ? [...result.map(({ id }) => ({ type: 'User', id }))]
                     : ['User'],
         }),
+        endorseUser: builder.mutation({
+            query: ({ receiverId, categoryId }) => ({
+                url: `users/endorse/${receiverId}`,
+                method: 'PATCH',
+                body: { categoryId }
+            }),
+            invalidatesTags: ['Information'],
+        }),
         updateUser: builder.mutation({
             query: (data) => ({
                 url: `users/`,
@@ -42,8 +50,8 @@ export const usersApi = createApi({
             invalidatesTags: ['Me'],
         }),
         deleteUser: builder.mutation({
-            query: ({ id }) => ({
-                url: `users/${id}`,
+            query: () => ({
+                url: `users/`,
                 method: 'DELETE',
             }),
             invalidatesTags: ['Me'],
@@ -56,6 +64,7 @@ export const {
     useGetUsersBySearchQuery,
     useGetUserByUsernameQuery,
     useGetUsersByMatchQuery,
+    useEndorseUserMutation,
     useUpdateUserMutation,
     useDeleteUserMutation
 } = usersApi;
