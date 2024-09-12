@@ -1,1 +1,10 @@
 /********* VIDEO BAR *********/
+
+.video-bar {
+    display: flex;
+    padding: 2rem;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--background-color);
+}
