@@ -5,6 +5,25 @@
     padding: 2rem;
     justify-content: center;
     align-items: center;
+    gap: 0.5rem;
 
     background-color: var(--background-color);
+    width: 100%;
+
+    position: absolute;
+    bottom: 0;
+}
+
+.video-bar>div {
+    font-size: 1.5rem;
+    clip-path: circle(1.8rem);
+    color: var(--background-color);
+    width: 4rem;
+    height: 4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
 }
