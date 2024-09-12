@@ -8,6 +8,7 @@ import Chat from './pages/Chat.jsx';
 import Home from './pages/Home.jsx';
 import Explore from './pages/Explore.jsx';
 import User from './pages/User.jsx';
+import Video from './pages/Video.jsx';
 
 function App() {
     return (
@@ -18,7 +19,7 @@ function App() {
                 <Route path='/explore/:type' element={<Explore />} />
                 <Route path='/search/:search' />
                 <Route path='/user/:username' element={<User />} />
-                <Route path='/sessions' />
+                <Route path='/sessions' element={<Video />} />
                 <Route path='/auth/:sign' element={<Auth />} />
                 <Route path='/auth/signup/categories' element={<Auth />} />
                 <Route path='/chats' element={<Chat />} />
