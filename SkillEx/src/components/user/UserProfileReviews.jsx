@@ -36,7 +36,7 @@ export default function UserProfileReviews({ reviews, me, user }) {
         toast.success("Review submitted!", {
             id: "success"
         });
-        dispatch(usersApi.util.invalidateTags(['Reviews']));
+        dispatch(usersApi.util.invalidateTags(['Information']));
         ref.current.value = '';
         isFalse = true;
         setTimeout(() => { setAddReview(false) }, 500);

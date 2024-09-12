@@ -9,7 +9,7 @@ export const usersApi = createApi({
         },
         credentials: 'include'
     }),
-    tagTypes: ['User', 'Me', 'Reviews'],
+    tagTypes: ['User', 'Me', 'Information'],
     endpoints: (builder) => ({
         getUserByToken: builder.query({
             query: () => 'users/me',
@@ -24,7 +24,7 @@ export const usersApi = createApi({
         }),
         getUserByUsername: builder.query({
             query: ({ username }) => `users/user/${username}`,
-            providesTags: ['User', 'Reviews'],
+            providesTags: ['User', 'Information'],
         }),
         getUsersByMatch: builder.query({
             query: () => `users/match/`,
