@@ -25,21 +25,21 @@ export default function UserProfileReviews({ reviews, me, user }) {
         });
         isFalse = false;
     }
-    if (isError) {
-        toast.dismiss("loading");
-        toast.error(error.data.error, {
-            id: "error"
-        });
-    }
     if (isSuccess != isFalse) {
         toast.dismiss("loading");
         toast.success("Review submitted!", {
             id: "success"
         });
         dispatch(usersApi.util.invalidateTags(['Information']));
-        ref.current.value = '';
         isFalse = true;
         setTimeout(() => { setAddReview(false) }, 500);
+    }
+    if (isError != isFalse) {
+        toast.dismiss("loading");
+        toast.error(error.data.error, {
+            id: "error"
+        });
+        isFalse = true;
     }
 
     return (

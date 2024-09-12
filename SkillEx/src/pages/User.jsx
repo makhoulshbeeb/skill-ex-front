@@ -4,15 +4,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import UserProfileReviews from "../components/user/UserProfileReviews";
-import { useGetUserByTokenQuery, useGetUserByUsernameQuery, useUpdateUserMutation } from "../api/UsersApi";
+import { useGetUserByTokenQuery, useGetUserByUsernameQuery, usersApi, useUpdateUserMutation } from "../api/UsersApi";
 import UserProfileTeaching from "../components/user/UserProfileTeaching";
 import UserProfileLearning from "../components/user/UserProfileLearning";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddCategories from "../components/common/AddCategories";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
+var isFalseCategories = false;
 export default function User() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { username } = useParams();
     const { data: user, isLoading, isSuccess, isError, error } = useGetUserByUsernameQuery({ username }, { refetchOnMountOrArgChange: true });
     const { data: viewer, isSuccess: viewerVerified } = useGetUserByTokenQuery();
@@ -39,20 +42,27 @@ export default function User() {
         toast.loading("Loading...", {
             id: "loading"
         });
+        isFalseCategories = false;
     }
-    if (isSuccessCategories) {
+    if (isSuccessCategories != isFalseCategories) {
         toast.dismiss("loading");
         toast.success("Categories Updated!", {
             id: "success"
         });
-        setTimeout(() => { location.reload() }, 500)
+        isFalseCategories = true;
+        dispatch(usersApi.util.invalidateTags(['Information']));
     }
-    if (isErrorCategories) {
+    if (isErrorCategories != isFalseCategories) {
         toast.dismiss("loading");
         toast.error(error.data.error, {
             id: "error"
         });
+        isFalseCategories = true;
     }
+
+    useEffect(() => {
+        setEditCategories(false);
+    }, [resCategories])
 
     return (
         <>
@@ -73,7 +83,7 @@ export default function User() {
                     <div className="user-categories">
                         {editCategories
                             ? <AddCategories title={''} learnInitialState={learnInitialState} teachInitialState={teachInitialState} submit={addcategories} />
-                            : <>{isSuccess && user.username == viewer.username && <FontAwesomeIcon
+                            : <>{viewerVerified && user.username == viewer.username && <FontAwesomeIcon
                                 icon={faEdit}
                                 fontSize={"1rem"}
                                 color="var(--background-color)"
