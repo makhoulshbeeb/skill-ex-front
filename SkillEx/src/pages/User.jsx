@@ -73,7 +73,7 @@ export default function User() {
                     <div className="user-categories">
                         {editCategories
                             ? <AddCategories title={''} learnInitialState={learnInitialState} teachInitialState={teachInitialState} submit={addcategories} />
-                            : <>{user.username == viewer.username && <FontAwesomeIcon
+                            : <>{isSuccess && user.username == viewer.username && <FontAwesomeIcon
                                 icon={faEdit}
                                 fontSize={"1rem"}
                                 color="var(--background-color)"

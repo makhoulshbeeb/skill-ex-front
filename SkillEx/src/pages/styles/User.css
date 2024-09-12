@@ -139,6 +139,7 @@
     flex-direction: column;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
+    word-wrap: break-word;
 }
 
 .user-profile-reviews>div>div {
@@ -247,6 +248,9 @@
     background-color: var(--background-light);
     color: var(--text-color);
     height: 65%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-wrap: break-word;
 }
 
 /********* USER PROFILE CATEGORIES *********/

@@ -3,16 +3,19 @@ import { faArrowRight, faPlus, faStar, faStarHalfStroke } from "@fortawesome/fre
 import { faStar as faStarOutline } from "@fortawesome/free-regular-svg-icons";
 
 import React, { useRef, useState } from 'react'
-import { useGetUserByTokenQuery } from '../../api/UsersApi'
+import { useGetUserByTokenQuery, usersApi } from '../../api/UsersApi'
 import { useSendReviewMutation } from '../../api/ReviewsApi';
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 
+var isFalse = false;
 export default function UserProfileReviews({ reviews, me, user }) {
     const [addReview, setAddReview] = useState(false);
     const ref = useRef();
+    const dispatch = useDispatch();
 
     const { data: viewer } = useGetUserByTokenQuery();
-    const [submitReview, { data: submittedReview, isLoading, isSuccess, isError, error }] = useSendReviewMutation();
+    var [submitReview, { data: submittedReview, isLoading, isSuccess, isError, error }] = useSendReviewMutation();
     const [rating, setRating] = useState(0);
 
     if (isLoading) {
@@ -20,6 +23,7 @@ export default function UserProfileReviews({ reviews, me, user }) {
         toast.loading("Loading...", {
             id: "loading"
         });
+        isFalse = false;
     }
     if (isError) {
         toast.dismiss("loading");
@@ -27,14 +31,17 @@ export default function UserProfileReviews({ reviews, me, user }) {
             id: "error"
         });
     }
-    if (isSuccess) {
+    if (isSuccess != isFalse) {
         toast.dismiss("loading");
         toast.success("Review submitted!", {
             id: "success"
         });
-        setTimeout(() => { setAddReview(false) }, 1000);
-        // setTimeout(() => { location.reload() }, 500);
+        dispatch(usersApi.util.invalidateTags(['Reviews']));
+        ref.current.value = '';
+        isFalse = true;
+        setTimeout(() => { setAddReview(false) }, 500);
     }
+
     return (
         <div className='user-profile-reviews'>
             <span>
@@ -49,7 +56,6 @@ export default function UserProfileReviews({ reviews, me, user }) {
             <div>
                 <div>
                     {reviews.map(review => {
-                        console.log(review.rating)
                         return (
                             <div className='review-container' key={review._id}>
                                 <div className='reviewer-tag'>
