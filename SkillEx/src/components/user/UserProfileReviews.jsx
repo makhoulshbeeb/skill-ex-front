@@ -32,7 +32,8 @@ export default function UserProfileReviews({ reviews, me, user }) {
         toast.success("Review submitted!", {
             id: "success"
         });
-        setTimeout(() => { setAddReview(false) }, 1000)
+        setTimeout(() => { setAddReview(false) }, 1000);
+        setTimeout(() => { location.reload() }, 500);
     }
     return (
         <div className='user-profile-reviews'>
@@ -96,14 +97,14 @@ export default function UserProfileReviews({ reviews, me, user }) {
                 </div>
                     <textarea placeholder='Write some feedback...' ref={ref}></textarea>
                     <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                        <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)" }} onClick={() => setAddReview(false)}>Cancel</div>
+                        <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)", scale: "0.9" }} onClick={() => setAddReview(false)}>Cancel</div>
                         <div className='add-reviews-button' style={{ scale: "0.9" }}
                             onClick={() => {
                                 rating == 0
                                     ? toast.error("No rating was provided", {
                                         id: "error"
                                     })
-                                    : ref.current == ''
+                                    : ref.current.value.trim() == ''
                                         ? toast.error("No feedback was provided", {
                                             id: "error"
                                         })
@@ -111,9 +112,6 @@ export default function UserProfileReviews({ reviews, me, user }) {
 
                             }}
                         >Submit
-                            <FontAwesomeIcon
-                                icon={faArrowRight}
-                            />
                         </div>
                     </div>
                 </div></dialog>

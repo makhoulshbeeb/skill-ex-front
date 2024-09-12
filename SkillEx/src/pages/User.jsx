@@ -15,7 +15,7 @@ export default function User() {
     const navigate = useNavigate();
     const { username } = useParams();
     const { data: user, isLoading, isSuccess, isError, error } = useGetUserByUsernameQuery({ username }, { refetchOnMountOrArgChange: true });
-    const { data: viewer } = useGetUserByTokenQuery();
+    const { data: viewer, isSuccess: viewerVerified } = useGetUserByTokenQuery();
 
     const [editCategories, setEditCategories] = useState(false);
 
@@ -68,8 +68,8 @@ export default function User() {
                         onClick={(e) => navigate(-1)}
                     ></FontAwesomeIcon>
 
-                    <UserSidePanel user={user} me={user.username == viewer.username} />
-                    <UserProfileReviews reviews={user.reviews} me={user.username == viewer.username} user={user} />
+                    <UserSidePanel user={user} me={viewerVerified && user.username == viewer.username} />
+                    <UserProfileReviews reviews={user.reviews} me={viewerVerified && user.username == viewer.username} user={user} />
                     <div className="user-categories">
                         {editCategories
                             ? <AddCategories title={''} learnInitialState={learnInitialState} teachInitialState={teachInitialState} submit={addcategories} />
@@ -80,8 +80,8 @@ export default function User() {
                                 style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.5rem", borderRadius: "100%", cursor: "pointer" }}
                                 onClick={() => { setEditCategories(true) }}
                             ></FontAwesomeIcon>}
-                                <UserProfileTeaching teach={user.teach} me={user.username == username} />
-                                <UserProfileLearning learn={user.learn} me={user.username == username} />
+                                <UserProfileTeaching teach={user.teach} me={viewerVerified && user.username == viewer.username} />
+                                <UserProfileLearning learn={user.learn} me={viewerVerified && user.username == viewer.username} />
                             </>}</div>
                 </>}
             </div>
