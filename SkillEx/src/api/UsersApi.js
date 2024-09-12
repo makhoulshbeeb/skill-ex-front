@@ -9,7 +9,7 @@ export const usersApi = createApi({
         },
         credentials: 'include'
     }),
-    tagTypes: ['User', 'Me'],
+    tagTypes: ['User', 'Me', 'Reviews'],
     endpoints: (builder) => ({
         getUserByToken: builder.query({
             query: () => 'users/me',
@@ -19,18 +19,18 @@ export const usersApi = createApi({
             query: ({ search }) => `users/search/${search}`,
             providesTags: (result, error, arg) =>
                 result
-                    ? [...result.map(({ id }) => ({ type: 'User', id })), 'User']
+                    ? [...result.map(({ id }) => ({ type: 'User', id }))]
                     : ['User'],
         }),
         getUserByUsername: builder.query({
             query: ({ username }) => `users/user/${username}`,
-            providesTags: ['User'],
+            providesTags: ['User', 'Reviews'],
         }),
         getUsersByMatch: builder.query({
             query: () => `users/match/`,
             providesTags: (result, error, arg) =>
                 result
-                    ? [...result.map(({ id }) => ({ type: 'User', id })), 'User']
+                    ? [...result.map(({ id }) => ({ type: 'User', id }))]
                     : ['User'],
         }),
         updateUser: builder.mutation({
@@ -39,14 +39,14 @@ export const usersApi = createApi({
                 method: 'PATCH',
                 body: data
             }),
-            invalidatesTags: (result, error, arg) => [{ type: 'Me', id: arg.id }],
+            invalidatesTags: ['Me'],
         }),
         deleteUser: builder.mutation({
             query: ({ id }) => ({
                 url: `users/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: (result, error, arg) => [{ type: 'Me', id: arg.id }],
+            invalidatesTags: ['Me'],
         })
     }),
 });

@@ -33,7 +33,7 @@ export default function UserProfileReviews({ reviews, me, user }) {
             id: "success"
         });
         setTimeout(() => { setAddReview(false) }, 1000);
-        setTimeout(() => { location.reload() }, 500);
+        // setTimeout(() => { location.reload() }, 500);
     }
     return (
         <div className='user-profile-reviews'>

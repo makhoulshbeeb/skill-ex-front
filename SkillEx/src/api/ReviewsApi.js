@@ -15,7 +15,7 @@ export const reviewsApi = createApi({
             query: ({ receiverId }) => `reviews/${receiverId}`,
             providesTags: (result, error, arg) =>
                 result
-                    ? [...result.map(({ id }) => ({ type: 'Reviews', id })), 'Reviews']
+                    ? [...result.map(({ id }) => ({ type: 'Reviews', id }))]
                     : ['Reviews'],
         }),
         sendReview: builder.mutation({
