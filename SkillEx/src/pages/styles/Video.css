@@ -1,17 +1,52 @@
+.video-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100dvh;
+}
+
+/********* VIDEO Stream *********/
+
+.video-stream {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 2rem;
+    border-radius: 2rem;
+
+    width: 100dvw;
+    height: 88dvh;
+    padding: 3rem;
+
+}
+
+.video-stream>div {
+    background-color: var(--background-light);
+    border-radius: 2rem;
+    text-align: center;
+
+}
+
+.video-stream>div:nth-child(1) {
+    grid-column-start: span 3;
+    grid-row-start: span 3;
+    background-color: var(--background-dark);
+    padding: 20px 0;
+    font-size: 30px;
+
+}
+
 /********* VIDEO BAR *********/
 
 .video-bar {
     display: flex;
-    padding: 2rem;
+    padding-bottom: 1.5rem;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
 
     background-color: var(--background-color);
     width: 100%;
-
-    position: absolute;
-    bottom: 0;
 }
 
 .video-bar>div {
