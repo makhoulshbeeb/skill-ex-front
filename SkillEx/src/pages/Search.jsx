@@ -34,7 +34,7 @@ export default function Search() {
         <>
             <img src="/SkillEx Background 4.png" alt="Explore Page Background" className="bg" />
             <div className="search-page">
-                <SearchSidebar setSearchParams={setSearchParams} categories={categoriesList} filters={filters} isLoading={isLoadingCategories} />
+                <SearchSidebar setSearchParams={setSearchParams} search={search} categories={categoriesList} filters={filters} isLoading={isLoadingCategories} />
             </div>
         </>
     )

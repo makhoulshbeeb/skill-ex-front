@@ -5,7 +5,7 @@ import { replace, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-export default function SearchSidebar({ setSearchParams, categories, filters, isLoading }) {
+export default function SearchSidebar({ setSearchParams, search, categories, filters, isLoading }) {
 
     const navigate = useNavigate();
     console.log(filters);
@@ -32,7 +32,7 @@ export default function SearchSidebar({ setSearchParams, categories, filters, is
                     style={{ backgroundColor: "var(--primary-color)", padding: "0.5rem 0.6rem", borderRadius: "1.5rem", cursor: "pointer" }}
                     onClick={(e) => navigate(-1)}
                 />
-                <Searchbar placeholder={"Search..."} change={(e) => setSearchParams(prev => { prev.set("search", e.target.value); return prev; }, { replace: true })} />
+                <Searchbar placeholder={"Search..."} search={search} change={(e) => setSearchParams(prev => { prev.set("search", e.target.value); return prev; }, { replace: true })} />
             </div>
             <div className="category-list">
                 {isLoading
