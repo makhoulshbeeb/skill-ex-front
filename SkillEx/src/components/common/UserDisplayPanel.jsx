@@ -21,11 +21,11 @@ export default function UserDisplayPanel({ user }) {
                 <div className="user-panel-rating">
                     {[1, 2, 3, 4, 5].map((el) => {
                         if (user.avgRating - el >= 0) {
-                            return (<FontAwesomeIcon icon={faStar} color="gold" />)
+                            return (<FontAwesomeIcon icon={faStar} color="gold" key={el} />)
                         } else if (user.avgRating - el <= -1) {
-                            return (<FontAwesomeIcon icon={faStarOutline} color="gold" />)
+                            return (<FontAwesomeIcon icon={faStarOutline} color="gold" key={el} />)
                         } else {
-                            return (<FontAwesomeIcon icon={faStarHalfStroke} color="gold" />)
+                            return (<FontAwesomeIcon icon={faStarHalfStroke} color="gold" key={el} />)
                         }
 
                     })}

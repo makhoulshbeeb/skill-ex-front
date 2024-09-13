@@ -65,11 +65,11 @@ export default function UserProfileReviews({ reviews, me, user }) {
                                         <div className="user-page-rating">
                                             {[1, 2, 3, 4, 5].map((el) => {
                                                 if (review.rating - el >= 0) {
-                                                    return (<FontAwesomeIcon icon={faStar} color="gold" />)
+                                                    return (<FontAwesomeIcon icon={faStar} color="gold" key={el} />)
                                                 } else if (review.rating - el <= -1) {
-                                                    return (<FontAwesomeIcon icon={faStarOutline} color="gold" />)
+                                                    return (<FontAwesomeIcon icon={faStarOutline} color="gold" key={el} />)
                                                 } else {
-                                                    return (<FontAwesomeIcon icon={faStarHalfStroke} color="gold" />)
+                                                    return (<FontAwesomeIcon icon={faStarHalfStroke} color="gold" key={el} />)
                                                 }
 
                                             })}
@@ -90,11 +90,11 @@ export default function UserProfileReviews({ reviews, me, user }) {
                         <div className="user-page-rating add-rating">
                             {[5, 4, 3, 2, 1].map((el) => {
                                 if (rating - el >= 0) {
-                                    return (<FontAwesomeIcon icon={faStar} id={`star${el}`} color="gold" onClick={() => setRating(el)} />)
+                                    return (<FontAwesomeIcon icon={faStar} id={`star${el}`} color="gold" onClick={() => setRating(el)} key={el} />)
                                 } else if (rating - el <= -1) {
-                                    return (<FontAwesomeIcon icon={faStarOutline} id={`star${el}`} color="gold" onClick={() => setRating(el)} />)
+                                    return (<FontAwesomeIcon icon={faStarOutline} id={`star${el}`} color="gold" onClick={() => setRating(el)} key={el} />)
                                 } else {
-                                    return (<FontAwesomeIcon icon={faStarHalfStroke} id={`star${el}`} color="gold" onClick={() => setRating(el)} />)
+                                    return (<FontAwesomeIcon icon={faStarHalfStroke} id={`star${el}`} color="gold" onClick={() => setRating(el)} key={el} />)
                                 }
 
                             })}

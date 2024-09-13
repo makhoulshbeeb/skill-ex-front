@@ -7,16 +7,19 @@ import store from './app/Store.js'
 import { Toaster } from 'react-hot-toast'
 import { SocketContextProvider } from './context/SocketContext.jsx'
 import { CallContextProvider } from './context/CallContext.jsx'
+import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <Provider store={store}>
-            <SocketContextProvider>
-                <CallContextProvider>
-                    <App />
-                    <Toaster></Toaster>
-                </CallContextProvider>
-            </SocketContextProvider>
+            <BrowserRouter>
+                <SocketContextProvider>
+                    <CallContextProvider>
+                        <App />
+                        <Toaster></Toaster>
+                    </CallContextProvider>
+                </SocketContextProvider>
+            </BrowserRouter>
         </Provider>
     </StrictMode>,
 )

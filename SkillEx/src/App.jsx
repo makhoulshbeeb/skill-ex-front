@@ -1,7 +1,7 @@
 
 import './App.css'
 
-import { Route, BrowserRouter, Routes, useParams } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import Auth from './pages/Auth.jsx';
 import Chat from './pages/Chat.jsx';
@@ -11,20 +11,19 @@ import User from './pages/User.jsx';
 import Video from './pages/Video.jsx';
 
 function App() {
+    const navigate = useNavigate();
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/about' />
-                <Route path='/explore/:type' element={<Explore />} />
-                <Route path='/search/:search' />
-                <Route path='/user/:username' element={<User />} />
-                <Route path='/sessions' element={<Video />} />
-                <Route path='/auth/:sign' element={<Auth />} />
-                <Route path='/auth/signup/categories' element={<Auth />} />
-                <Route path='/chats' element={<Chat />} />
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/about' />
+            <Route path='/explore/:type' element={<Explore />} />
+            <Route path='/search/:search' />
+            <Route path='/user/:username' element={<User />} />
+            <Route path='/sessions' element={<Video />} />
+            <Route path='/auth/:sign' element={<Auth />} />
+            <Route path='/auth/signup/categories' element={<Auth />} />
+            <Route path='/chats' element={<Chat />} />
+        </Routes>
     )
 }
 

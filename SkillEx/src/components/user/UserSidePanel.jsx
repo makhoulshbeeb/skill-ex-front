@@ -56,11 +56,11 @@ export default function UserSidePanel({ user, me }) {
             <div className="user-page-rating">
                 {[1, 2, 3, 4, 5].map((el) => {
                     if (user.avgRating - el >= 0) {
-                        return (<FontAwesomeIcon icon={faStar} color="gold" fontSize={"1.25rem"} />)
+                        return (<FontAwesomeIcon icon={faStar} color="gold" fontSize={"1.25rem"} key={el} />)
                     } else if (user.avgRating - el <= -1) {
-                        return (<FontAwesomeIcon icon={faStarOutline} color="gold" fontSize={"1.25rem"} />)
+                        return (<FontAwesomeIcon icon={faStarOutline} color="gold" fontSize={"1.25rem"} key={el} />)
                     } else {
-                        return (<FontAwesomeIcon icon={faStarHalfStroke} color="gold" fontSize={"1.25rem"} />)
+                        return (<FontAwesomeIcon icon={faStarHalfStroke} color="gold" fontSize={"1.25rem"} key={el} />)
                     }
 
                 })}

@@ -26,12 +26,12 @@ export default function Display({ displayTitle, items, type }) {
                     {items.map((item) => {
                         if (type == 'Categories') {
                             return (
-                                <CategoryDisplayPanel category={item} key={item.id} />
+                                <CategoryDisplayPanel category={item} key={item._id} />
                             )
                         }
                         if (type == 'Matches') {
                             return (
-                                <UserDisplayPanel user={item} key={item.id} />
+                                <UserDisplayPanel user={item} key={item._id} />
                             )
                         }
                     }

@@ -7,7 +7,7 @@ export default function DropDownMenu({ menuItems, open }) {
         <div className="dropdown-menu-container" style={{ height: open ? `${menuItems.length * 3.6}rem` : 0 }}>
             {menuItems.map((item, index) => {
                 return (
-                    <div
+                    <div key={index}
                         className="dropdown-menu-item"
                         onClick={item.action}>
                         <span>{item.icon}{item.title}</span>
