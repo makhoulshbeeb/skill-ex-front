@@ -10,6 +10,7 @@ import Explore from './pages/Explore.jsx';
 import User from './pages/User.jsx';
 import Video from './pages/Video.jsx';
 import toast from 'react-hot-toast';
+import Search from './pages/Search.jsx';
 
 function App() {
     return (
@@ -17,7 +18,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/about' />
             <Route path='/explore/:type' element={<Explore />} />
-            <Route path='/search/:search' />
+            <Route path='/search/' element={<Search />} />
             <Route path='/user/:username' element={<User />} />
             <Route path='/sessions' element={<Video />} />
             <Route path='/auth/:sign' element={<Auth />} />

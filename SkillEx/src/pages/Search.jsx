@@ -25,6 +25,11 @@ export default function Search() {
         });
     }
     return (
-        <div className="search-page"></div>
+        <>
+            <img src="/SkillEx Background 4.png" alt="Explore Page Background" className="bg" />
+            <div className="search-page">
+
+            </div>
+        </>
     )
 }
