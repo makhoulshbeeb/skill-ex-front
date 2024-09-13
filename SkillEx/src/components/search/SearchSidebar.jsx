@@ -12,7 +12,6 @@ export default function SearchSidebar({ setSearchParams, search, categories, fil
 
     const handleChangeFilter = (category) => {
         const index = filters.indexOf(category.toString());
-        console.log(filters.includes(category));
         if (index != -1) {
             filters.splice(index, 1);
             setSearchParams(prev => { prev.set('filters', filters); return prev }, { replace: true });
@@ -23,8 +22,8 @@ export default function SearchSidebar({ setSearchParams, search, categories, fil
     };
 
     return (
-        <div className="chat-sidebar">
-            <div className="chat-search">
+        <div className="search-sidebar">
+            <div className="search-sidebar-input">
                 <FontAwesomeIcon
                     icon={faArrowLeft}
                     fontSize={"1.5rem"}
