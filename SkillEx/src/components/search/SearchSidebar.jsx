@@ -34,7 +34,7 @@ export default function SearchSidebar({ setSearchParams, categories, filters, is
                 />
                 <Searchbar placeholder={"Search..."} change={(e) => setSearchParams(prev => { prev.set("search", e.target.value); return prev; }, { replace: true })} />
             </div>
-            <div className="chat-list">
+            <div className="category-list">
                 {isLoading
                     ? <FontAwesomeIcon
                         icon={faSpinner}
@@ -43,14 +43,16 @@ export default function SearchSidebar({ setSearchParams, categories, filters, is
                         spinPulse />
                     : categories.map(category => {
                         return (
-                            <div key={category} className="search-filter-box">
+                            <label key={category} className="search-filter-box" >
                                 <input
                                     type="checkbox"
                                     name={category}
                                     value={filters.includes(category)}
                                     onChange={() => handleChangeFilter(category)}
-                                /><span>{category}</span>
-                            </div>)
+                                />
+                                <span className="checkmark"></span>
+                                {category}
+                            </label>)
                     })
                 }
             </div>
