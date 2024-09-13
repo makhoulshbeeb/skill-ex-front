@@ -6,10 +6,10 @@ export default function VideoStream() {
     return (
         <div className='video-stream'>
             <div className='pinned-stream'>
-                <video playsInline ref={userVideo} autoPlay className='' />
+                <video playsInline ref={userVideo} autoPlay className='video-stream-panel' />
             </div>
             <div>
-                <video playsInline muted ref={myVideo} autoPlay className='' />
+                <video playsInline muted ref={myVideo} autoPlay className='video-stream-panel' />
             </div>
             <div>Video 3</div>
             <div>Video 4</div>

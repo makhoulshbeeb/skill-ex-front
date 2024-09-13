@@ -20,11 +20,15 @@
 
 }
 
+
+
 .video-stream>div {
     background-color: var(--background-light);
     border-radius: 2rem;
     text-align: center;
-
+    height: 24dvh;
+    width: 20dvw;
+    overflow: hidden;
 }
 
 .video-stream>.pinned-stream {
@@ -33,8 +37,16 @@
     background-color: var(--background-dark);
     padding: 20px 0;
     font-size: 30px;
-
+    height: 100%;
+    width: 70dvw;
 }
+
+.video-stream-panel {
+    object-fit: cover;
+    height: 100%;
+    width: inherit;
+}
+
 
 /********* VIDEO BAR *********/
 

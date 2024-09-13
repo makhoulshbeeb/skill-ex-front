@@ -31,10 +31,19 @@ export const CallContextProvider = ({ children }) => {
                 myVideo.current.srcObject = currentStream;
             });
 
+        if (stream) stream.getTracks().forEach((track) => {
+            if (!video && track.readyState == 'live' && track.kind === 'video') {
+                track.stop();
+            }
+            if (!audio && track.readyState == 'live' && track.kind === 'audio') {
+                track.stop();
+            }
+        });
+
         socket?.on('callUser', ({ from, name: callerName, signal }) => {
             setCall({ isReceivingCall: true, from, name: callerName, signal });
         });
-    }, [video, audio]);
+    }, [video, audio, setVideo, setAudio]);
 
     const answerCall = () => {
         setCallAccepted(true);
