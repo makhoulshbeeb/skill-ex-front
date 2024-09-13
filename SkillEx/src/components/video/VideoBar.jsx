@@ -1,21 +1,21 @@
 import { faCamera, faMessage, faMicrophone, faMicrophoneSlash, faPhone, faShareSquare, faVideo, faVideoSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
+import { useCallContext } from '../../context/CallContext';
 
 export default function VideoBar() {
-    const [mic, setMic] = useState(false);
-    const [camera, setCamera] = useState(false);
+    const { audio, setAudio, video, setVideo } = useCallContext();
     const [screenShare, setScreenShare] = useState(false);
     const [chat, setChat] = useState(false);
 
     const endCall = () => { }
     return (
         <div className='video-bar'>
-            <div style={{ backgroundColor: mic ? 'var(--text-light)' : 'tomato' }} onClick={() => setMic(!mic)}>
-                <FontAwesomeIcon icon={mic ? faMicrophone : faMicrophoneSlash} />
+            <div style={{ backgroundColor: audio ? 'var(--text-light)' : 'tomato' }} onClick={() => setAudio(!audio)}>
+                <FontAwesomeIcon icon={audio ? faMicrophone : faMicrophoneSlash} />
             </div>
-            <div style={{ backgroundColor: camera ? 'var(--text-light)' : 'tomato' }} onClick={() => setCamera(!camera)}>
-                <FontAwesomeIcon icon={camera ? faVideo : faVideoSlash} />
+            <div style={{ backgroundColor: video ? 'var(--text-light)' : 'tomato' }} onClick={() => setVideo(!video)}>
+                <FontAwesomeIcon icon={video ? faVideo : faVideoSlash} />
             </div>
             <div style={{ backgroundColor: screenShare ? 'var(--primary-color)' : 'var(--text-light)' }} onClick={() => setScreenShare(!screenShare)} >
                 <FontAwesomeIcon icon={faShareSquare} />

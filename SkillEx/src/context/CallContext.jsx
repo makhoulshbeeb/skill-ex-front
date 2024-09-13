@@ -1,9 +1,7 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect, useContext, useRef } from "react";
 import { useGetUserByTokenQuery } from "../api/UsersApi";
 import { useSocketContext } from "./SocketContext";
 import Peer from 'simple-peer';
-
-import { useNavigate } from "react-router-dom";
 
 const CallContext = createContext();
 
@@ -21,21 +19,19 @@ export const CallContextProvider = ({ children }) => {
     const [audio, setAudio] = useState(false);
     const { data: me, isSuccess: verifiedMe } = useGetUserByTokenQuery();
 
-    const navigate = useNavigate();
-
     const myVideo = useRef();
     const userVideo = useRef();
     const connectionRef = useRef();
 
     useEffect(() => {
-        navigator.mediaDevices.getUserMedia({ video: video, audio: audio })
+        if (video || audio) navigator.mediaDevices.getUserMedia({ video: video, audio: audio })
             .then((currentStream) => {
                 setStream(currentStream);
 
                 myVideo.current.srcObject = currentStream;
             });
 
-        socket.on('callUser', ({ from, name: callerName, signal }) => {
+        socket?.on('callUser', ({ from, name: callerName, signal }) => {
             setCall({ isReceivingCall: true, from, name: callerName, signal });
         });
     }, [video, audio]);
@@ -82,8 +78,6 @@ export const CallContextProvider = ({ children }) => {
         setCallEnded(true);
 
         connectionRef.current.destroy();
-
-        navigate(-1);
     };
 
     return <CallContext.Provider value={{
@@ -94,6 +88,10 @@ export const CallContextProvider = ({ children }) => {
         stream,
         callEnded,
         me,
+        audio,
+        setAudio,
+        video,
+        setVideo,
         callUser,
         leaveCall,
         answerCall,
