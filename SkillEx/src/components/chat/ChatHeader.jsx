@@ -3,9 +3,11 @@ import { useSelector } from "react-redux"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical, faVideo } from '@fortawesome/free-solid-svg-icons';
+import { useCallContext } from '../../context/CallContext';
 
 export default function ChatHeader() {
     const receiver = useSelector(state => state.receiver);
+    const { callUser } = useCallContext();
     const navigate = useNavigate();
     return (
         <div className="chat-header">
@@ -20,6 +22,8 @@ export default function ChatHeader() {
                     icon={faVideo}
                     fontSize={"1.8rem"}
                     color="var(--background-color)"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => { callUser(receiver._id); navigate('/sessions') }}
                 ></FontAwesomeIcon>
                 <FontAwesomeIcon
                     icon={faEllipsisVertical}

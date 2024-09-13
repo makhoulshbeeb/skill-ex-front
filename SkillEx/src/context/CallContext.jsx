@@ -24,6 +24,11 @@ export const CallContextProvider = ({ children }) => {
     const connectionRef = useRef();
 
     useEffect(() => {
+        socket?.on('callUser', ({ from, name: callerName, signal }) => {
+            setCall({ isReceivingCall: true, from, name: callerName, signal });
+        });
+    }, []);
+    useEffect(() => {
         if (video || audio) navigator.mediaDevices.getUserMedia({ video: video, audio: audio })
             .then((currentStream) => {
                 setStream(currentStream);
@@ -38,10 +43,6 @@ export const CallContextProvider = ({ children }) => {
             if (!audio && track.readyState == 'live' && track.kind === 'audio') {
                 track.stop();
             }
-        });
-
-        socket?.on('callUser', ({ from, name: callerName, signal }) => {
-            setCall({ isReceivingCall: true, from, name: callerName, signal });
         });
     }, [video, audio, setVideo, setAudio]);
 
