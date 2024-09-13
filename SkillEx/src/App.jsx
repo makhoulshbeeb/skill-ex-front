@@ -9,9 +9,9 @@ import Home from './pages/Home.jsx';
 import Explore from './pages/Explore.jsx';
 import User from './pages/User.jsx';
 import Video from './pages/Video.jsx';
+import toast from 'react-hot-toast';
 
 function App() {
-    const navigate = useNavigate();
     return (
         <Routes>
             <Route path='/' element={<Home />} />

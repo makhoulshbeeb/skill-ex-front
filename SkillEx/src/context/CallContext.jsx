@@ -2,6 +2,8 @@ import { createContext, useState, useEffect, useContext, useRef } from "react";
 import { useGetUserByTokenQuery } from "../api/UsersApi";
 import { useSocketContext } from "./SocketContext";
 import Peer from 'simple-peer';
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const CallContext = createContext();
 
@@ -19,6 +21,8 @@ export const CallContextProvider = ({ children }) => {
     const [audio, setAudio] = useState(false);
     const { data: me, isSuccess: verifiedMe } = useGetUserByTokenQuery();
 
+    const navigate = useNavigate();
+
     const myVideo = useRef();
     const userVideo = useRef();
     const connectionRef = useRef();
@@ -26,6 +30,19 @@ export const CallContextProvider = ({ children }) => {
     useEffect(() => {
         socket?.on('callUser', ({ from, name: callerName, signal }) => {
             setCall({ isReceivingCall: true, from, name: callerName, signal });
+            toast((t) => {
+                <div className="call-notification">
+                    <img src={from.picture} className="call-notification-caller" />
+                    <div>
+                        <p>{from.displayName} is calling...</p>
+                        <div className="call-notification-response">
+                            <div className="decline-button" onClick={() => toast.dismiss(t.id)}>Decline</div>
+                            <div className="answer-button" onClick={() => answerCall()}>Answer</div>
+                        </div>
+                    </div>
+                </div>
+            },
+            )
         });
     }, []);
     useEffect(() => {
@@ -62,13 +79,15 @@ export const CallContextProvider = ({ children }) => {
         peer.signal(call.signal);
 
         connectionRef.current = peer;
+
+        navigate(`sessions/${call.from._id}`)
     };
 
     const callUser = (id) => {
         const peer = new Peer({ initiator: true, trickle: false, stream });
 
         peer.on('signal', (data) => {
-            socket.emit('callUser', { userToCall: id, signalData: data, from: me._id, name: me.displayName });
+            socket.emit('callUser', { userToCall: id, signalData: data, from: me, name: me.displayName });
         });
 
         peer.on('stream', (currentStream) => {
