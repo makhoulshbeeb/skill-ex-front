@@ -27,7 +27,7 @@
 
 }
 
-.video-stream>div:nth-child(1) {
+.video-stream>.pinned-stream {
     grid-column-start: span 3;
     grid-row-start: span 3;
     background-color: var(--background-dark);
