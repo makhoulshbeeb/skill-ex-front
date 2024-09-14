@@ -20,7 +20,8 @@ export default function ChatSidebar() {
 
     var chats = data;
 
-    if (data) {
+    if (isSuccess) {
+        console.log(data);
         chats = data.filter(function (el) {
             return el.participants[0].displayName.match(new RegExp(String.raw`.*${chatSearch.trim()}.*`, "i"));
         })

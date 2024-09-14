@@ -39,3 +39,50 @@
     border-radius: 0.2rem;
     background-image: linear-gradient(to right, var(--primary-color), var(--primary-light));
 }
+
+
+/********* Notifications *********/
+
+.call-notification {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+}
+
+.call-notification>img {
+    height: 6rem;
+    width: 6rem;
+    clip-path: circle();
+}
+
+.call-notification>div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.call-notification>div>h3 {
+    word-wrap: break-word;
+}
+
+.call-notification-response {
+    display: flex;
+    gap: 1rem;
+}
+
+.call-notification-response>div {
+    padding: 0.5rem 2rem;
+    border-radius: 0.25rem;
+    color: var(--background-color);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.decline-button {
+    background-color: tomato;
+}
+
+.answer-button {
+    background-color: var(--primary-color);
+}

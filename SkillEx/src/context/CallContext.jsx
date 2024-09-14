@@ -30,21 +30,29 @@ export const CallContextProvider = ({ children }) => {
     useEffect(() => {
         socket?.on('callUser', ({ from, name: callerName, signal }) => {
             setCall({ isReceivingCall: true, from, name: callerName, signal });
-            toast((t) => {
+            console.log(from);
+            toast((t) => (
                 <div className="call-notification">
                     <img src={from.picture} className="call-notification-caller" />
                     <div>
-                        <p>{from.displayName} is calling...</p>
+                        <h3>{from.displayName} is calling...</h3>
                         <div className="call-notification-response">
                             <div className="decline-button" onClick={() => toast.dismiss(t.id)}>Decline</div>
                             <div className="answer-button" onClick={() => answerCall()}>Answer</div>
                         </div>
                     </div>
                 </div>
-            },
+            ), {
+                position: 'bottom-right',
+                style: {
+                    width: '25dvw',
+                    maxWidth: 'unset'
+                },
+                duration: 8000
+            }
             )
         });
-    }, []);
+    }, [socket]);
     useEffect(() => {
         if (video || audio) navigator.mediaDevices.getUserMedia({ video: video, audio: audio })
             .then((currentStream) => {
@@ -85,6 +93,7 @@ export const CallContextProvider = ({ children }) => {
 
     const callUser = (id) => {
         const peer = new Peer({ initiator: true, trickle: false, stream });
+        console.log(peer);
 
         peer.on('signal', (data) => {
             socket.emit('callUser', { userToCall: id, signalData: data, from: me, name: me.displayName });
