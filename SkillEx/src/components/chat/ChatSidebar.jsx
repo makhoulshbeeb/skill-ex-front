@@ -46,7 +46,7 @@ export default function ChatSidebar() {
                         fontSize={"1.2rem"}
                         color="var(--text-light)"
                         spinPulse />
-                    : chats.map((chat) => {
+                    : chats?.map((chat) => {
                         return (
                             <div key={chat._id}>
                                 <hr />
