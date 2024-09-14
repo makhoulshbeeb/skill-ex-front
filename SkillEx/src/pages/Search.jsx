@@ -23,13 +23,12 @@ export default function Search() {
     if (isSuccess) {
         console.log(filters);
         searchResults = filters.length > 1 ? data.filter(el => {
+            var categoryNames = [''];
             for (var i = 0; i < el.teach.length; i++) {
-                console.log(el.teach[i].category.name);
-                if (filters.includes(el.teach[i].category.name)) {
-                    return true;
-                }
+                categoryNames.push(el.teach[i].category.name);
             }
-            return false;
+            console.log(categoryNames, filters)
+            return filters.every(val => categoryNames.includes(val));
         }) : data;
     }
     const {
