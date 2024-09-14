@@ -4,10 +4,11 @@ import { useSearchParams } from "react-router-dom";
 import { useGetCategoriesQuery } from "../api/CategoriesApi";
 import { useGetUsersBySearchQuery } from "../api/UsersApi";
 import SearchSidebar from "../components/search/SearchSidebar";
+import { useState } from "react";
 
 export default function Search() {
     const [searchParams, setSearchParams] = useSearchParams({ search: '', filters: [] });
-    var search = searchParams.get("search");
+    const [search, setSearch] = useState(searchParams.get("search"));
     var filters = searchParams.get("filters")?.replace("+", " ").split(',') || [];
 
     const { data: searchResults,
@@ -34,7 +35,7 @@ export default function Search() {
         <>
             <img src="/SkillEx Background 4.png" alt="Explore Page Background" className="bg" />
             <div className="search-page">
-                <SearchSidebar setSearchParams={setSearchParams} search={search} categories={categoriesList} filters={filters} isLoading={isLoadingCategories} />
+                <SearchSidebar setSearchParams={setSearchParams} search={search} setSearch={setSearch} categories={categoriesList} filters={filters} isLoading={isLoadingCategories} />
             </div>
         </>
     )

@@ -10,6 +10,7 @@ export default function Searchbar({ placeholder, change, navigate, search }) {
                 icon={faSearch}
                 fontSize={"1.2rem"}
                 color="var(--text-light)"
+                style={{ cursor: 'pointer' }}
                 onClick={navigate}
             ></FontAwesomeIcon>
             <input className='search-bar' placeholder={placeholder} onChange={change} value={search} />
