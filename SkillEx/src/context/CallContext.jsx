@@ -12,6 +12,7 @@ export const useCallContext = () => {
 };
 
 var call = {};
+var ringtone = new Audio('/audio/iphone 8 Ringtone 2018.mp3');
 export const CallContextProvider = ({ children }) => {
     const { socket } = useSocketContext();
     const [callAccepted, setCallAccepted] = useState(false);
@@ -31,6 +32,8 @@ export const CallContextProvider = ({ children }) => {
         socket && socket.on('callUser', ({ from, name: callerName, signal }) => {
             const newCall = { isReceivingCall: true, from: from, name: callerName, signal: signal };
             call = newCall;
+            ringtone.play();
+            setTimeout(() => { ringtone.pause(), ringtone.currentTime = 0 }, 8000);
             toast((t) => (
                 <div className="call-notification">
                     <img src={from.picture} className="call-notification-caller" />
@@ -48,7 +51,7 @@ export const CallContextProvider = ({ children }) => {
                     width: '26rem',
                     maxWidth: 'unset'
                 },
-                duration: 8000
+                duration: 10000
             }
             )
         });

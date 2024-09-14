@@ -9,6 +9,7 @@ export const useSocketContext = () => {
     return useContext(SocketContext);
 };
 
+var notification = new Audio('/audio/iPhone Notification Sound Effect.mp3');
 export const SocketContextProvider = ({ children }) => {
     const [socket, setSocket] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState([]);
@@ -28,6 +29,8 @@ export const SocketContextProvider = ({ children }) => {
                 setOnlineUsers(users);
             });
             socket.on("newMessage", ({ newMessage, sender }) => {
+                notification.play();
+                setTimeout(() => { notification.pause(), notification.currentTime = 0 }, 1000);
                 toast((t) => (
                     <div className="call-notification">
                         <img src={sender.picture} className="call-notification-caller" />
@@ -42,7 +45,7 @@ export const SocketContextProvider = ({ children }) => {
                         width: '24rem',
                         maxWidth: 'unset',
                     },
-                    duration: 8000
+                    duration: 5000
                 }
                 )
             });

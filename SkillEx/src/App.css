@@ -68,9 +68,15 @@
 }
 
 .call-notification>div>h4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     overflow: hidden;
+    word-wrap: break-word;
     color: var(--text-light);
+    max-width: 14rem;
 }
 
 .call-notification-response {
