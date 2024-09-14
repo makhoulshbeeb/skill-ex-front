@@ -21,7 +21,16 @@ export default function Search() {
 
     var searchResults = [];
     if (isSuccess) {
-        searchResults = data;
+        console.log(filters);
+        searchResults = filters.length > 1 ? data.filter(el => {
+            for (var i = 0; i < el.teach.length; i++) {
+                console.log(el.teach[i].category.name);
+                if (filters.includes(el.teach[i].category.name)) {
+                    return true;
+                }
+            }
+            return false;
+        }) : data;
     }
     const {
         data: categories,

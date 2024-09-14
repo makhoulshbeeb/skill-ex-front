@@ -30,7 +30,7 @@ export default function Navbar() {
                 <Seachbar
                     placeholder={"Search . . ."}
                     change={(e) => { setSearch(e.target.value) }}
-                    navigate={() => navigate(`/search/?search=${search}`)}
+                    navigate={() => navigate(`/search/?search=${search}&filters=`)}
                 ></Seachbar>
                 {isSuccess
                     ? ""

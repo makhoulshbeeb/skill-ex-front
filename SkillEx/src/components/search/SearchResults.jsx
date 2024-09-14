@@ -5,7 +5,7 @@ export default function SearchResults({ results }) {
         <div className="search-results">
             {results.map(result => {
                 return (
-                    <UserDisplayPanel user={result} />
+                    <UserDisplayPanel user={result} key={result._id} />
                 )
             })}
         </div>

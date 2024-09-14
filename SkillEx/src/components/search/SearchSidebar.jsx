@@ -46,7 +46,7 @@ export default function SearchSidebar({ setSearchParams, search, setSearch, cate
                                 <input
                                     type="checkbox"
                                     name={category}
-                                    value={filters.includes(category)}
+                                    checked={filters.includes(category)}
                                     onChange={() => handleChangeFilter(category)}
                                 />
                                 <span className="checkmark"></span>
