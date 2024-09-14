@@ -5,19 +5,24 @@ import { useGetCategoriesQuery } from "../api/CategoriesApi";
 import { useGetUsersBySearchQuery } from "../api/UsersApi";
 import SearchSidebar from "../components/search/SearchSidebar";
 import { useState } from "react";
+import SearchResults from "../components/search/SearchResults";
 
 export default function Search() {
     const [searchParams, setSearchParams] = useSearchParams({ search: '', filters: [] });
     const [search, setSearch] = useState(searchParams.get("search"));
     var filters = searchParams.get("filters")?.replace("+", " ").split(',') || [];
 
-    const { data: searchResults,
+    const { data,
         isLoading,
         isSuccess,
         isError,
         error
-    } = useGetUsersBySearchQuery({ search }, { refetchOnMountOrArgChange: true })
+    } = useGetUsersBySearchQuery({ search: searchParams.get("search") }, { refetchOnMountOrArgChange: true })
 
+    var searchResults = [];
+    if (isSuccess) {
+        searchResults = data;
+    }
     const {
         data: categories,
         isLoading: isLoadingCategories,
@@ -36,6 +41,7 @@ export default function Search() {
             <img src="/SkillEx Background 4.png" alt="Explore Page Background" className="bg" />
             <div className="search-page">
                 <SearchSidebar setSearchParams={setSearchParams} search={search} setSearch={setSearch} categories={categoriesList} filters={filters} isLoading={isLoadingCategories} />
+                <SearchResults results={searchResults} />
             </div>
         </>
     )
