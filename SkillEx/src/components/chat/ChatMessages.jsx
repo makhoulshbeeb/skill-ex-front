@@ -21,7 +21,7 @@ export default function ChatMessages({ messages, setMessages }) {
     }
 
     useEffect(() => {
-        socket?.on("newMessage", (newMessage) => {
+        socket?.on("newMessage", ({ newMessage }) => {
             if (newMessage.senderId == receiver._id) setMessages([...messages, newMessage]);
         });
         return () => socket?.off("newMessage");

@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import io from "socket.io-client";
 import { useGetUserByTokenQuery } from "../api/UsersApi";
+import toast from "react-hot-toast";
 
 const SocketContext = createContext();
 
@@ -26,7 +27,25 @@ export const SocketContextProvider = ({ children }) => {
             socket.on("getOnlineUsers", (users) => {
                 setOnlineUsers(users);
             });
-
+            socket.on("newMessage", ({ newMessage, sender }) => {
+                toast((t) => (
+                    <div className="call-notification">
+                        <img src={sender.picture} className="call-notification-caller" />
+                        <div>
+                            <h3>{sender.displayName}</h3>
+                            <h4>{newMessage.message}</h4>
+                        </div>
+                    </div>
+                ), {
+                    position: 'bottom-right',
+                    style: {
+                        width: '24rem',
+                        maxWidth: 'unset',
+                    },
+                    duration: 8000
+                }
+                )
+            });
             return () => socket.close();
         } else {
             if (socket) {
