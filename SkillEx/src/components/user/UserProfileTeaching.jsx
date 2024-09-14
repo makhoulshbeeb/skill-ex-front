@@ -22,20 +22,21 @@ export default function UserProfileTeaching({ user }) {
                     })}
                 </div>
             </div>
-            <dialog open={endorse} >
-                <div className="add-endorsement">
-                    {viewerVerified && categoryToEndorse.endorsements.includes(viewer._id.toString())
-                        ? <p>You already endorsed {user.displayName} for {categoryToEndorse.category.name}, do you want to remove it?</p>
-                        : <p>Would you like to endorse {user.displayName} for {categoryToEndorse.category.name}?</p>}
-                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                        <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)", scale: "0.9" }} onClick={() => setEndorse(false)}>Cancel</div>
-                        <div className='add-reviews-button' style={{ scale: "0.9" }}
-                            onClick={() => { endorseUser({ receiverId: user._id, categoryId: categoryToEndorse.category._id }); setEndorse(false); }}
-                        >Submit
+            {viewerVerified && viewer._id != user._id &&
+                <dialog open={endorse} >
+                    <div className="add-endorsement">
+                        {viewerVerified && categoryToEndorse.endorsements.includes(viewer._id.toString())
+                            ? <p>You already endorsed {user.displayName} for {categoryToEndorse.category.name}, do you want to remove it?</p>
+                            : <p>Would you like to endorse {user.displayName} for {categoryToEndorse.category.name}?</p>}
+                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                            <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)", scale: "0.9" }} onClick={() => setEndorse(false)}>Cancel</div>
+                            <div className='add-reviews-button' style={{ scale: "0.9" }}
+                                onClick={() => { endorseUser({ receiverId: user._id, categoryId: categoryToEndorse.category._id }); setEndorse(false); }}
+                            >Submit
+                            </div>
                         </div>
                     </div>
-                </div>
-            </dialog>
+                </dialog>}
         </>
     )
 }

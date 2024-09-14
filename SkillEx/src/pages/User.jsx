@@ -52,7 +52,7 @@ export default function User() {
         isFalseCategories = true;
         dispatch(usersApi.util.invalidateTags(['Information']));
     }
-    if (isErrorCategories != isFalseCategories) {
+    if (isErrorCategories) {
         toast.dismiss("loading");
         toast.error(error.data.error, {
             id: "error"

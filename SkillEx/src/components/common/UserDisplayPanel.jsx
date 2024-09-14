@@ -16,7 +16,7 @@ export default function UserDisplayPanel({ user }) {
             <div className="user-panel-details">
                 <div>
                     <h2>{user.displayName}</h2>
-                    <h3>{user.teach[0].category.name}</h3>
+                    <h3>{user.teach[0]?.category.name}</h3>
                 </div>
                 <div className="user-panel-rating">
                     {[1, 2, 3, 4, 5].map((el) => {

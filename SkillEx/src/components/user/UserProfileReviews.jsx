@@ -14,7 +14,7 @@ export default function UserProfileReviews({ reviews, me, user }) {
     const ref = useRef();
     const dispatch = useDispatch();
 
-    const { data: viewer } = useGetUserByTokenQuery();
+    const { data: viewer, isSuccess: viewerVerified } = useGetUserByTokenQuery();
     var [submitReview, { data: submittedReview, isLoading, isSuccess, isError, error }] = useSendReviewMutation();
     const [rating, setRating] = useState(0);
 
@@ -34,12 +34,11 @@ export default function UserProfileReviews({ reviews, me, user }) {
         isFalse = true;
         setTimeout(() => { setAddReview(false) }, 500);
     }
-    if (isError != isFalse) {
+    if (isError) {
         toast.dismiss("loading");
         toast.error(error.data.error, {
             id: "error"
         });
-        isFalse = true;
     }
 
     return (
@@ -84,9 +83,9 @@ export default function UserProfileReviews({ reviews, me, user }) {
             </div>
             <dialog open={addReview} className='add-reviews-panel'>
                 <div><div className='reviewer-tag'>
-                    <img src={viewer.picture} />
+                    <img src={viewerVerified && viewer.picture} />
                     <div>
-                        <h4>{viewer.displayName}</h4>
+                        <h4>{viewerVerified && viewer.displayName}</h4>
                         <div className="user-page-rating add-rating">
                             {[5, 4, 3, 2, 1].map((el) => {
                                 if (rating - el >= 0) {
