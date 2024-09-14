@@ -33,15 +33,15 @@ export const CallContextProvider = ({ children }) => {
             const newCall = { isReceivingCall: true, from: from, name: callerName, signal: signal };
             call = newCall;
             ringtone.play();
-            setTimeout(() => { ringtone.pause(), ringtone.currentTime = 0 }, 8000);
+            setTimeout(() => { ringtone.pause(); ringtone.currentTime = 0 }, 10000);
             toast((t) => (
                 <div className="call-notification">
                     <img src={from.picture} className="call-notification-caller" />
                     <div>
                         <h3>{from.displayName} is calling...</h3>
                         <div className="call-notification-response">
-                            <div className="decline-button" onClick={() => toast.dismiss(t.id)}>Decline</div>
-                            <div className="answer-button" onClick={() => { answerCall(); toast.dismiss(t.id) }}>Answer</div>
+                            <div className="decline-button" onClick={() => { toast.dismiss(t.id); ringtone.pause(); ringtone.currentTime = 0 }}>Decline</div>
+                            <div className="answer-button" onClick={() => { answerCall(); toast.dismiss(t.id); ringtone.pause(); ringtone.currentTime = 0 }}>Answer</div>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@ export const CallContextProvider = ({ children }) => {
                     width: '26rem',
                     maxWidth: 'unset'
                 },
-                duration: 10000
+                duration: 12000
             }
             )
         });

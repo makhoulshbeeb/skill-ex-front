@@ -30,7 +30,7 @@ export const SocketContextProvider = ({ children }) => {
             });
             socket.on("newMessage", ({ newMessage, sender }) => {
                 notification.play();
-                setTimeout(() => { notification.pause(), notification.currentTime = 0 }, 1000);
+                setTimeout(() => { notification.pause(); notification.currentTime = 0 }, 1000);
                 toast((t) => (
                     <div className="call-notification">
                         <img src={sender.picture} className="call-notification-caller" />
