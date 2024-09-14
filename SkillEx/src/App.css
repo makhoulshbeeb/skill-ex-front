@@ -68,7 +68,7 @@
 
 .call-notification-response {
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem;
 }
 
 .call-notification-response>div {

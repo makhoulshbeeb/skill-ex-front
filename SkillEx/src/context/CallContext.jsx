@@ -11,12 +11,12 @@ export const useCallContext = () => {
     return useContext(CallContext);
 };
 
+var call = {};
 export const CallContextProvider = ({ children }) => {
     const { socket } = useSocketContext();
     const [callAccepted, setCallAccepted] = useState(false);
     const [callEnded, setCallEnded] = useState(false);
     const [stream, setStream] = useState();
-    const [call, setCall] = useState({});
     const [video, setVideo] = useState(false);
     const [audio, setAudio] = useState(false);
     const { data: me, isSuccess: verifiedMe } = useGetUserByTokenQuery();
@@ -28,9 +28,9 @@ export const CallContextProvider = ({ children }) => {
     const connectionRef = useRef();
 
     useEffect(() => {
-        socket?.on('callUser', ({ from, name: callerName, signal }) => {
-            setCall({ isReceivingCall: true, from, name: callerName, signal });
-            console.log(from);
+        socket && socket.on('callUser', ({ from, name: callerName, signal }) => {
+            const newCall = { isReceivingCall: true, from: from, name: callerName, signal: signal };
+            call = newCall;
             toast((t) => (
                 <div className="call-notification">
                     <img src={from.picture} className="call-notification-caller" />
@@ -38,20 +38,21 @@ export const CallContextProvider = ({ children }) => {
                         <h3>{from.displayName} is calling...</h3>
                         <div className="call-notification-response">
                             <div className="decline-button" onClick={() => toast.dismiss(t.id)}>Decline</div>
-                            <div className="answer-button" onClick={() => answerCall()}>Answer</div>
+                            <div className="answer-button" onClick={() => { answerCall(); toast.dismiss(t.id) }}>Answer</div>
                         </div>
                     </div>
                 </div>
             ), {
                 position: 'bottom-right',
                 style: {
-                    width: '25dvw',
+                    width: '26rem',
                     maxWidth: 'unset'
                 },
                 duration: 8000
             }
             )
         });
+        return () => socket?.close();
     }, [socket]);
     useEffect(() => {
         if (video || audio) navigator.mediaDevices.getUserMedia({ video: video, audio: audio })
@@ -81,6 +82,7 @@ export const CallContextProvider = ({ children }) => {
         });
 
         peer.on('stream', (currentStream) => {
+            console.log(currentStream);
             userVideo.current.srcObject = currentStream;
         });
 
@@ -88,7 +90,7 @@ export const CallContextProvider = ({ children }) => {
 
         connectionRef.current = peer;
 
-        navigate(`sessions/${call.from._id}`)
+        navigate(`sessions/`);
     };
 
     const callUser = (id) => {
@@ -100,6 +102,7 @@ export const CallContextProvider = ({ children }) => {
         });
 
         peer.on('stream', (currentStream) => {
+            console.log(currentStream);
             userVideo.current.srcObject = currentStream;
         });
 
