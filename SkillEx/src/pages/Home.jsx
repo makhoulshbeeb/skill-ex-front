@@ -22,8 +22,6 @@ export default function Home() {
         error: errorMatches
     } = useGetUsersByMatchQuery({}, { refetchOnMountOrArgChange: true });
 
-    console.log(matches);
-
     return (
         <>
             <div className="home-page">

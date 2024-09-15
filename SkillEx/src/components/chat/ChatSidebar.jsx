@@ -12,8 +12,6 @@ import { useSocketContext } from "../../context/SocketContext";
 export default function ChatSidebar() {
     const { onlineUsers } = useSocketContext();
 
-    console.log(onlineUsers)
-
     const [chatSearch, setChatSearch] = useState('');
     const { data, isLoading, isSuccess, isError, error } = useGetChatsQuery({}, { refetchOnMountOrArgChange: true });
     const navigate = useNavigate();
