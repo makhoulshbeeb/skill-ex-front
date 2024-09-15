@@ -8,6 +8,13 @@ export default function dateToString(dateString) {
     return `${day}/${month}/${year} at ${hours}:${minutes}`;
 }
 
+export default function timeToString(dateString) {
+    const date = new Date(dateString);
+    const hours = padZero(date.getHours());
+    const minutes = padZero(date.getMinutes());
+    return `${hours}:${minutes}`;
+}
+
 function padZero(number) {
     return number.toString().padStart(2, "0");
 }

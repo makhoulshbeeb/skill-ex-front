@@ -2,14 +2,16 @@ import { faPaperPlane, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
-import { useSendMessageMutation } from "../../api/MessagesApi";
 import { useGetUserByTokenQuery } from "../../api/UsersApi";
 
-export default function ChatInput({ messages, setMessages }) {
-    const [sendMessage, { data: newMessage, isLoading, isSuccess, isError, error }] = useSendMessageMutation();
+export default function VideoChatInput({ messages, setMessages, socket }) {
     const ref = useRef();
     const receiver = useSelector(state => state.receiver);
     const { data: user } = useGetUserByTokenQuery();
+
+    const sendMessage = (newMessage) => {
+        socket?.emit('VideoChat', newMessage);
+    }
     return (
         <div className="chat-input">
             <input
