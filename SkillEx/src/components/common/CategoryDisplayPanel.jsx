@@ -5,7 +5,7 @@ export default function CategoryDisplayPanel({ category }) {
     const navigate = useNavigate();
     return (
 
-        <div onClick={() => { navigate(`/category/${category.name}`) }} className="category-panel">
+        <div onClick={() => { navigate(`/search/?search=&filters=%2C${[category.name.replace('&', '%26')]}`) }} className="category-panel">
             <img src={`${category.picture}`} />
             <h3>{category.name}</h3>
         </div>
