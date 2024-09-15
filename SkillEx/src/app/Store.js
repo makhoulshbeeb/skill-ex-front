@@ -7,6 +7,7 @@ import { chatsApi } from "../api/ChatsApi";
 import { reviewsApi } from "../api/ReviewsApi";
 import { categoriesApi } from "../api/CategoriesApi";
 import { receiverReducer } from "./slices/receiverSlice";
+import { videoReceiverReducer } from "./slices/videoReceiverSlice";
 
 const store = configureStore({
     enhancers: (getDefaultEnhancers) =>
@@ -21,6 +22,7 @@ const store = configureStore({
         [reviewsApi.reducerPath]: reviewsApi.reducer,
         [categoriesApi.reducerPath]: categoriesApi.reducer,
         receiver: receiverReducer,
+        videoReceiver: videoReceiverReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat([
