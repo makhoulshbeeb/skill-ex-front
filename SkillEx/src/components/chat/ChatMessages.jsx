@@ -7,18 +7,15 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-export default function ChatMessages({ messages, setMessages }) {
+export default function ChatMessages({ messages, setMessages, data, isLoading }) {
     const { socket } = useSocketContext();
     const receiver = useSelector(state => state.receiver);
 
     const { data: user } = useGetUserByTokenQuery();
-    const { data, isLoading, isSuccess, isError, error } = useGetMessagesQuery(receiver._id, { refetchOnMountOrArgChange: true });
-    const [prevData, setPrevData] = useState(data);
 
-    if (prevData != data) {
-        setPrevData(data);
-        setMessages(data);
-    }
+    useEffect(() => {
+        setMessages(data)
+    }, [data])
 
     useEffect(() => {
         socket?.on("newMessage", ({ newMessage }) => {

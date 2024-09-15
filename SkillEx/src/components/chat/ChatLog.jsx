@@ -3,10 +3,12 @@ import ChatHeader from "./ChatHeader";
 import ChatInput from "./ChatInput";
 import ChatMessages from "./ChatMessages";
 import { useState } from "react";
+import { useGetMessagesQuery } from "../../api/MessagesApi";
 
 export default function ChatLog() {
     const receiver = useSelector(state => state.receiver);
-    const [messages, setMessages] = useState([]);
+    const { data, isLoading, isSuccess, isError, error } = useGetMessagesQuery(receiver._id, { refetchOnMountOrArgChange: true });
+    const [messages, setMessages] = useState(data);
 
     return (
         receiver._id == ''
@@ -16,7 +18,7 @@ export default function ChatLog() {
             </div>
             : <div className="chat-log">
                 <ChatHeader />
-                <ChatMessages messages={messages} setMessages={setMessages} />
+                <ChatMessages messages={messages} setMessages={setMessages} data={data} isLoading={isLoading} />
                 <ChatInput messages={messages} setMessages={setMessages} />
             </div>
     )
