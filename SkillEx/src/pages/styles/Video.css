@@ -11,12 +11,12 @@
 .video-stream {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    gap: 2rem;
+    gap: 1rem;
     border-radius: 2rem;
 
     width: 100dvw;
-    height: 88dvh;
-    padding: 3rem;
+    height: 86dvh;
+    padding: 3rem 3rem 0 3rem;
 
 }
 
@@ -38,7 +38,7 @@
     padding: 20px 0;
     font-size: 30px;
     height: 100%;
-    width: 70dvw;
+    width: 72dvw;
 }
 
 .video-stream-panel {
@@ -52,7 +52,7 @@
 
 .video-bar {
     display: flex;
-    padding-bottom: 1.5rem;
+    padding: 1.5rem;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
@@ -94,4 +94,12 @@
 
     transition: 0.5s;
     overflow: hidden;
+}
+
+.video-text-messages>h1 {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--background-light);
 }

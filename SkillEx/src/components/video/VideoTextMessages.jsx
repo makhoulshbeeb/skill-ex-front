@@ -14,13 +14,15 @@ export default function VideoTextMessages({ open }) {
     const [messages, setMessages] = useState([]);
 
     useEffect(() => {
-        socket?.on("videoChat", ({ newMessage }) => {
-            if (newMessage.senderId == receiver._id) setMessages([...messages, newMessage]);
+        socket?.on("videoChat", (newMessage) => {
+            console.log(newMessage)
+            setMessages([...messages, newMessage]);
         });
-        return () => socket?.off("newMessage");
+        return () => socket?.off("videoChat");
     }, [socket, setMessages, messages]);
     return (
         <div className='video-text-messages' style={{ width: open ? '25dvw' : '0' }}>
+            <h1>Chat</h1>
             <div className="chat-messages" style={{ justifyContent: 'flex-start' }}>
                 <div className="chat-reverse">
                     {messages?.map((element, index) => {

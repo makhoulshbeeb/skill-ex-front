@@ -12,7 +12,7 @@ const videoReceiverSlice = createSlice({
     name: 'videoReceiver',
     initialState,
     reducers: {
-        setReceiver(state, action) {
+        setVideoReceiver(state, action) {
             state = action.payload;
             return state;
         }

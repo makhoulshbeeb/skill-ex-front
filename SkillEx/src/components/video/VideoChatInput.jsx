@@ -10,7 +10,7 @@ export default function VideoChatInput({ messages, setMessages, socket }) {
     const { data: user } = useGetUserByTokenQuery();
 
     const sendMessage = (newMessage) => {
-        socket?.emit('VideoChat', newMessage);
+        socket.emit('videoChat', newMessage);
     }
     return (
         <div className="chat-input">

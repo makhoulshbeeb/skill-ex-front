@@ -86,7 +86,6 @@ export const CallContextProvider = ({ children }) => {
 
         peer.on('signal', (data) => {
             socket.emit('answerCall', { signal: data, to: call.from });
-            dispatch(setVideoReceiver(call.from));
         });
 
         peer.on('stream', (currentStream) => {
@@ -99,6 +98,7 @@ export const CallContextProvider = ({ children }) => {
         connectionRef.current = peer;
 
         navigate(`sessions/`);
+        dispatch(setVideoReceiver(call.from));
     };
 
     const callUser = (user) => {
@@ -107,7 +107,6 @@ export const CallContextProvider = ({ children }) => {
 
         peer.on('signal', (data) => {
             socket.emit('callUser', { userToCall: user, signalData: data, from: me, name: me.displayName });
-            dispatch(setVideoReceiver(user));
         });
 
         peer.on('stream', (currentStream) => {
@@ -122,6 +121,7 @@ export const CallContextProvider = ({ children }) => {
         });
 
         connectionRef.current = peer;
+        dispatch(setVideoReceiver(user));
     };
 
     const leaveCall = () => {
