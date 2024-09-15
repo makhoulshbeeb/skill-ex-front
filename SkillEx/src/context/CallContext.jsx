@@ -4,7 +4,7 @@ import { useSocketContext } from "./SocketContext";
 import Peer from 'simple-peer';
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setVideoReceiver } from "../app/slices/videoReceiverSlice";
 
 const CallContext = createContext();
@@ -18,10 +18,9 @@ var ringtone = new Audio('/audio/iphone 8 Ringtone 2018.mp3');
 export const CallContextProvider = ({ children }) => {
     const { socket } = useSocketContext();
     const [callAccepted, setCallAccepted] = useState(false);
-    const [callEnded, setCallEnded] = useState(false);
     const [stream, setStream] = useState();
-    const [video, setVideo] = useState(false);
-    const [audio, setAudio] = useState(false);
+    const [video, setVideo] = useState(true);
+    const [audio, setAudio] = useState(true);
     const { data: me, isSuccess: verifiedMe } = useGetUserByTokenQuery();
 
     const navigate = useNavigate();
@@ -31,9 +30,9 @@ export const CallContextProvider = ({ children }) => {
     const connectionRef = useRef();
 
     const dispatch = useDispatch();
-
     useEffect(() => {
         socket && socket.on('callUser', ({ from, name: callerName, signal }) => {
+
             const newCall = { isReceivingCall: true, from, name: callerName, signal };
             call = newCall;
             ringtone.play();
@@ -44,8 +43,8 @@ export const CallContextProvider = ({ children }) => {
                     <div>
                         <h3>{from.displayName} is calling...</h3>
                         <div className="call-notification-response">
-                            <div className="decline-button" onClick={() => { toast.dismiss(t.id); ringtone.pause(); ringtone.currentTime = 0 }}>Decline</div>
-                            <div className="answer-button" onClick={() => { setAudio(true); answerCall(); toast.dismiss(t.id); ringtone.pause(); ringtone.currentTime = 0 }}>Answer</div>
+                            <div className="decline-button" onClick={() => { toast.dismiss(t.id); ringtone.pause(); ringtone.currentTime = 0; socket.emit('callEnded', { to: from }); }}>Decline</div>
+                            <div className="answer-button" onClick={() => { answerCall(); toast.dismiss(t.id); ringtone.pause(); ringtone.currentTime = 0 }}>Answer</div>
                         </div>
                     </div>
                 </div>
@@ -59,17 +58,37 @@ export const CallContextProvider = ({ children }) => {
             }
             )
         });
-        return () => socket?.close();
+
+        socket && socket.on('callEnded', () => {
+            setCallAccepted(false);
+            connectionRef.current && connectionRef.current.destroy();
+            setAudio(false);
+            setVideo(false);
+            navigate(-1, { replace: true });
+        });
+        return () => socket && socket.close();
+
     }, [socket]);
+
     useEffect(() => {
         if (video || audio) {
             navigator.mediaDevices.getUserMedia({ video: video, audio: audio })
                 .then((currentStream) => {
                     setStream(currentStream);
-                    myVideo.current.srcObject = currentStream;
-
+                    if (myVideo.current) myVideo.current.srcObject = currentStream;
+                    if (connectionRef.current.streams) {
+                        console.warn(connectionRef.current.streams[0]);
+                        connectionRef.current.streams[0] && connectionRef.current.removeStream(connectionRef.current.streams[0]);
+                        connectionRef.current.addStream(currentStream);
+                    }
                 })
+        } else {
+            if (connectionRef.current.streams) {
+                console.warn(connectionRef.current.streams[0]);
+                connectionRef.current.streams[0] && connectionRef.current.removeStream(connectionRef.current.streams[0]);
+            }
         }
+        console.log(stream);
 
         if (stream) {
             stream.getTracks().forEach((track) => {
@@ -84,10 +103,20 @@ export const CallContextProvider = ({ children }) => {
 
     }, [video, audio, setVideo, setAudio, setStream]);
 
+    // useEffect(() => {
+    //     console.log(stream);
+    //     console.log(connectionRef.current);
+    //     if (connectionRef.current) {
+    //         connectionRef.current.streams[0] && connectionRef.current.removeStream(connectionRef.current.streams[0]);
+    //         connectionRef.current.addStream(stream);
+    //     }
+    // }, [stream])
+
     const answerCall = () => {
+        console.log(stream)
         setCallAccepted(true);
 
-        const peer = new Peer({ initiator: false, trickle: false, stream });
+        const peer = new Peer({ initiator: false, trickle: false, streams: stream && [stream] });
 
         peer.on('signal', (data) => {
             socket.emit('answerCall', { signal: data, to: call.from });
@@ -101,13 +130,13 @@ export const CallContextProvider = ({ children }) => {
 
         connectionRef.current = peer;
 
-        navigate(`sessions/`);
+        navigate(`sessions/`, { replace: callAccepted });
         dispatch(setVideoReceiver(call.from));
     };
 
     const callUser = (user) => {
         console.log(stream);
-        const peer = new Peer({ initiator: true, trickle: false, stream });
+        const peer = new Peer({ initiator: true, trickle: false, streams: stream && [stream] });
 
         peer.on('signal', (data) => {
             socket.emit('callUser', { userToCall: user, signalData: data, from: me, name: me.displayName });
@@ -127,10 +156,13 @@ export const CallContextProvider = ({ children }) => {
         dispatch(setVideoReceiver(user));
     };
 
-    const leaveCall = () => {
-        setCallEnded(true);
-
-        connectionRef.current.destroy();
+    const leaveCall = (videoReceiver) => {
+        callAccepted && socket.emit('callEnded', { to: videoReceiver });
+        setCallAccepted(false);
+        connectionRef.current && connectionRef.current.destroy();
+        setAudio(false);
+        setVideo(false);
+        navigate(-1, { replace: true });
     };
 
     return <CallContext.Provider value={{
@@ -139,7 +171,6 @@ export const CallContextProvider = ({ children }) => {
         myVideo,
         userVideo,
         stream,
-        callEnded,
         me,
         audio,
         setAudio,

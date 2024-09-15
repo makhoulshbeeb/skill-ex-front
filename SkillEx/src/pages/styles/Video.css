@@ -4,9 +4,11 @@
     align-items: center;
     justify-content: space-between;
     height: 100dvh;
+
+    background-color: var(--text-color);
 }
 
-/********* VIDEO Stream *********/
+/********* VIDEO STREAM *********/
 
 .video-stream {
     display: grid;
@@ -21,7 +23,7 @@
 }
 
 .video-stream>div {
-    background-color: var(--background-light);
+    background-color: var(--shadow-color);
     border-radius: 2rem;
     text-align: center;
 
@@ -39,8 +41,7 @@
 .video-stream>.pinned-stream {
     grid-column-start: span 3;
     grid-row-start: span 3;
-    background-color: var(--background-dark);
-    padding: 20px 0;
+    background-color: var(--shadow-color);
     font-size: 30px;
     height: 100%;
     width: 72dvw;
@@ -70,7 +71,7 @@
     align-items: center;
     gap: 0.5rem;
 
-    background-color: var(--background-color);
+    background-color: var(--text-color);
     width: 100%;
 }
 
@@ -107,6 +108,7 @@
 
     transition: 0.5s;
     overflow: hidden;
+    z-index: 5;
 }
 
 .video-text-messages>h1 {
