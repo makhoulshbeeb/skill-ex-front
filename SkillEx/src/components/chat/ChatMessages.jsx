@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useGetMessagesQuery } from "../../api/MessagesApi";
-import dateToString from "../../utils/DateToString";
+import { dateToString } from "../../utils/DateToString";
 import { useGetUserByTokenQuery } from "../../api/UsersApi";
 import { useSocketContext } from "../../context/SocketContext";
 import { useEffect, useState } from "react";

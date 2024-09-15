@@ -1,4 +1,4 @@
-export default function dateToString(dateString) {
+export function dateToString(dateString) {
     const date = new Date(dateString);
     const hours = padZero(date.getHours());
     const minutes = padZero(date.getMinutes());
@@ -8,7 +8,7 @@ export default function dateToString(dateString) {
     return `${day}/${month}/${year} at ${hours}:${minutes}`;
 }
 
-export default function timeToString(dateString) {
+export function timeToString(dateString) {
     const date = new Date(dateString);
     const hours = padZero(date.getHours());
     const minutes = padZero(date.getMinutes());
