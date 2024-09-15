@@ -30,9 +30,14 @@ export const CallContextProvider = ({ children }) => {
     const connectionRef = useRef();
 
     const dispatch = useDispatch();
-    useEffect(() => {
-        socket && socket.on('callUser', ({ from, name: callerName, signal }) => {
+    const videoReceiver = useSelector(state => state.videoReceiver);
 
+    useEffect(() => {
+        socket && socket.on('streamUpdate', (stream) => {
+            userVideo.current.srcObject = stream;
+        });
+
+        socket && socket.on('callUser', ({ from, name: callerName, signal }) => {
             const newCall = { isReceivingCall: true, from, name: callerName, signal };
             call = newCall;
             ringtone.play();
@@ -72,24 +77,31 @@ export const CallContextProvider = ({ children }) => {
 
     useEffect(() => {
         if (video || audio) {
-            navigator.mediaDevices.getUserMedia({ video: video, audio: audio })
-                .then((currentStream) => {
-                    setStream(currentStream);
-                    if (myVideo.current) myVideo.current.srcObject = currentStream;
-                    if (connectionRef.current.streams) {
-                        console.warn(connectionRef.current.streams[0]);
-                        connectionRef.current.streams[0] && connectionRef.current.removeStream(connectionRef.current.streams[0]);
-                        connectionRef.current.addStream(currentStream);
-                    }
-                })
-        } else {
-            if (connectionRef.current.streams) {
-                console.warn(connectionRef.current.streams[0]);
-                connectionRef.current.streams[0] && connectionRef.current.removeStream(connectionRef.current.streams[0]);
-            }
-        }
-        console.log(stream);
+            navigator.mediaDevices.getUserMedia({
+                video: video,
+                audio: audio && {
+                    echoCancellation: true,
+                    noiseSuppression: true,
+                    autoGainControl: true,
+                    channelCount: 1
+                }
+            }).then((currentStream) => {
 
+                console.log(currentStream.getTracks())
+                setStream(currentStream);
+                if (myVideo.current) myVideo.current.srcObject = currentStream;
+                // if (connectionRef.current.streams) {
+                //     connectionRef.current.streams[0] && connectionRef.current.removeStream(connectionRef.current.streams[0]);
+                //     connectionRef.current.addStream(currentStream);
+                // }
+            })
+        }
+
+
+
+    }, [video, audio, setVideo, setAudio]);
+
+    useEffect(() => {
         if (stream) {
             stream.getTracks().forEach((track) => {
                 if (!video && track.readyState == 'live' && track.kind === 'video') {
@@ -99,18 +111,43 @@ export const CallContextProvider = ({ children }) => {
                     track.stop();
                 }
             });
+
+            stream.getTracks().forEach((track) => {
+                if (track.readyState == 'live' && track.kind === 'video') {
+                    connectionRef.current
+                        && connectionRef.current.streams.length >= 1
+                        && connectionRef.current.replaceTrack(connectionRef.current.streams[0].getVideoTracks()[0], track, connectionRef.current.streams[0])
+                }
+                if (track.readyState == 'live' && track.kind === 'audio') {
+                    connectionRef.current
+                        && connectionRef.current.streams.length >= 1
+                        && connectionRef.current.replaceTrack(connectionRef.current.streams[0].getAudioTracks()[0], track, connectionRef.current.streams[0])
+                }
+
+            });
+
+            !video
+                && connectionRef.current
+                && connectionRef.current.streams.length >= 1
+                && connectionRef.current.streams[0].getVideoTracks()[0].stop();
+
+
+            !audio
+                && connectionRef.current
+                && connectionRef.current.streams.length >= 1
+                && connectionRef.current.streams[0].getAudioTracks()[0].stop();
+
+
+            connectionRef.current
+                && connectionRef.current.streams.length >= 1
+                && console.log(connectionRef.current.streams);
+
+            connectionRef.current
+                && connectionRef.current.streams.length >= 1
+                && socket.emit('streamUpdate', { to: videoReceiver, stream: connectionRef.current.streams[0] });
+
         }
-
-    }, [video, audio, setVideo, setAudio, setStream]);
-
-    // useEffect(() => {
-    //     console.log(stream);
-    //     console.log(connectionRef.current);
-    //     if (connectionRef.current) {
-    //         connectionRef.current.streams[0] && connectionRef.current.removeStream(connectionRef.current.streams[0]);
-    //         connectionRef.current.addStream(stream);
-    //     }
-    // }, [stream])
+    }, [stream, setStream])
 
     const answerCall = () => {
         console.log(stream)
@@ -122,7 +159,6 @@ export const CallContextProvider = ({ children }) => {
             socket.emit('answerCall', { signal: data, to: call.from });
         });
         peer.on('stream', (currentStream) => {
-            console.log(currentStream);
             userVideo.current.srcObject = currentStream;
         });
 
@@ -135,7 +171,6 @@ export const CallContextProvider = ({ children }) => {
     };
 
     const callUser = (user) => {
-        console.log(stream);
         const peer = new Peer({ initiator: true, trickle: false, streams: stream && [stream] });
 
         peer.on('signal', (data) => {
