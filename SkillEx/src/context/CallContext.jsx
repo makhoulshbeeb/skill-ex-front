@@ -45,7 +45,7 @@ export const CallContextProvider = ({ children }) => {
                         <h3>{from.displayName} is calling...</h3>
                         <div className="call-notification-response">
                             <div className="decline-button" onClick={() => { toast.dismiss(t.id); ringtone.pause(); ringtone.currentTime = 0 }}>Decline</div>
-                            <div className="answer-button" onClick={() => { answerCall(); toast.dismiss(t.id); ringtone.pause(); ringtone.currentTime = 0 }}>Answer</div>
+                            <div className="answer-button" onClick={() => { setAudio(true); answerCall(); toast.dismiss(t.id); ringtone.pause(); ringtone.currentTime = 0 }}>Answer</div>
                         </div>
                     </div>
                 </div>
@@ -62,22 +62,27 @@ export const CallContextProvider = ({ children }) => {
         return () => socket?.close();
     }, [socket]);
     useEffect(() => {
-        if (video || audio) navigator.mediaDevices.getUserMedia({ video: video, audio: audio })
-            .then((currentStream) => {
-                setStream(currentStream);
+        if (video || audio) {
+            navigator.mediaDevices.getUserMedia({ video: video, audio: audio })
+                .then((currentStream) => {
+                    setStream(currentStream);
+                    myVideo.current.srcObject = currentStream;
 
-                myVideo.current.srcObject = currentStream;
+                })
+        }
+
+        if (stream) {
+            stream.getTracks().forEach((track) => {
+                if (!video && track.readyState == 'live' && track.kind === 'video') {
+                    track.stop();
+                }
+                if (!audio && track.readyState == 'live' && track.kind === 'audio') {
+                    track.stop();
+                }
             });
+        }
 
-        if (stream) stream.getTracks().forEach((track) => {
-            if (!video && track.readyState == 'live' && track.kind === 'video') {
-                track.stop();
-            }
-            if (!audio && track.readyState == 'live' && track.kind === 'audio') {
-                track.stop();
-            }
-        });
-    }, [video, audio, setVideo, setAudio]);
+    }, [video, audio, setVideo, setAudio, setStream]);
 
     const answerCall = () => {
         setCallAccepted(true);
@@ -87,7 +92,6 @@ export const CallContextProvider = ({ children }) => {
         peer.on('signal', (data) => {
             socket.emit('answerCall', { signal: data, to: call.from });
         });
-
         peer.on('stream', (currentStream) => {
             console.log(currentStream);
             userVideo.current.srcObject = currentStream;
@@ -102,13 +106,12 @@ export const CallContextProvider = ({ children }) => {
     };
 
     const callUser = (user) => {
+        console.log(stream);
         const peer = new Peer({ initiator: true, trickle: false, stream });
-        console.log(peer);
 
         peer.on('signal', (data) => {
             socket.emit('callUser', { userToCall: user, signalData: data, from: me, name: me.displayName });
         });
-
         peer.on('stream', (currentStream) => {
             console.log(currentStream);
             userVideo.current.srcObject = currentStream;

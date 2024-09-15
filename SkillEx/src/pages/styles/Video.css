@@ -20,12 +20,17 @@
 
 }
 
-
-
 .video-stream>div {
     background-color: var(--background-light);
     border-radius: 2rem;
     text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
     height: 24dvh;
     width: 20dvw;
     overflow: hidden;
@@ -41,10 +46,18 @@
     width: 72dvw;
 }
 
+.video-stream>div>img {
+    position: absolute;
+    object-fit: cover;
+    height: 40%;
+    clip-path: circle();
+}
+
 .video-stream-panel {
     object-fit: cover;
     height: 100%;
     width: inherit;
+    z-index: 2;
 }
 
 

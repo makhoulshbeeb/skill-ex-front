@@ -7,7 +7,7 @@ import { useCallContext } from '../../context/CallContext';
 
 export default function ChatHeader() {
     const receiver = useSelector(state => state.receiver);
-    const { callUser } = useCallContext();
+    const { setAudio, callUser } = useCallContext();
     const navigate = useNavigate();
     return (
         <div className="chat-header">
@@ -23,7 +23,7 @@ export default function ChatHeader() {
                     fontSize={"1.8rem"}
                     color="var(--background-color)"
                     style={{ cursor: 'pointer' }}
-                    onClick={() => { callUser(receiver); navigate('/sessions') }}
+                    onClick={() => { setAudio(true); callUser(receiver); navigate('/sessions') }}
                 ></FontAwesomeIcon>
                 <FontAwesomeIcon
                     icon={faEllipsisVertical}
