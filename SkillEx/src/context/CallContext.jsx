@@ -4,6 +4,8 @@ import { useSocketContext } from "./SocketContext";
 import Peer from 'simple-peer';
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setVideoReceiver } from "../app/slices/videoReceiverSlice";
 
 const CallContext = createContext();
 
@@ -28,9 +30,11 @@ export const CallContextProvider = ({ children }) => {
     const userVideo = useRef();
     const connectionRef = useRef();
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
         socket && socket.on('callUser', ({ from, name: callerName, signal }) => {
-            const newCall = { isReceivingCall: true, from: from, name: callerName, signal: signal };
+            const newCall = { isReceivingCall: true, from, name: callerName, signal };
             call = newCall;
             ringtone.play();
             setTimeout(() => { ringtone.pause(); ringtone.currentTime = 0 }, 10000);
@@ -82,6 +86,7 @@ export const CallContextProvider = ({ children }) => {
 
         peer.on('signal', (data) => {
             socket.emit('answerCall', { signal: data, to: call.from });
+            dispatch(setVideoReceiver(call.from));
         });
 
         peer.on('stream', (currentStream) => {
@@ -96,12 +101,13 @@ export const CallContextProvider = ({ children }) => {
         navigate(`sessions/`);
     };
 
-    const callUser = (id) => {
+    const callUser = (user) => {
         const peer = new Peer({ initiator: true, trickle: false, stream });
         console.log(peer);
 
         peer.on('signal', (data) => {
-            socket.emit('callUser', { userToCall: id, signalData: data, from: me, name: me.displayName });
+            socket.emit('callUser', { userToCall: user, signalData: data, from: me, name: me.displayName });
+            dispatch(setVideoReceiver(user));
         });
 
         peer.on('stream', (currentStream) => {

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 export default function VideoTextMessages({ open }) {
     const { socket } = useSocketContext();
-    const receiver = useSelector(state => state.receiver);
+    const receiver = useSelector(state => state.videoReceiver);
 
     const { data: user } = useGetUserByTokenQuery();
     const [messages, setMessages] = useState([]);

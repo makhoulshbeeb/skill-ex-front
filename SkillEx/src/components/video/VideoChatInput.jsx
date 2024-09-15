@@ -6,7 +6,7 @@ import { useGetUserByTokenQuery } from "../../api/UsersApi";
 
 export default function VideoChatInput({ messages, setMessages, socket }) {
     const ref = useRef();
-    const receiver = useSelector(state => state.receiver);
+    const receiver = useSelector(state => state.videoReceiver);
     const { data: user } = useGetUserByTokenQuery();
 
     const sendMessage = (newMessage) => {

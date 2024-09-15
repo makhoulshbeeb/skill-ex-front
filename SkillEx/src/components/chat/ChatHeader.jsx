@@ -23,7 +23,7 @@ export default function ChatHeader() {
                     fontSize={"1.8rem"}
                     color="var(--background-color)"
                     style={{ cursor: 'pointer' }}
-                    onClick={() => { callUser(receiver._id); navigate('/sessions') }}
+                    onClick={() => { callUser(receiver); navigate('/sessions') }}
                 ></FontAwesomeIcon>
                 <FontAwesomeIcon
                     icon={faEllipsisVertical}

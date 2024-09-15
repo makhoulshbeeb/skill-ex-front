@@ -19,6 +19,6 @@ const videoReceiverSlice = createSlice({
     }
 });
 
-export const { setReceiver } = videoReceiverSlice.actions;
+export const { setVideoReceiver } = videoReceiverSlice.actions;
 
 export const videoReceiverReducer = videoReceiverSlice.reducer;
