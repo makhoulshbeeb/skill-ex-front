@@ -19,8 +19,8 @@ export const CallContextProvider = ({ children }) => {
     const { socket } = useSocketContext();
     const [callAccepted, setCallAccepted] = useState(false);
     const [stream, setStream] = useState();
-    const [video, setVideo] = useState(true);
-    const [audio, setAudio] = useState(true);
+    const [video, setVideo] = useState(false);
+    const [audio, setAudio] = useState(false);
     const { data: me, isSuccess: verifiedMe } = useGetUserByTokenQuery();
 
     const navigate = useNavigate();
@@ -63,10 +63,19 @@ export const CallContextProvider = ({ children }) => {
 
         socket && socket.on('callEnded', () => {
             setCallAccepted(false);
-            connectionRef.current && connectionRef.current.destroy();
             setAudio(false);
             setVideo(false);
             navigate(-1, { replace: true });
+            stream && stream.getTracks().forEach((track) => {
+                if (track.readyState == 'live' && track.kind === 'video') {
+                    track.stop();
+                }
+                if (track.readyState == 'live' && track.kind === 'audio') {
+                    track.stop();
+                }
+            });
+            setStream(stream);
+            connectionRef.current && connectionRef.current.destroy();
         });
         return () => socket && socket.close();
 
@@ -84,16 +93,12 @@ export const CallContextProvider = ({ children }) => {
                 }
             }).then((currentStream) => {
 
-                console.log(currentStream.getTracks())
                 setStream(currentStream);
                 if (myVideo.current) myVideo.current.srcObject = currentStream;
-                // if (connectionRef.current.streams) {
-                //     connectionRef.current.streams[0] && connectionRef.current.removeStream(connectionRef.current.streams[0]);
-                //     connectionRef.current.addStream(currentStream);
-                // }
+
             })
         } else {
-            stream.getTracks().forEach((track) => {
+            stream && stream.getTracks().forEach((track) => {
                 if (track.readyState == 'live' && track.kind === 'video') {
                     track.stop();
                 }
@@ -135,6 +140,7 @@ export const CallContextProvider = ({ children }) => {
             socket.emit('answerCall', { signal: data, to: call.from });
         });
         peer.on('stream', (currentStream) => {
+            console.log(currentStream.getTracks())
             userVideo.current.srcObject = currentStream;
         });
 
@@ -153,7 +159,7 @@ export const CallContextProvider = ({ children }) => {
             socket.emit('callUser', { userToCall: user, signalData: data, from: me, name: me.displayName });
         });
         peer.on('stream', (currentStream) => {
-            console.log(currentStream);
+            console.log(currentStream.getTracks());
             userVideo.current.srcObject = currentStream;
         });
 
@@ -170,10 +176,19 @@ export const CallContextProvider = ({ children }) => {
     const leaveCall = (videoReceiver) => {
         callAccepted && socket.emit('callEnded', { to: videoReceiver });
         setCallAccepted(false);
-        connectionRef.current && connectionRef.current.destroy();
         setAudio(false);
         setVideo(false);
         navigate(-1, { replace: true });
+        stream && stream.getTracks().forEach((track) => {
+            if (track.readyState == 'live' && track.kind === 'video') {
+                track.stop();
+            }
+            if (track.readyState == 'live' && track.kind === 'audio') {
+                track.stop();
+            }
+        });
+        setStream(stream);
+        connectionRef.current && connectionRef.current.destroy();
     };
 
     return <CallContext.Provider value={{
