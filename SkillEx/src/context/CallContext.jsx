@@ -19,8 +19,8 @@ export const CallContextProvider = ({ children }) => {
     const { socket } = useSocketContext();
     const [callAccepted, setCallAccepted] = useState(false);
     const [stream, setStream] = useState();
-    const [video, setVideo] = useState(false);
-    const [audio, setAudio] = useState(false);
+    const [video, setVideo] = useState(true);
+    const [audio, setAudio] = useState(true);
     const { data: me, isSuccess: verifiedMe } = useGetUserByTokenQuery();
 
     const navigate = useNavigate();
@@ -33,9 +33,6 @@ export const CallContextProvider = ({ children }) => {
     const videoReceiver = useSelector(state => state.videoReceiver);
 
     useEffect(() => {
-        socket && socket.on('streamUpdate', (stream) => {
-            userVideo.current.srcObject = stream;
-        });
 
         socket && socket.on('callUser', ({ from, name: callerName, signal }) => {
             const newCall = { isReceivingCall: true, from, name: callerName, signal };
@@ -95,8 +92,23 @@ export const CallContextProvider = ({ children }) => {
                 //     connectionRef.current.addStream(currentStream);
                 // }
             })
+        } else {
+            stream.getTracks().forEach((track) => {
+                if (track.readyState == 'live' && track.kind === 'video') {
+                    track.stop();
+                }
+                if (track.readyState == 'live' && track.kind === 'audio') {
+                    track.stop();
+                }
+            });
+            setStream(stream);
         }
+
+    }, [video, audio, setVideo, setAudio]);
+
+    useEffect(() => {
         if (stream) {
+
             stream.getTracks().forEach((track) => {
                 if (!video && track.readyState == 'live' && track.kind === 'video') {
                     track.stop();
@@ -105,47 +117,10 @@ export const CallContextProvider = ({ children }) => {
                     track.stop();
                 }
             });
-        }
-
-
-    }, [video, audio, setVideo, setAudio]);
-
-    useEffect(() => {
-        if (stream) {
-
-            stream.getTracks().forEach((track) => {
-                if (track.readyState == 'live' && track.kind === 'video') {
-                    connectionRef.current
-                        && connectionRef.current.streams.length >= 1
-                        && connectionRef.current.replaceTrack(connectionRef.current.streams[0].getVideoTracks()[0], track, connectionRef.current.streams[0])
-                }
-                if (track.readyState == 'live' && track.kind === 'audio') {
-                    connectionRef.current
-                        && connectionRef.current.streams.length >= 1
-                        && connectionRef.current.replaceTrack(connectionRef.current.streams[0].getAudioTracks()[0], track, connectionRef.current.streams[0])
-                }
-
-            });
-
-            !video
-                && connectionRef.current
-                && connectionRef.current.streams.length >= 1
-                && connectionRef.current.streams[0].getVideoTracks()[0].stop();
-
-
-            !audio
-                && connectionRef.current
-                && connectionRef.current.streams.length >= 1
-                && connectionRef.current.streams[0].getAudioTracks()[0].stop();
-
 
             connectionRef.current
-                && connectionRef.current.streams.length >= 1
-                && console.log(connectionRef.current.streams);
-
-            connectionRef.current
-                && connectionRef.current.streams.length >= 1
-                && socket.emit('streamUpdate', { to: videoReceiver, stream: connectionRef.current.streams[0] });
+                && connectionRef.current.emit('stream', stream);
+            // && socket.emit('streamUpdate', { to: videoReceiver, stream: connectionRef.current.streams[0] });
 
         }
     }, [stream, setStream])
