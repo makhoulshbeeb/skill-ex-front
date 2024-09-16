@@ -21,9 +21,9 @@ export default function Navbar() {
                 <nav>
                     <img src={'/SkillEx Logo Light with Text.png'} className="logo" onClick={() => navigate('/')}></img>
                     <Link to={'/'}>Home</Link>
-                    <Link to={'/discover'}>Discover</Link>
-                    <Link to={'/community'}>Community</Link>
-                    <Link to={'/about'}>About Us</Link>
+                    <Link to={'/explore/Matches'}>Matches</Link>
+                    <Link to={'/explore/Categories'}>Categories</Link>
+                    {/* <Link to={'/about'}>About Us</Link> */}
                 </nav>
             </div>
             <div className="right">
