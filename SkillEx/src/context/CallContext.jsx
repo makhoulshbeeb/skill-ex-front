@@ -19,8 +19,8 @@ export const CallContextProvider = ({ children }) => {
     const { socket } = useSocketContext();
     const [callAccepted, setCallAccepted] = useState(false);
     const [stream, setStream] = useState();
-    const [video, setVideo] = useState(true);
-    const [audio, setAudio] = useState(true);
+    const [video, setVideo] = useState(false);
+    const [audio, setAudio] = useState(false);
     const { data: me, isSuccess: verifiedMe } = useGetUserByTokenQuery();
 
     const navigate = useNavigate();
@@ -96,12 +96,6 @@ export const CallContextProvider = ({ children }) => {
                 // }
             })
         }
-
-
-
-    }, [video, audio, setVideo, setAudio]);
-
-    useEffect(() => {
         if (stream) {
             stream.getTracks().forEach((track) => {
                 if (!video && track.readyState == 'live' && track.kind === 'video') {
@@ -111,6 +105,13 @@ export const CallContextProvider = ({ children }) => {
                     track.stop();
                 }
             });
+        }
+
+
+    }, [video, audio, setVideo, setAudio]);
+
+    useEffect(() => {
+        if (stream) {
 
             stream.getTracks().forEach((track) => {
                 if (track.readyState == 'live' && track.kind === 'video') {

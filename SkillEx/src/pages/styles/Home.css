@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
 
     width: 100dvw;
 }
@@ -12,7 +11,6 @@
 .hero-section {
     height: 100dvh;
     width: 100dvw;
-    box-shadow: 0.2rem -0.5rem 0.5rem 0 inset var(--shadow-color);
 
     display: flex;
     align-items: center;
@@ -21,9 +19,10 @@
 
 .hero-section>img {
     object-fit: cover;
-    height: 100dvh;
     width: 100dvw;
     position: absolute;
+    top: 0;
+    left: 0;
     z-index: -1;
 }
 
@@ -65,6 +64,14 @@
 
 .display {
     width: 72%;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    background-color: var(--primary-color);
+    gap: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
 }
 
 .display-header {
@@ -73,10 +80,12 @@
     justify-content: space-between;
     padding: 0 2rem;
 
+    color: var(--background-light);
+
 }
 
 .display-header>h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     align-self: flex-start;
 
 }
@@ -93,6 +102,7 @@
     gap: 2rem;
     padding: 1rem 1rem 2rem 1rem;
     border-radius: 2rem;
+
 }
 
 .scroll-display::-webkit-scrollbar {
