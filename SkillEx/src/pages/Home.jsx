@@ -31,6 +31,9 @@ export default function Home() {
                 {isSuccessCategories && <Display displayTitle={"Categories"} items={categories} type={'Categories'} />}
                 {isSuccessMatches && <Display displayTitle={"Matches"} items={matches} type={'Matches'} />}
 
+                <footer>
+                    <img src="/SkillEx Logo with Text.png" alt="SkillEx Logo Colored" />
+                </footer>
             </div>
         </>
     )

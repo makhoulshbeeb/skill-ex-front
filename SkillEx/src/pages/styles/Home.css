@@ -108,3 +108,24 @@
 .scroll-display::-webkit-scrollbar {
     display: none;
 }
+
+
+/********* FOOTER *********/
+
+footer {
+    background-image: url(/Footer\ Background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    width: 100dvw;
+    height: 18rem;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+footer>img {
+    object-fit: cover;
+    width: 20%;
+}
