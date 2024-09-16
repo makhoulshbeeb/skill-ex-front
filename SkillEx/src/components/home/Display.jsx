@@ -16,7 +16,7 @@ export default function Display({ displayTitle, items, type }) {
                     <h2>{displayTitle}</h2>
                     <FontAwesomeIcon
                         icon={faList}
-                        fontSize={'1.8rem'}
+                        fontSize={'2rem'}
                         cursor={'pointer'}
                         onClick={() => navigate(`explore/${type}`)}
                     />
