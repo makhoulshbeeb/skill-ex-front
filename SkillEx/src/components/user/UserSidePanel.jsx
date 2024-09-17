@@ -110,16 +110,26 @@ export default function UserSidePanel({ user, me }) {
             </div>
             <dialog open={editProfile}>
                 <form className='edit-profile-panel' onSubmit={handleSubmit(handleEditProfile)}>
-                    <div className='reviewer-tag'>
+                    <div className='edit-profile-tag'>
                         <img src={user.picture} />
                         <div>
-                            <h4>{user.displayName}</h4>
-
+                            <label>
+                                Display Name
+                                <input type="text" placeholder="Display Name" {...register('displayName')} />
+                            </label>
+                            <br></br>
+                            <label>
+                                Username
+                                <input type="text" placeholder="Username" {...register('username')} />
+                            </label>
                         </div>
                     </div>
-                    <textarea placeholder='Write some feedback...' ></textarea>
+                    <label>
+                        Bio
+                        <textarea placeholder='Tell us about yourself...' {...register('bio')}></textarea>
+                    </label>
                     <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                        <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)", scale: "0.9" }} onClick={() => setAddReview(false)}>Cancel</div>
+                        <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)", scale: "0.9" }} onClick={() => setEditProfile(false)}>Cancel</div>
                         <button style={{ all: 'unset' }}><div className='add-reviews-button' style={{ scale: "0.9" }}
                             onClick={() => { }}
                         >Submit

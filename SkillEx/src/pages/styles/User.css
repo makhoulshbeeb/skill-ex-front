@@ -119,6 +119,36 @@
 
 }
 
+.edit-profile-tag {
+    display: flex;
+    gap: 1rem;
+}
+
+.edit-profile-tag>img {
+    object-fit: cover;
+    height: 8rem;
+    width: 8rem;
+    clip-path: circle();
+}
+
+.edit-profile-panel>label {
+    height: 65%;
+}
+
+.edit-profile-panel>label>textarea {
+    all: unset;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+    width: calc(100% - 2.4rem);
+    border-radius: 0.5rem;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    height: 90%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-wrap: break-word;
+}
+
 /********* USER PROFILE REVIEWS *********/
 
 .user-profile-reviews {
