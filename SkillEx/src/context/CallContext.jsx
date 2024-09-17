@@ -4,7 +4,7 @@ import { useSocketContext } from "./SocketContext";
 import Peer from 'simple-peer';
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setVideoReceiver } from "../app/slices/videoReceiverSlice";
 
 const CallContext = createContext();
@@ -28,11 +28,9 @@ export const CallContextProvider = ({ children }) => {
     const myVideo = useRef(localStream);
     const userVideo = useRef(remoteStream);
     const connectionRef = useRef();
-    const callAcceptedRef = useRef(callAccepted);
     const callRef = useRef({});
 
     const dispatch = useDispatch();
-    const videoReceiver = useSelector(state => state.videoReceiver);
 
     useEffect(() => {
 
@@ -67,21 +65,7 @@ export const CallContextProvider = ({ children }) => {
 
         });
 
-        socket && socket.on('callEnded', () => {
-            setCallAccepted(false);
-            setAudio(false);
-            setVideo(false);
-            navigate(-1, { replace: true });
-
-            localStream && localStream.getTracks().forEach((track) => {
-                track.stop();
-            });
-
-            setLocalStream(null);
-            setRemoteStream(null);
-            connectionRef.current && connectionRef.current.destroy();
-            callRef.current = {};
-        });
+        socket && socket.on('callEnded', resetState);
         return () => socket && socket.close();
 
     }, [socket]);
@@ -246,6 +230,10 @@ export const CallContextProvider = ({ children }) => {
 
     const leaveCall = (videoReceiver) => {
         callAccepted && socket.emit('callEnded', { to: videoReceiver });
+        resetState();
+    };
+
+    const resetState = () => {
         setCallAccepted(false);
         setAudio(false);
         setVideo(false);
@@ -259,7 +247,7 @@ export const CallContextProvider = ({ children }) => {
         setRemoteStream(null);
         connectionRef.current && connectionRef.current.destroy();
         callRef.current = {};
-    };
+    }
 
     const toggleMedia = (type) => {
         if (type === 'video') {
