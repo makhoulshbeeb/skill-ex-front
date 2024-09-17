@@ -29,6 +29,7 @@ export const CallContextProvider = ({ children }) => {
     const userVideo = useRef(remoteStream);
     const connectionRef = useRef();
     const callRef = useRef({});
+    const windowRef = useRef(window);
 
     const dispatch = useDispatch();
 
@@ -84,6 +85,7 @@ export const CallContextProvider = ({ children }) => {
             }));
 
             navigate(-1);
+            setTimeout(() => windowRef.current.location.reload(), 100);
         });
         return () => socket && socket.close();
 
@@ -142,7 +144,9 @@ export const CallContextProvider = ({ children }) => {
                 picture: '',
             }));
 
-            navigate(-1, { replace: true });
+            window.location.reload();
+
+            navigate(-1);
         });
         return () => socket && socket.off('callEnded');
     }, [localStream, setLocalStream])
@@ -222,6 +226,8 @@ export const CallContextProvider = ({ children }) => {
 
             peer.signal(signal);
         });
+
+        peer.on('close', () => { console.log('peer closed'); socket.off("callAccepted"); });
 
         connectionRef.current = peer;
         dispatch(setVideoReceiver(user));
@@ -308,25 +314,9 @@ export const CallContextProvider = ({ children }) => {
 
     const leaveCall = (videoReceiver) => {
         callAccepted && socket.emit('callEnded', { to: videoReceiver });
-        setCallAccepted(false);
-
-        updateMediaStream(false, false);
-
-        setLocalStream(null);
-        setRemoteStream(null);
-        connectionRef.current && connectionRef.current.destroy();
-        callRef.current = {};
-
-        dispatch(setVideoReceiver({
-            _id: '',
-            displayName: '',
-            username: '',
-            email: '',
-            picture: '',
-        }));
 
         navigate(-1);
-
+        setTimeout(() => window.location.reload(), 100);
     };
 
     const toggleMedia = (type) => {
