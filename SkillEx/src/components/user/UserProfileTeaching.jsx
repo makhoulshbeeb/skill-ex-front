@@ -6,12 +6,16 @@ export default function UserProfileTeaching({ user }) {
     const [endorse, setEndorse] = useState(false);
     const [endorseUser, { data, isLoading, isSuccess, isError, error }] = useEndorseUserMutation();
     const { data: viewer, isSuccess: viewerVerified } = useGetUserByTokenQuery();
+
+    var teachingCategories = [...user.teach];
+    console.log(teachingCategories);
+    teachingCategories.sort((a, b) => b.endorsements.length - a.endorsements.length);
     return (
         <>
             <div className="user-categories-display">
                 <h2>Categories Taught</h2>
                 <div>
-                    {user.teach.map(subject => {
+                    {teachingCategories.map(subject => {
                         console.log(subject.endorsements)
                         return (
                             <div>
