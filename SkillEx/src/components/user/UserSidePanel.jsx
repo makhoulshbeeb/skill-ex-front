@@ -8,7 +8,7 @@ import { useCreateChatMutation } from "../../api/ChatsApi";
 import { setReceiver } from "../../app/slices/receiverSlice";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useUpdateUserMutation } from "../../api/UsersApi";
+import { usersApi, useUpdateUserMutation } from "../../api/UsersApi";
 
 var isFalse = false;
 export default function UserSidePanel({ user, me }) {
@@ -43,6 +43,29 @@ export default function UserSidePanel({ user, me }) {
     const handleEditProfile = async () => {
         setEditProfile(false);
     };
+
+    if (isLoading) {
+        toast.dismiss(error);
+        toast.loading("Loading...", {
+            id: "loading"
+        });
+        isFalse = false;
+    }
+    if (isSuccess && isSuccess != isFalse) {
+        toast.dismiss("loading");
+        toast.success("Profile updated!", {
+            id: "success"
+        });
+        dispatch(usersApi.util.invalidateTags(['Information']));
+        isFalse = true;
+        setTimeout(() => { setAddReview(false) }, 500);
+    }
+    if (isError) {
+        toast.dismiss("loading");
+        toast.error(error.data.error, {
+            id: "error"
+        });
+    }
 
     return (
         <>
