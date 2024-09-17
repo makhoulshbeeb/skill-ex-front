@@ -15,7 +15,7 @@ export default function UserProfileReviews({ reviews, me, user }) {
     const dispatch = useDispatch();
 
     const { data: viewer, isSuccess: viewerVerified } = useGetUserByTokenQuery();
-    var [submitReview, { data: submittedReview, isLoading, isSuccess, isError, error }] = useSendReviewMutation();
+    const [submitReview, { data: submittedReview, isLoading, isSuccess, isError, error }] = useSendReviewMutation();
     const [rating, setRating] = useState(0);
 
     if (isLoading) {
