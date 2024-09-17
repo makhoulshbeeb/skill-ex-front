@@ -44,7 +44,7 @@ export default function User() {
         });
         isFalseCategories = false;
     }
-    if (isSuccessCategories != isFalseCategories) {
+    if (isSuccessCategories && isSuccessCategories != isFalseCategories) {
         toast.dismiss("loading");
         toast.success("Categories Updated!", {
             id: "success"
