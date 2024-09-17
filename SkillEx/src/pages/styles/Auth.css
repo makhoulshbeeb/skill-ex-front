@@ -81,15 +81,15 @@
     font-size: 1.1rem;
 }
 
-.input-form input[type="text"],
-.input-form input[type="password"],
-.input-form select {
+input[type="text"],
+input[type="password"],
+select {
     all: unset;
 }
 
-.input-form input[type="text"],
-.input-form input[type="password"],
-.input-form select {
+input[type="text"],
+input[type="password"],
+select {
     font-size: 1rem;
     padding: 0.5rem 1.2rem;
     width: calc(100% - 2.4rem);
@@ -98,25 +98,25 @@
     color: var(--text-color);
 }
 
-.input-form input[type="text"]::placeholder,
-.input-form input[type="password"]::placeholder,
-.input-form select {
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+select {
     font-size: 1rem;
     color: var(--text-light);
 }
 
-.input-form input[type="text"]:-webkit-autofill,
-.input-form input[type="password"]:-webkit-autofill,
-.input-form select:-webkit-autofill,
-.input-form input[type="text"]:-webkit-autofill:hover,
-.input-form input[type="password"]:-webkit-autofill:hover,
-.input-form select:-webkit-autofill:hover,
-.input-form input[type="text"]:-webkit-autofill:focus,
-.input-form input[type="password"]:-webkit-autofill:focus,
-.input-form select:-webkit-autofill:focus,
-.input-form input[type="text"]:-webkit-autofill:active,
-.input-form input[type="password"]:-webkit-autofill:active,
-.input-form select:-webkit-autofill:active {
+input[type="text"]:-webkit-autofill,
+input[type="password"]:-webkit-autofill,
+select:-webkit-autofill,
+input[type="text"]:-webkit-autofill:hover,
+input[type="password"]:-webkit-autofill:hover,
+select:-webkit-autofill:hover,
+input[type="text"]:-webkit-autofill:focus,
+input[type="password"]:-webkit-autofill:focus,
+select:-webkit-autofill:focus,
+input[type="text"]:-webkit-autofill:active,
+input[type="password"]:-webkit-autofill:active,
+select:-webkit-autofill:active {
     transition: all 5000s ease-in-out 0s;
     font-size: 1rem;
 }

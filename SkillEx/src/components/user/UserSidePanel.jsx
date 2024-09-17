@@ -113,7 +113,7 @@ export default function UserSidePanel({ user, me }) {
                     <div className='edit-profile-tag'>
                         <img src={user.picture} />
                         <div>
-                            <label>
+                            <label style={{ scale: "0.5" }}>
                                 Display Name
                                 <input type="text" placeholder="Display Name" {...register('displayName')} />
                             </label>
