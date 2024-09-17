@@ -115,18 +115,18 @@ export default function UserSidePanel({ user, me }) {
                         <div style={{ scale: "0.9" }}>
                             <label >
                                 Display Name
-                                <input type="text" placeholder="Display Name" {...register('displayName')} value={user.displayName} />
+                                <input type="text" placeholder="Display Name" {...register('displayName')} defaultValue={user.displayName} required />
                             </label>
                             <br></br>
                             <label>
                                 Username
-                                <input type="text" placeholder="Username" {...register('username')} value={user.username} />
+                                <input type="text" placeholder="Username" {...register('username')} defaultValue={user.username} required />
                             </label>
                         </div>
                     </div>
                     <label>
                         Bio
-                        <textarea placeholder='Tell us about yourself...' {...register('bio')}></textarea>
+                        <textarea placeholder='Tell us about yourself...' {...register('bio')} defaultValue={user.bio}></textarea>
                     </label>
                     <div style={{ display: "flex", justifyContent: "flex-end" }}>
                         <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)", scale: "0.9" }} onClick={() => setEditProfile(false)}>Cancel</div>
