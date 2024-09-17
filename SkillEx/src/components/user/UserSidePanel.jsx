@@ -8,14 +8,17 @@ import { useCreateChatMutation } from "../../api/ChatsApi";
 import { setReceiver } from "../../app/slices/receiverSlice";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useUpdateUserMutation } from "../../api/UsersApi";
 
-
+var isFalse = false;
 export default function UserSidePanel({ user, me }) {
     const { onlineUsers } = useSocketContext();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [editProfile, setEditProfile] = useState(false);
     const [createChat] = useCreateChatMutation();
+
+    const [updateUser, { data: updatedProfile, isLoading, isSuccess, isError, error }] = useUpdateUserMutation();
 
     const form = useForm();
 

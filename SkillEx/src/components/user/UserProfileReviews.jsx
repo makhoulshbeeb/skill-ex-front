@@ -25,7 +25,7 @@ export default function UserProfileReviews({ reviews, me, user }) {
         });
         isFalse = false;
     }
-    if (isSuccess != isFalse) {
+    if (isSuccess && isSuccess != isFalse) {
         toast.dismiss("loading");
         toast.success("Review submitted!", {
             id: "success"
