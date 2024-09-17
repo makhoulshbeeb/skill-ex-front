@@ -149,6 +149,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
     word-wrap: break-word;
+    cursor: auto;
 }
 
 /********* USER PROFILE REVIEWS *********/
@@ -307,6 +308,7 @@ dialog[open] {
     overflow-y: scroll;
     overflow-x: hidden;
     word-wrap: break-word;
+    cursor: auto;
 }
 
 /********* USER PROFILE CATEGORIES *********/

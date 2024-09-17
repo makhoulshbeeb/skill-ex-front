@@ -96,6 +96,7 @@ select {
     border-radius: 0.5rem;
     background-color: var(--background-light);
     color: var(--text-color);
+    cursor: auto;
 }
 
 input[type="text"]::placeholder,
