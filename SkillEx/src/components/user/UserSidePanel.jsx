@@ -9,6 +9,7 @@ import { setReceiver } from "../../app/slices/receiverSlice";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { usersApi, useUpdateUserMutation } from "../../api/UsersApi";
+import toast from "react-hot-toast";
 
 var isFalse = false;
 export default function UserSidePanel({ user, me }) {
@@ -40,8 +41,10 @@ export default function UserSidePanel({ user, me }) {
         navigate("/chats")
     };
 
-    const handleEditProfile = async () => {
-        setEditProfile(false);
+    const handleEditProfile = async (data, e) => {
+        e.preventDefault();
+        updateUser(data);
+        setTimeout(() => setEditProfile(false), 500);
     };
 
     if (isLoading) {
@@ -117,10 +120,10 @@ export default function UserSidePanel({ user, me }) {
                     <textarea placeholder='Write some feedback...' ></textarea>
                     <div style={{ display: "flex", justifyContent: "flex-end" }}>
                         <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)", scale: "0.9" }} onClick={() => setAddReview(false)}>Cancel</div>
-                        <div className='add-reviews-button' style={{ scale: "0.9" }}
+                        <button style={{ all: 'unset' }}><div className='add-reviews-button' style={{ scale: "0.9" }}
                             onClick={() => { }}
                         >Submit
-                        </div>
+                        </div></button>
                     </div>
                 </form></dialog>
         </>
