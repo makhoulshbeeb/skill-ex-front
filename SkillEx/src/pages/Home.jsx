@@ -24,6 +24,8 @@ export default function Home() {
 
     return (
         <>
+            <img src={'/SkillEx Background 5.png'} alt="SkillEx Hero Section Background" className="bg" />
+
             <div className="home-page">
                 <Navbar />
 

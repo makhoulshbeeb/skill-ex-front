@@ -2,7 +2,6 @@
 export default function HeroSection() {
     return (
         <div className="hero-section">
-            <img src={'/SkillEx Background 5.png'} alt="SkillEx Hero Section Background" />
             <div>
                 <img src={'/Hero image.png'} alt="Hero Image" />
                 <div className='hero-slogan'>
