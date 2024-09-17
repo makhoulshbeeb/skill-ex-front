@@ -112,15 +112,15 @@ export default function UserSidePanel({ user, me }) {
                 <form className='edit-profile-panel' onSubmit={handleSubmit(handleEditProfile)}>
                     <div className='edit-profile-tag'>
                         <img src={user.picture} />
-                        <div>
-                            <label style={{ scale: "0.5" }}>
+                        <div style={{ scale: "0.9" }}>
+                            <label >
                                 Display Name
-                                <input type="text" placeholder="Display Name" {...register('displayName')} />
+                                <input type="text" placeholder="Display Name" {...register('displayName')} value={user.displayName} />
                             </label>
                             <br></br>
                             <label>
                                 Username
-                                <input type="text" placeholder="Username" {...register('username')} />
+                                <input type="text" placeholder="Username" {...register('username')} value={user.username} />
                             </label>
                         </div>
                     </div>
@@ -131,7 +131,6 @@ export default function UserSidePanel({ user, me }) {
                     <div style={{ display: "flex", justifyContent: "flex-end" }}>
                         <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)", scale: "0.9" }} onClick={() => setEditProfile(false)}>Cancel</div>
                         <button style={{ all: 'unset' }}><div className='add-reviews-button' style={{ scale: "0.9" }}
-                            onClick={() => { }}
                         >Submit
                         </div></button>
                     </div>
