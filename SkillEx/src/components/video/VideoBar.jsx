@@ -6,7 +6,7 @@ import VideoTextMessages from './VideoTextMessages';
 import { useSelector } from 'react-redux';
 
 export default function VideoBar() {
-    const { audio, setAudio, video, setVideo, leaveCall } = useCallContext();
+    const { audio, video, leaveCall, toggleMedia } = useCallContext();
     const [screenShare, setScreenShare] = useState(false);
     const [chat, setChat] = useState(false);
     const videoReceiver = useSelector(state => state.videoReceiver);
@@ -14,10 +14,10 @@ export default function VideoBar() {
     return (
         <>
             <div className='video-bar'>
-                <div style={{ backgroundColor: audio ? 'var(--shadow-color)' : 'tomato' }} onClick={() => setAudio(!audio)}>
+                <div style={{ backgroundColor: audio ? 'var(--shadow-color)' : 'tomato' }} onClick={() => toggleMedia('audio')}>
                     <FontAwesomeIcon icon={audio ? faMicrophone : faMicrophoneSlash} />
                 </div>
-                <div style={{ backgroundColor: video ? 'var(--shadow-color)' : 'tomato' }} onClick={() => setVideo(!video)}>
+                <div style={{ backgroundColor: video ? 'var(--shadow-color)' : 'tomato' }} onClick={() => toggleMedia('video')}>
                     <FontAwesomeIcon icon={video ? faVideo : faVideoSlash} />
                 </div>
                 <div style={{ backgroundColor: screenShare ? 'var(--primary-color)' : 'var(--shadow-color)' }} onClick={() => setScreenShare(!screenShare)} >
