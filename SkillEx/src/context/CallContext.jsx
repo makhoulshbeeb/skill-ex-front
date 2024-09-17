@@ -4,7 +4,7 @@ import { useSocketContext } from "./SocketContext";
 import Peer from 'simple-peer';
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setVideoReceiver } from "../app/slices/videoReceiverSlice";
 
 const CallContext = createContext();
@@ -19,8 +19,8 @@ export const CallContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
     const [localStream, setLocalStream] = useState();
     const [remoteStream, setRemoteStream] = useState();
-    const [video, setVideo] = useState(false);
-    const [audio, setAudio] = useState(false);
+    const [video, setVideo] = useState(true);
+    const [audio, setAudio] = useState(true);
     const { data: me, isSuccess: verifiedMe } = useGetUserByTokenQuery();
 
     const navigate = useNavigate();
@@ -65,7 +65,21 @@ export const CallContextProvider = ({ children }) => {
 
         });
 
-        socket && socket.on('callEnded', resetState);
+        socket && socket.on('callEnded', () => {
+            setCallAccepted(false);
+            setAudio(false);
+            setVideo(false);
+            navigate(-1, { replace: true });
+
+            localStream && localStream.getTracks().forEach((track) => {
+                track.stop();
+            });
+
+            setLocalStream(null);
+            setRemoteStream(null);
+            connectionRef.current && connectionRef.current.destroy();
+            callRef.current = {};
+        });
         return () => socket && socket.close();
 
     }, [socket]);
@@ -230,10 +244,6 @@ export const CallContextProvider = ({ children }) => {
 
     const leaveCall = (videoReceiver) => {
         callAccepted && socket.emit('callEnded', { to: videoReceiver });
-        resetState();
-    };
-
-    const resetState = () => {
         setCallAccepted(false);
         setAudio(false);
         setVideo(false);
@@ -247,7 +257,7 @@ export const CallContextProvider = ({ children }) => {
         setRemoteStream(null);
         connectionRef.current && connectionRef.current.destroy();
         callRef.current = {};
-    }
+    };
 
     const toggleMedia = (type) => {
         if (type === 'video') {
@@ -281,16 +291,18 @@ export const CallContextProvider = ({ children }) => {
             }
 
             setLocalStream(localStream.clone());
+
+            setVideo(videoEnabled);
+            setAudio(audioEnabled);
         } else {
             const newStream = await navigator.mediaDevices.getUserMedia({
-                video: true,
-                audio: true
+                video: videoEnabled,
+                audio: audioEnabled
             });
             setLocalStream(newStream);
         }
 
-        setVideo(videoEnabled);
-        setAudio(audioEnabled);
+
     };
 
     return <CallContext.Provider value={{
