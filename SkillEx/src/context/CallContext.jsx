@@ -19,8 +19,8 @@ export const CallContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
     const [localStream, setLocalStream] = useState();
     const [remoteStream, setRemoteStream] = useState();
-    const [video, setVideo] = useState(true);
-    const [audio, setAudio] = useState(true);
+    const [video, setVideo] = useState(false);
+    const [audio, setAudio] = useState(false);
     const { data: me, isSuccess: verifiedMe } = useGetUserByTokenQuery();
 
     const navigate = useNavigate();
@@ -45,7 +45,7 @@ export const CallContextProvider = ({ children }) => {
                         <div>
                             <h3>{from.displayName} is calling...</h3>
                             <div className="call-notification-response">
-                                <div className="decline-button" onClick={() => { toast.dismiss(t.id); ringtone.pause(); ringtone.currentTime = 0; socket.emit('callEnded', { to: from }); }}>Decline</div>
+                                <div className="decline-button" onClick={() => { toast.dismiss(t.id); ringtone.pause(); ringtone.currentTime = 0; callRef.current = {}; socket.emit('callEnded', { to: from }); }}>Decline</div>
                                 <div className="answer-button" onClick={() => { answerCall(); toast.dismiss(t.id); ringtone.pause(); ringtone.currentTime = 0 }}>Answer</div>
                             </div>
                         </div>
@@ -67,26 +67,27 @@ export const CallContextProvider = ({ children }) => {
 
         socket && socket.on('callEnded', () => {
             setCallAccepted(false);
-            setAudio(false);
-            setVideo(false);
-            navigate(-1, { replace: true });
 
-            localStream && localStream.getTracks().forEach((track) => {
-                track.stop();
-            });
+            updateMediaStream(false, false);
 
             setLocalStream(null);
             setRemoteStream(null);
             connectionRef.current && connectionRef.current.destroy();
             callRef.current = {};
+
+            dispatch(setVideoReceiver({
+                _id: '',
+                displayName: '',
+                username: '',
+                email: '',
+                picture: '',
+            }));
+
+            navigate(-1);
         });
         return () => socket && socket.close();
 
     }, [socket]);
-
-    useEffect(() => {
-        updateMediaStream(video, audio);
-    }, [video, audio, setVideo, setAudio]);
 
     useEffect(() => {
         if (localStream) {
@@ -102,12 +103,14 @@ export const CallContextProvider = ({ children }) => {
                     if (videoTrack) {
                         console.log(connectionRef.current.streams[0].getVideoTracks()[0]);
                         connectionRef.current.streams[0].getVideoTracks()[0]
-                            && connectionRef.current.replaceTrack(connectionRef.current.streams[0].getVideoTracks()[0], videoTrack, connectionRef.current.streams[0]);
+                            ? connectionRef.current.replaceTrack(connectionRef.current.streams[0].getVideoTracks()[0], videoTrack, connectionRef.current.streams[0])
+                            : connectionRef.current.addTrack(videoTrack, connectionRef.current.streams[0])
 
                     }
                     if (audioTrack) {
                         connectionRef.current.streams[0].getAudioTracks()[0]
-                            && connectionRef.current.replaceTrack(connectionRef.current.streams[0].getAudioTracks()[0], audioTrack, connectionRef.current.streams[0]);
+                            ? connectionRef.current.replaceTrack(connectionRef.current.streams[0].getAudioTracks()[0], audioTrack, connectionRef.current.streams[0])
+                            : connectionRef.current.addTrack(audioTrack, connectionRef.current.streams[0])
 
                     }
                 } else {
@@ -116,12 +119,56 @@ export const CallContextProvider = ({ children }) => {
             }
 
         }
+
+        socket && socket.on('callEnded', () => {
+            setCallAccepted(prev => false);
+            setAudio(prev => false);
+            setVideo(prev => false);
+
+            localStream && localStream.getTracks().forEach((track) => {
+                track.stop();
+            });
+
+            setLocalStream(prev => null);
+            setRemoteStream(prev => null);
+            connectionRef.current && connectionRef.current.destroy();
+            callRef.current = {};
+
+            dispatch(setVideoReceiver({
+                _id: '',
+                displayName: '',
+                username: '',
+                email: '',
+                picture: '',
+            }));
+
+            navigate(-1, { replace: true });
+        });
+        return () => socket && socket.off('callEnded');
     }, [localStream, setLocalStream])
 
 
 
-    const callUser = (user) => {
-        const peer = new Peer({ initiator: true, trickle: false, stream: localStream });
+    const callUser = async (user) => {
+
+        const newStream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true
+        });
+
+        const videoTrack = newStream.getVideoTracks()[0];
+        const audioTrack = newStream.getAudioTracks()[0];
+
+        if (videoTrack) {
+            videoTrack.enabled = video;
+        }
+        if (audioTrack) {
+            audioTrack.enabled = audio;
+        }
+
+        setLocalStream(newStream);
+
+        const peer = new Peer({ initiator: true, trickle: false, stream: newStream });
 
         peer.on('signal', (data) => {
             socket.emit('callUser', { userToCall: user, signalData: data, from: me, name: me.displayName });
@@ -180,10 +227,27 @@ export const CallContextProvider = ({ children }) => {
         dispatch(setVideoReceiver(user));
     };
 
-    const answerCall = () => {
+    const answerCall = async () => {
+        const newStream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true
+        });
+
+        const videoTrack = newStream.getVideoTracks()[0];
+        const audioTrack = newStream.getAudioTracks()[0];
+
+        if (videoTrack) {
+            videoTrack.enabled = video;
+        }
+        if (audioTrack) {
+            audioTrack.enabled = audio;
+        }
+
+        setLocalStream(newStream);
+
         setCallAccepted(true);
 
-        const peer = new Peer({ initiator: false, trickle: false, stream: localStream });
+        const peer = new Peer({ initiator: false, trickle: false, stream: newStream });
 
         peer.on('signal', (data) => {
             socket.emit('answerCall', { signal: data, to: callRef.current.from });
@@ -245,18 +309,24 @@ export const CallContextProvider = ({ children }) => {
     const leaveCall = (videoReceiver) => {
         callAccepted && socket.emit('callEnded', { to: videoReceiver });
         setCallAccepted(false);
-        setAudio(false);
-        setVideo(false);
-        navigate(-1, { replace: true });
 
-        localStream && localStream.getTracks().forEach((track) => {
-            track.stop();
-        });
+        updateMediaStream(false, false);
 
         setLocalStream(null);
         setRemoteStream(null);
         connectionRef.current && connectionRef.current.destroy();
         callRef.current = {};
+
+        dispatch(setVideoReceiver({
+            _id: '',
+            displayName: '',
+            username: '',
+            email: '',
+            picture: '',
+        }));
+
+        navigate(-1);
+
     };
 
     const toggleMedia = (type) => {
@@ -292,17 +362,10 @@ export const CallContextProvider = ({ children }) => {
 
             setLocalStream(localStream.clone());
 
-            setVideo(videoEnabled);
-            setAudio(audioEnabled);
-        } else {
-            const newStream = await navigator.mediaDevices.getUserMedia({
-                video: videoEnabled,
-                audio: audioEnabled
-            });
-            setLocalStream(newStream);
         }
 
-
+        setVideo(videoEnabled);
+        setAudio(audioEnabled);
     };
 
     return <CallContext.Provider value={{
