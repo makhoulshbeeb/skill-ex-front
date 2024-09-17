@@ -100,10 +100,8 @@ export const CallContextProvider = ({ children }) => {
                 const videoTrack = localStream.getVideoTracks()[0];
                 const audioTrack = localStream.getAudioTracks()[0];
 
-                console.log(connectionRef.current.streams.length > 0);
                 if (connectionRef.current.streams.length > 0) {
                     if (videoTrack) {
-                        console.log(connectionRef.current.streams[0].getVideoTracks()[0]);
                         connectionRef.current.streams[0].getVideoTracks()[0]
                             ? connectionRef.current.replaceTrack(connectionRef.current.streams[0].getVideoTracks()[0], videoTrack, connectionRef.current.streams[0])
                             : connectionRef.current.addTrack(videoTrack, connectionRef.current.streams[0])
@@ -178,13 +176,11 @@ export const CallContextProvider = ({ children }) => {
             socket.emit('callUser', { userToCall: user, signalData: data, from: me, name: me.displayName });
         });
         peer.on('stream', (currentStream) => {
-            console.log(currentStream.getTracks());
             setRemoteStream(currentStream);
             userVideo.current.srcObject = currentStream;
         });
 
         peer.on('track', (track, stream) => {
-            console.log('New track added:', track.kind);
 
             setRemoteStream((prevStream) => {
                 if (!prevStream) return stream;
@@ -207,7 +203,6 @@ export const CallContextProvider = ({ children }) => {
         });
 
         peer.on('removetrack', (track) => {
-            console.log('Track removed:', track.kind);
             setRemoteStream((prevStream) => {
                 if (!prevStream) return null;
 
@@ -227,7 +222,7 @@ export const CallContextProvider = ({ children }) => {
             peer.signal(signal);
         });
 
-        peer.on('close', () => { console.log('peer closed'); socket.off("callAccepted"); });
+        peer.on('close', () => socket.off("callAccepted"));
 
         connectionRef.current = peer;
         dispatch(setVideoReceiver(user));
@@ -261,13 +256,11 @@ export const CallContextProvider = ({ children }) => {
 
 
         peer.on('stream', (currentStream) => {
-            console.log(currentStream.getTracks());
             setRemoteStream(currentStream);
             userVideo.current.srcObject = currentStream;
         });
 
         peer.on('track', (track, stream) => {
-            console.log('New track added:', track.kind);
 
             setRemoteStream((prevStream) => {
                 if (!prevStream) return stream;
@@ -290,7 +283,6 @@ export const CallContextProvider = ({ children }) => {
         });
 
         peer.on('removetrack', (track) => {
-            console.log('Track removed:', track.kind);
             setRemoteStream((prevStream) => {
                 if (!prevStream) return null;
 
