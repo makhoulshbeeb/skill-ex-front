@@ -19,8 +19,8 @@ export const CallContextProvider = ({ children }) => {
     const [callAccepted, setCallAccepted] = useState(false);
     const [localStream, setLocalStream] = useState();
     const [remoteStream, setRemoteStream] = useState();
-    const [video, setVideo] = useState(true);
-    const [audio, setAudio] = useState(true);
+    const [video, setVideo] = useState(false);
+    const [audio, setAudio] = useState(false);
     const { data: me, isSuccess: verifiedMe } = useGetUserByTokenQuery();
 
     const navigate = useNavigate();
@@ -92,12 +92,14 @@ export const CallContextProvider = ({ children }) => {
 
     useEffect(() => {
         if (localStream) {
+            myVideo.current && (myVideo.current.srcObject = localStream);
 
             if (connectionRef.current && connectionRef.current._connected) {
 
                 const videoTrack = localStream.getVideoTracks()[0];
                 const audioTrack = localStream.getAudioTracks()[0];
 
+                console.log(connectionRef.current.streams.length > 0);
                 if (connectionRef.current.streams.length > 0) {
                     if (videoTrack) {
                         console.log(connectionRef.current.streams[0].getVideoTracks()[0]);
@@ -291,12 +293,11 @@ export const CallContextProvider = ({ children }) => {
             }
 
             setLocalStream(localStream.clone());
-        } else if (videoEnabled || audioEnabled) {
+        } else {
             const newStream = await navigator.mediaDevices.getUserMedia({
-                video: videoEnabled,
-                audio: audioEnabled
+                video: true,
+                audio: true
             });
-
             setLocalStream(newStream);
         }
 
