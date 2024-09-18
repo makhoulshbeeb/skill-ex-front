@@ -3,11 +3,17 @@ import "./styles/Auth.css"
 import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup";
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useGetUserByTokenQuery } from "../api/UsersApi";
 
 
 export default function Auth() {
     const { sign } = useParams()
+    const navigate = useNavigate();
+    const { data: user, isSuccess: loggedIn } = useGetUserByTokenQuery();
+    if (loggedIn) {
+        navigate('/');
+    }
     return (
         <div className="auth-container" style={{ flexDirection: `${sign == 'login' ? 'row' : 'row-reverse'}` }}>
             <img className="auth-logo" src="/SkillEx Logo with Text.png"></img>

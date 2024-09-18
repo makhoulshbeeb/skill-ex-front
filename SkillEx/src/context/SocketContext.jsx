@@ -2,6 +2,9 @@ import { createContext, useState, useEffect, useContext } from "react";
 import io from "socket.io-client";
 import { useGetUserByTokenQuery } from "../api/UsersApi";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setReceiver } from "../app/slices/receiverSlice";
 
 const SocketContext = createContext();
 
@@ -14,6 +17,8 @@ export const SocketContextProvider = ({ children }) => {
     const [socket, setSocket] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState([]);
     const { data: user, isSuccess } = useGetUserByTokenQuery({}, { refetchOnMountOrArgChange: true });
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (isSuccess) {
@@ -32,7 +37,7 @@ export const SocketContextProvider = ({ children }) => {
                 notification.play();
                 setTimeout(() => { notification.pause(); notification.currentTime = 0 }, 1000);
                 toast((t) => (
-                    <div className="call-notification">
+                    <div className="call-notification" onClick={() => { toast.dismiss(t.id); navigate('chats'); dispatch(setReceiver(sender)) }} style={{ cursor: 'pointer' }}>
                         <img src={sender.picture} className="call-notification-caller" />
                         <div>
                             <h3>{sender.displayName}</h3>
@@ -49,10 +54,10 @@ export const SocketContextProvider = ({ children }) => {
                 }
                 )
             });
-            return () => socket.close();
+            return () => socket.off("newMessage");
         } else {
             if (socket) {
-                socket.close();
+                socket.off("newMessage");
                 setSocket(null);
             }
         }
