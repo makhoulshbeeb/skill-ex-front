@@ -59,3 +59,8 @@
     border-radius: 0.5rem;
     cursor: pointer;
 }
+
+.admin-sidebar-tab.selected {
+    background-color: var(--primary-light);
+    color: var(--background-color);
+}

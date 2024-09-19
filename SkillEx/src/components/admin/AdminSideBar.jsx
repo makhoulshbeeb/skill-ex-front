@@ -16,10 +16,10 @@ export default function AdminSideBar({ panel, setPanel }) {
                 <h1>Admin</h1>
             </div>
             <hr></hr>
-            <div className='admin-sidebar-tab'>
+            <div className={`admin-sidebar-tab ${panel == 'Categories' && 'selected'}`} onClick={() => setPanel('Categories')}>
                 <h3>Categories</h3>
             </div>
-            <div className='admin-sidebar-tab'>
+            <div className={`admin-sidebar-tab ${panel == 'Users' && 'selected'}`} onClick={() => setPanel('Users')}>
                 <h3>Users</h3>
             </div>
         </div>
