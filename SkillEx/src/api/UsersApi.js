@@ -65,7 +65,7 @@ export const usersApi = createApi({
                 url: `users/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['Me'],
+            invalidatesTags: ['User'],
         }),
     }),
 });
