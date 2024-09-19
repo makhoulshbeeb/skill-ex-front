@@ -1,0 +1,17 @@
+.admin-page {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    width: 80dvw;
+    height: 80dvh;
+    margin-left: 10dvw;
+    padding: 2rem;
+
+    background-color: var(--background-color);
+    border-radius: 1rem;
+    box-shadow: 0.1rem 0.2rem 0.5rem 0.1rem var(--shadow-color);
+
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+}
