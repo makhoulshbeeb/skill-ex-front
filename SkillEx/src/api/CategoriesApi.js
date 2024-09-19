@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { addCategory } from '../../../../skill-ex-back/src/controllers/category.controller';
 
 export const categoriesApi = createApi({
     reducerPath: 'categoriesApi',
@@ -17,6 +18,26 @@ export const categoriesApi = createApi({
                 result
                     ? [...result.map(({ id }) => ({ type: 'Categories', id })), 'Categories']
                     : ['Categories'],
+        }),
+        addCategory: builder.mutation({
+            query: (data) => ({
+                url: `categories/`,
+                method: 'POST',
+                body: data
+            }),
+        }),
+        editCategory: builder.mutation({
+            query: (data) => ({
+                url: `categories/${data.id}`,
+                method: 'PATCH',
+                body: data
+            }),
+        }),
+        deleteCategory: builder.mutation({
+            query: (data) => ({
+                url: `categories/${data.id}`,
+                method: 'DELETE',
+            }),
         }),
     }),
 });
