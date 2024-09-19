@@ -15,6 +15,10 @@ export const usersApi = createApi({
             query: () => 'users/me',
             providesTags: (result, error, arg) => ['Me'],
         }),
+        getAdminByToken: builder.query({
+            query: () => 'users/admin',
+            providesTags: (result, error, arg) => ['Me'],
+        }),
         getUsersBySearch: builder.query({
             query: ({ search }) => `users/search/${search}`,
             providesTags: (result, error, arg) =>
@@ -55,16 +59,25 @@ export const usersApi = createApi({
                 method: 'DELETE',
             }),
             invalidatesTags: ['Me'],
-        })
+        }),
+        deleteUserAdmin: builder.mutation({
+            query: ({ id }) => ({
+                url: `users/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['Me'],
+        }),
     }),
 });
 
 export const {
     useGetUserByTokenQuery,
+    useGetAdminByTokenQuery,
     useGetUsersBySearchQuery,
     useGetUserByUsernameQuery,
     useGetUsersByMatchQuery,
     useEndorseUserMutation,
     useUpdateUserMutation,
-    useDeleteUserMutation
+    useDeleteUserMutation,
+    useDeleteUserAdminMutation
 } = usersApi;
