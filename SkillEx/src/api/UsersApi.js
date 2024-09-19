@@ -45,6 +45,14 @@ export const usersApi = createApi({
             }),
             invalidatesTags: ['Information'],
         }),
+        updateRole: builder.mutation({
+            query: ({ id, role }) => ({
+                url: `users/endorse/${id}`,
+                method: 'PATCH',
+                body: { role }
+            }),
+            invalidatesTags: (result, error, arg) => [{ type: 'User', id: arg.id }],
+        }),
         updateUser: builder.mutation({
             query: (data) => ({
                 url: `users/`,
@@ -77,6 +85,7 @@ export const {
     useGetUserByUsernameQuery,
     useGetUsersByMatchQuery,
     useEndorseUserMutation,
+    useUpdateRoleMutation,
     useUpdateUserMutation,
     useDeleteUserMutation,
     useDeleteUserAdminMutation
