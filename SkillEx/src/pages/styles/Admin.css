@@ -15,3 +15,24 @@
     overflow: hidden;
     transition: 0.3s ease-in-out;
 }
+
+/********* ADMIN SIDEBAR *********/
+
+.admin-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    width: 35%;
+    height: 100%;
+    padding: 1.5rem;
+}
+
+.admin-sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    width: 100%;
+}
