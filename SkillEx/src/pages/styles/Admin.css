@@ -1,6 +1,5 @@
 .admin-page {
     display: flex;
-    justify-content: space-between;
     gap: 1rem;
 
     width: 80dvw;
@@ -16,17 +15,22 @@
     transition: 0.3s ease-in-out;
 }
 
+.admin-page>hr {
+    height: 100%;
+    border: 0.05rem solid var(--background-light);
+}
+
 /********* ADMIN SIDEBAR *********/
 
 .admin-sidebar {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
 
-    width: 35%;
+    width: 20%;
     height: 100%;
-    padding: 1.5rem;
+    padding: 0 1rem;
 }
 
 .admin-sidebar-header {
@@ -35,4 +39,23 @@
     gap: 0.5rem;
 
     width: 100%;
+}
+
+.admin-sidebar-header>h1 {
+    color: var(--text-color);
+    height: fit-content;
+}
+
+.admin-sidebar hr {
+    width: 100%;
+    border: 0.05rem solid var(--background-light);
+}
+
+.admin-sidebar-tab {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: var(--background-light);
+
+    border-radius: 0.5rem;
+    cursor: pointer;
 }

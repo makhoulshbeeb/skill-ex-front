@@ -9,14 +9,14 @@ import Home from './pages/Home.jsx';
 import Explore from './pages/Explore.jsx';
 import User from './pages/User.jsx';
 import Video from './pages/Video.jsx';
-import toast from 'react-hot-toast';
 import Search from './pages/Search.jsx';
+import Admin from './pages/Admin.jsx';
 
 function App() {
     return (
         <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/about' />
+            <Route path='/admin' element={<Admin />} />
             <Route path='/explore/:type' element={<Explore />} />
             <Route path='/search/' element={<Search />} />
             <Route path='/user/:username' element={<User />} />
