@@ -134,7 +134,7 @@
 
     height: 6rem;
     width: 32%;
-    min-width: 400px;
+    min-width: 500px;
     max-width: calc(50% - 0.5rem);
 
     border-radius: 1rem;
@@ -175,6 +175,8 @@
     justify-content: space-between;
     height: 80%;
     padding: 0 0.5rem;
+
+    text-wrap: nowrap;
 }
 
 .categories-admin-card-info>p {

@@ -1,7 +1,7 @@
 import { faPenSquare, faPenToSquare, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function CategoreisAdminCard({ category, setDeletePopup, setEditPopup }) {
+export default function CategoreisAdminCard({ category, setDeletePopup, setEditPopup, setCategoryName, setCategoryPicture, setCategoryId }) {
     return (
         <div className="categories-admin-card">
             <div>
@@ -12,10 +12,10 @@ export default function CategoreisAdminCard({ category, setDeletePopup, setEditP
                 </div>
             </div>
             <div>
-                <div className="svg" onClick={() => setEditPopup(true)}>
+                <div className="svg" onClick={() => { setCategoryId(category._id); setCategoryName(category.name); setCategoryPicture(category.picture); setEditPopup(true) }}>
                     <FontAwesomeIcon icon={faPenToSquare} color="var(--primary-color)" />
                 </div>
-                <div className="svg" onClick={() => setDeletePopup(true)}>
+                <div className="svg" onClick={() => { setCategoryId(category._id); setCategoryName(category.name); setCategoryPicture(category.picture); setDeletePopup(true) }}>
                     <FontAwesomeIcon icon={faTrashAlt} color="tomato" />
                 </div>
             </div>
