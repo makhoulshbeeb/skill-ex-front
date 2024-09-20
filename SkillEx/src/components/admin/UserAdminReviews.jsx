@@ -10,15 +10,24 @@ import Searchbar from '../common/Searchbar';
 
 var isFalse = false;
 export default function UserAdminReviews({ reviews, setDeletePopup, setReview }) {
+    const [reviewSearch, setReviewSearch] = useState('');
+
+    var filteredReviews = reviews;
+
+    if (filteredReviews) {
+        filteredReviews = filteredReviews.filter(function (el) {
+            return el.reviewerId.displayName.match(new RegExp(String.raw`.*${reviewSearch.trim()}.*`, "i"));
+        })
+    }
     return (
         <div className='user-profile-reviews' style={{ width: '35%' }}>
             <span className='admin-reviews-search'>
                 <h2>Reviews <span>({reviews.length})</span></h2>
-                <div style={{ width: '60%' }}><Searchbar placeholder={'Search Reviews'} /></div>
+                <div style={{ width: '60%' }}><Searchbar placeholder={'Search Reviews'} change={(e) => setReviewSearch(e.target.value)} /></div>
             </span>
             <div>
                 <div>
-                    {reviews.map(review => {
+                    {filteredReviews.map(review => {
                         return (
                             <div className='review-container' key={review._id}>
                                 <div className='reviewer-tag'>
