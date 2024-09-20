@@ -183,3 +183,30 @@
     font-weight: 500;
     color: var(--text-light);
 }
+
+/********* CATEGORIES ADMIN PANEL *********/
+
+.users-admin-panel {
+    width: 80%;
+}
+
+.users-admin-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    align-items: baseline;
+    padding: 0 1.5rem;
+    width: 50%;
+}
+
+.users-admin-title {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.2rem;
+    width: 100%;
+}
+
+.users-admin-title>h2 {
+    position: relative;
+    font-size: 2rem;
+}

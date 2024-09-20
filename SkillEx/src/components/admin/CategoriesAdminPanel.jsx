@@ -35,6 +35,12 @@ export default function CategoriesAdminPanel() {
 
     var categories = data;
 
+    if (categories) {
+        categories = categories.filter(function (el) {
+            return el.name.match(new RegExp(String.raw`.*${categorySearch.trim()}.*`, "i"));
+        })
+    }
+
     if (addLoading) {
         toast.loading("Loading...", {
             id: "loading"
@@ -77,12 +83,6 @@ export default function CategoriesAdminPanel() {
             id: "error"
         });
         isFalseEdit = true;
-    }
-
-    if (categories) {
-        categories = categories.filter(function (el) {
-            return el.name.match(new RegExp(String.raw`.*${categorySearch.trim()}.*`, "i"));
-        })
     }
 
     if (deleteLoading) {
