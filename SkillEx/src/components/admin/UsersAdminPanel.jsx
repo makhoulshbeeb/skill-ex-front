@@ -7,6 +7,7 @@ import UsersAdminCard from "./UsersAdminCard";
 import { useGetReviewsQuery } from "../../api/ReviewsApi";
 import UserSidePanel from "../user/UserSidePanel";
 import UserAdminReviews from "./UserAdminReviews";
+import UserAdminProfile from "./UsersAdminProfile";
 
 export default function UsersAdminPanel({ me }) {
 
@@ -94,7 +95,7 @@ export default function UsersAdminPanel({ me }) {
             </div>
             {openReviews ?
                 <UserAdminReviews reviews={userReviews} me={me._id == user._id} user={me} /> :
-                <UserSidePanel user={user} />}
+                <UserAdminProfile user={user} me={me._id == user._id} />}
         </div>
     )
 }

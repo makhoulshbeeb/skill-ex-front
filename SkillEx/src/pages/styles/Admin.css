@@ -270,3 +270,7 @@
     font-weight: 500;
     color: var(--text-light);
 }
+
+.admin-reviews-search {
+    padding-bottom: 0.5rem;
+}
