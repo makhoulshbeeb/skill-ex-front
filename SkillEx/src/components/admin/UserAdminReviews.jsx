@@ -6,14 +6,10 @@ import { useRef, useState } from 'react'
 import { useGetUserByTokenQuery, usersApi } from '../../api/UsersApi'
 import { useSendReviewMutation } from '../../api/ReviewsApi';
 import toast from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
 import Searchbar from '../common/Searchbar';
 
 var isFalse = false;
-export default function UserAdminReviews({ reviews, user }) {
-    const [addReview, setAddReview] = useState(false);
-    const ref = useRef();
-
+export default function UserAdminReviews({ reviews, setDeletePopup, setReview }) {
     return (
         <div className='user-profile-reviews' style={{ width: '35%' }}>
             <span className='admin-reviews-search'>
@@ -42,7 +38,7 @@ export default function UserAdminReviews({ reviews, user }) {
                                             })}
                                         </div>
                                     </div>
-                                    <div className="svg" style={{ marginLeft: 'auto' }} onClick={() => { setUser(user) }}>
+                                    <div className="svg" style={{ marginLeft: 'auto' }} onClick={() => { setReview(review); setDeletePopup(true) }}>
                                         <FontAwesomeIcon icon={faTrashAlt} color="tomato" />
                                     </div>
                                 </div>
@@ -52,7 +48,6 @@ export default function UserAdminReviews({ reviews, user }) {
                     })}
                 </div>
             </div>
-
         </div>
     )
 }

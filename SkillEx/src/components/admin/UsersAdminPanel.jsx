@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDeleteUserAdminMutation, useGetUsersBySearchQuery, useUpdateRoleMutation } from "../../api/UsersApi";
 import Searchbar from "../common/Searchbar";
 import UsersAdminCard from "./UsersAdminCard";
-import { useGetReviewsQuery } from "../../api/ReviewsApi";
+import { useDeleteReviewMutation, useGetReviewsQuery } from "../../api/ReviewsApi";
 import UserSidePanel from "../user/UserSidePanel";
 import UserAdminReviews from "./UserAdminReviews";
 import UserAdminProfile from "./UsersAdminProfile";
@@ -12,6 +12,8 @@ import UserAdminProfile from "./UsersAdminProfile";
 export default function UsersAdminPanel({ me }) {
 
     const [user, setUser] = useState(me);
+    const [review, setReview] = useState();
+    const [deletePopup, setDeletePopup] = useState(false);
     const [openReviews, setOpenReviews] = useState(false);
 
     const { data: userReviews, isLoading: isLoadingReviews, isSuccess: isSuccessReviews } = useGetReviewsQuery({ receiverId: user._id }, { refetchOnMountOrArgChange: true });
@@ -31,6 +33,7 @@ export default function UsersAdminPanel({ me }) {
 
     const [editUser, { data: editedUser, isLoading: editLoading, isSuccess: editSuccess, isError: editError, error: editErrorMessage }] = useUpdateRoleMutation();
     const [deleteUser, { data: deletedUser, isLoading: deleteLoading, isSuccess: deleteSuccess, isError: deleteError, error: deleteErrorMessage }] = useDeleteUserAdminMutation();
+    const [deleteReview, { data: deletedReview, isLoading: deleteReviewLoading, isSuccess: deleteReviewSuccess, isError: deleteReviewError, error: deleteReviewErrorMessage }] = useDeleteReviewMutation();
 
     if (editLoading) {
         toast.loading("Loading...", {
@@ -94,8 +97,20 @@ export default function UsersAdminPanel({ me }) {
                 </div>
             </div>
             {openReviews ?
-                <UserAdminReviews reviews={userReviews} me={me._id == user._id} user={me} /> :
+                <UserAdminReviews reviews={userReviews} me={me._id == user._id} user={me} setDeletePopup={setDeletePopup} setReview={setReview} /> :
                 <UserAdminProfile user={user} me={me._id == user._id} />}
+            <dialog open={deletePopup} >
+                <div className="add-endorsement">
+                    <p>Are you sure you want to delete {review && review.reviewerId.displayName}'s review (id: {review && review._id})?</p>
+                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                        <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)", scale: "0.9" }} onClick={() => setDeletePopup(false)}>Cancel</div>
+                        <div className='add-reviews-button' style={{ scale: "0.9" }}
+                            onClick={() => { deleteReview({ id: review._id }); setDeletePopup(false); }}
+                        >Submit
+                        </div>
+                    </div>
+                </div>
+            </dialog>
         </div>
     )
 }
