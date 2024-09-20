@@ -396,7 +396,7 @@ dialog[open] {
     width: 32%;
     height: fit-content;
     scale: 1.2;
-    padding: 1.8rem 1.5rem;
+    padding: 1.2rem 1.5rem;
 
     display: flex;
     flex-direction: column;
