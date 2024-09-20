@@ -184,6 +184,7 @@
     background-color: var(--primary-color);
     padding: 0.5rem 0.8rem;
     border-radius: 2rem;
+    text-wrap: nowrap;
 
     cursor: pointer;
 }

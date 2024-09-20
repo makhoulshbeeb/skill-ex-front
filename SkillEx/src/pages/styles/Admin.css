@@ -1,5 +1,6 @@
 .admin-page {
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
 
     width: 80dvw;
@@ -63,4 +64,120 @@
 .admin-sidebar-tab.selected {
     background-color: var(--primary-light);
     color: var(--background-color);
+}
+
+/********* CATEGORIES ADMIN PANEL *********/
+
+.categories-admin-panel {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.categories-admin-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    align-items: baseline;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+.categories-admin-title {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.2rem;
+    width: 150%;
+}
+
+.categories-admin-title>h2 {
+    position: relative;
+    font-size: 2rem;
+}
+
+.add-categories-button {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    align-self: flex-end;
+
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--background-color);
+
+    background-color: var(--primary-color);
+    padding: 0.675rem 0.8rem;
+    border-radius: 2rem;
+    text-wrap: nowrap;
+
+    cursor: pointer;
+}
+
+.categories-admin-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    padding: 0.25rem 1rem;
+
+    height: 90%;
+    overflow-y: scroll;
+}
+
+.categories-admin-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-grow: 1;
+
+    height: 6rem;
+    width: 32%;
+    min-width: 400px;
+    max-width: calc(50% - 0.5rem);
+
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+
+    background-color: var(--background-light);
+}
+
+.categories-admin-card>div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.categories-admin-card>div>img {
+    object-fit: cover;
+    height: 4.5rem;
+    width: 4.5rem;
+    clip-path: circle();
+}
+
+.categories-admin-card>div>div.svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--background-dark);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.categories-admin-card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80%;
+    padding: 0 0.5rem;
+}
+
+.categories-admin-card-info>p {
+    font-weight: 500;
+    color: var(--text-light);
 }
