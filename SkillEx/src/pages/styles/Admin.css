@@ -230,7 +230,7 @@
     background-color: var(--background-light);
 }
 
-.users-admin-card>div {
+.users-admin-card-aligned {
     height: 100%;
     display: flex;
     align-items: center;
@@ -273,4 +273,12 @@
 
 .admin-reviews-search {
     padding-bottom: 0.5rem;
+}
+
+.user-admin-role-select {
+    border: 1px solid var(--text-light);
+    margin-top: 0.5rem;
+    padding: 0.25rem 0;
+    width: 100%;
+    text-align: center;
 }

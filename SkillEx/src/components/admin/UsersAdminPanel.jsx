@@ -4,16 +4,21 @@ import { useState } from "react";
 import { useDeleteUserAdminMutation, useGetUsersBySearchQuery, useUpdateRoleMutation } from "../../api/UsersApi";
 import Searchbar from "../common/Searchbar";
 import UsersAdminCard from "./UsersAdminCard";
-import { useDeleteReviewAdminMutation, useDeleteReviewMutation, useGetReviewsQuery } from "../../api/ReviewsApi";
-import UserSidePanel from "../user/UserSidePanel";
+import { useDeleteReviewAdminMutation, useGetReviewsQuery } from "../../api/ReviewsApi";
 import UserAdminReviews from "./UserAdminReviews";
 import UserAdminProfile from "./UsersAdminProfile";
+import toast from "react-hot-toast";
 
+
+var isFalseDelete = false;
+var isFalseEdit = false;
 export default function UsersAdminPanel({ me }) {
 
     const [user, setUser] = useState(me);
     const [review, setReview] = useState();
     const [deletePopup, setDeletePopup] = useState(false);
+    const [deleteUserPopup, setDeleteUserPopup] = useState(false);
+    const [editPopup, setEditPopup] = useState(false);
     const [openReviews, setOpenReviews] = useState(false);
 
     const { data: userReviews, isLoading: isLoadingReviews, isSuccess: isSuccessReviews } = useGetReviewsQuery({ receiverId: user._id }, { refetchOnMountOrArgChange: true });
@@ -91,7 +96,7 @@ export default function UsersAdminPanel({ me }) {
                 <div className="users-admin-body">
                     {isSuccess &&
                         users.map(user => {
-                            return (<UsersAdminCard user={user} setUser={setUser} openReviews={setOpenReviews} />)
+                            return (<UsersAdminCard user={user} setUser={setUser} openReviews={setOpenReviews} setEditPopup={setEditPopup} setDeleteUserPopup={setDeleteUserPopup} />)
                         })
                     }
                 </div>
@@ -106,6 +111,32 @@ export default function UsersAdminPanel({ me }) {
                         <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)", scale: "0.9" }} onClick={() => setDeletePopup(false)}>Cancel</div>
                         <div className='add-reviews-button' style={{ scale: "0.9" }}
                             onClick={() => { deleteReview({ id: review._id }); setDeletePopup(false); }}
+                        >Submit
+                        </div>
+                    </div>
+                </div>
+            </dialog>
+            <dialog open={editPopup} >
+                <div className="add-endorsement">
+                    <p>{user.role == 'User'
+                        ? `Would you like to make ${user.displayName} into an Admin?`
+                        : `Are you sure you want to remove ${user.displayName} from the Admin role?`}</p>
+                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                        <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)", scale: "0.9" }} onClick={() => setEditPopup(false)}>Cancel</div>
+                        <div className='add-reviews-button' style={{ scale: "0.9" }}
+                            onClick={() => { editUser({ id: user._id, role: user.role == 'User' ? 'Admin' : 'User' }); setEditPopup(false); }}
+                        >Submit
+                        </div>
+                    </div>
+                </div>
+            </dialog>
+            <dialog open={deleteUserPopup} >
+                <div className="add-endorsement">
+                    <p>Are you sure you want to delete {user.displayName}?</p>
+                    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                        <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)", scale: "0.9" }} onClick={() => setDeleteUserPopup(false)}>Cancel</div>
+                        <div className='add-reviews-button' style={{ scale: "0.9" }}
+                            onClick={() => { deleteUser({ id: user._id }); setDeleteUserPopup(false); }}
                         >Submit
                         </div>
                     </div>

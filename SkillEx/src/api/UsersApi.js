@@ -47,7 +47,7 @@ export const usersApi = createApi({
         }),
         updateRole: builder.mutation({
             query: ({ id, role }) => ({
-                url: `users/endorse/${id}`,
+                url: `users/role/${id}`,
                 method: 'PATCH',
                 body: { role }
             }),
@@ -70,7 +70,7 @@ export const usersApi = createApi({
         }),
         deleteUserAdmin: builder.mutation({
             query: ({ id }) => ({
-                url: `users/${id}`,
+                url: `users/other/${id}`,
                 method: 'DELETE',
             }),
             invalidatesTags: ['User'],
