@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDeleteUserAdminMutation, useGetUsersBySearchQuery, useUpdateRoleMutation } from "../../api/UsersApi";
 import Searchbar from "../common/Searchbar";
 import UsersAdminCard from "./UsersAdminCard";
-import { useDeleteReviewMutation, useGetReviewsQuery } from "../../api/ReviewsApi";
+import { useDeleteReviewAdminMutation, useDeleteReviewMutation, useGetReviewsQuery } from "../../api/ReviewsApi";
 import UserSidePanel from "../user/UserSidePanel";
 import UserAdminReviews from "./UserAdminReviews";
 import UserAdminProfile from "./UsersAdminProfile";
@@ -33,7 +33,7 @@ export default function UsersAdminPanel({ me }) {
 
     const [editUser, { data: editedUser, isLoading: editLoading, isSuccess: editSuccess, isError: editError, error: editErrorMessage }] = useUpdateRoleMutation();
     const [deleteUser, { data: deletedUser, isLoading: deleteLoading, isSuccess: deleteSuccess, isError: deleteError, error: deleteErrorMessage }] = useDeleteUserAdminMutation();
-    const [deleteReview, { data: deletedReview, isLoading: deleteReviewLoading, isSuccess: deleteReviewSuccess, isError: deleteReviewError, error: deleteReviewErrorMessage }] = useDeleteReviewMutation();
+    const [deleteReview, { data: deletedReview, isLoading: deleteReviewLoading, isSuccess: deleteReviewSuccess, isError: deleteReviewError, error: deleteReviewErrorMessage }] = useDeleteReviewAdminMutation();
 
     if (editLoading) {
         toast.loading("Loading...", {
