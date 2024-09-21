@@ -38,7 +38,7 @@ export default function ChatMessages({ messages, setMessages, data, isLoading })
                     </center>
                     : messages?.map((element, index) => {
                         return (
-                            <div key={index} className={`message ${element.senderId == user._id ? "sent" : "recieved"}`}>
+                            <div key={index} className={`message ${element.senderId == user?._id ? "sent" : "recieved"}`}>
                                 <div>{element.message}</div>
                                 <p>{dateToString(element.createdAt)}</p>
                             </div>
