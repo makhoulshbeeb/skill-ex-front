@@ -4,7 +4,7 @@ import { useSocketContext } from "./SocketContext";
 import Peer from 'simple-peer';
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setVideoReceiver } from "../app/slices/videoReceiverSlice";
 
 const CallContext = createContext();

@@ -9,14 +9,14 @@ import toast from 'react-hot-toast';
 import Searchbar from '../common/Searchbar';
 
 var isFalse = false;
-export default function UserAdminReviews({ reviews, setDeletePopup, setReview }) {
+export default function UserAdminReviews({ reviews = [], setDeletePopup, setReview }) {
     const [reviewSearch, setReviewSearch] = useState('');
 
     var filteredReviews = reviews;
 
     if (filteredReviews) {
         filteredReviews = filteredReviews.filter(function (el) {
-            return el.reviewerId.displayName.match(new RegExp(String.raw`.*${reviewSearch.trim()}.*`, "i"));
+            return el.reviewerId?.displayName ? el.reviewerId?.displayName.match(new RegExp(String.raw`.*${reviewSearch.trim()}.*`, "i")) : true;
         })
     }
     return (
@@ -31,9 +31,9 @@ export default function UserAdminReviews({ reviews, setDeletePopup, setReview })
                         return (
                             <div className='review-container' key={review._id}>
                                 <div className='reviewer-tag'>
-                                    <img src={review.reviewerId.picture} />
+                                    <img src={review.reviewerId?.picture ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2vVlrO9cFofqylQo8ShkxRFYtYb8O0wsvsw&s"} />
                                     <div>
-                                        <h4>{review.reviewerId.displayName}</h4>
+                                        <h4>{review.reviewerId?.displayName ?? "Deleted User"}</h4>
                                         <div className="user-page-rating">
                                             {[1, 2, 3, 4, 5].map((el) => {
                                                 if (review.rating - el >= 0) {

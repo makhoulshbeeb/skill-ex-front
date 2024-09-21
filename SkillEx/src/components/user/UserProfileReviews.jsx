@@ -58,9 +58,9 @@ export default function UserProfileReviews({ reviews, me, user }) {
                         return (
                             <div className='review-container' key={review._id}>
                                 <div className='reviewer-tag'>
-                                    <img src={review.reviewerId.picture} />
+                                    <img src={review.reviewerId?.picture ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2vVlrO9cFofqylQo8ShkxRFYtYb8O0wsvsw&s"} />
                                     <div>
-                                        <h4>{review.reviewerId.displayName}</h4>
+                                        <h4>{review.reviewerId?.displayName ?? "Deleted User"}</h4>
                                         <div className="user-page-rating">
                                             {[1, 2, 3, 4, 5].map((el) => {
                                                 if (review.rating - el >= 0) {

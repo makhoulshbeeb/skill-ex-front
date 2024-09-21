@@ -8,12 +8,15 @@ import { useDeleteReviewAdminMutation, useGetReviewsQuery } from "../../api/Revi
 import UserAdminReviews from "./UserAdminReviews";
 import UserAdminProfile from "./UsersAdminProfile";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 
 var isFalseDelete = false;
 var isFalseEdit = false;
+var isFalseDeleteReview = false;
 export default function UsersAdminPanel({ me }) {
 
+    const dispatch = useDispatch();
     const [user, setUser] = useState(me);
     const [review, setReview] = useState();
     const [deletePopup, setDeletePopup] = useState(false);
@@ -84,6 +87,28 @@ export default function UsersAdminPanel({ me }) {
         isFalseDelete = true;
     }
 
+    if (deleteReviewLoading) {
+        toast.loading("Loading...", {
+            id: "loading"
+        });
+        isFalseDeleteReview = false;
+    }
+    if (deleteReviewSuccess && deleteReviewSuccess != isFalseDeleteReview) {
+        toast.dismiss("loading");
+        toast.success("Review Deleted!", {
+            id: "success"
+        });
+        isFalseDeleteReview = true;
+        dispatch(usersApi.util.invalidateTags(['Information']));
+    }
+    if (deleteReviewError && deleteReviewError != isFalseDeleteReview) {
+        toast.dismiss("loading");
+        toast.error(deleteReviewErrorMessage.data.error, {
+            id: "error"
+        });
+        isFalseDeleteReview = true;
+    }
+
     return (
         <div className="users-admin-panel">
             <div style={{ width: '60%' }}>
@@ -106,7 +131,7 @@ export default function UsersAdminPanel({ me }) {
                 <UserAdminProfile user={user} me={me._id == user._id} />}
             <dialog open={deletePopup} >
                 <div className="add-endorsement">
-                    <p>Are you sure you want to delete {review && review.reviewerId.displayName}'s review (id: {review && review._id})?</p>
+                    <p>Are you sure you want to delete {(review && review.reviewerId?.displayName) ?? 'Deleted User'}'s review (id: {review && review._id})?</p>
                     <div style={{ display: "flex", justifyContent: "flex-end" }}>
                         <div className='add-reviews-button' style={{ backgroundColor: "var(--background-light)", color: "var(--primary-color)", scale: "0.9" }} onClick={() => setDeletePopup(false)}>Cancel</div>
                         <div className='add-reviews-button' style={{ scale: "0.9" }}
