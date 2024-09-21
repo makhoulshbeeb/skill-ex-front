@@ -1,0 +1,79 @@
+.user-panel {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    width: 36rem;
+    height: 15rem;
+
+
+    background-color: var(--background-color);
+    border-radius: 1.5rem;
+    box-shadow: 0 0.5rem 1.5rem -0.5rem var(--shadow-color),
+        0 0 0.5rem 0 var(--shadow-color);
+
+    overflow: hidden;
+    scroll-snap-align: start;
+    scroll-snap-type: x proximity;
+    cursor: pointer;
+}
+
+.user-panel:hover {
+    scale: 1.02;
+}
+
+.user-panel-picture {
+    width: 40%;
+    padding: 3rem;
+    background-image: url(/User\ Panel\ Background.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.user-panel-picture>img {
+    object-fit: cover;
+    width: 100%;
+    clip-path: circle();
+}
+
+.user-panel-details {
+    width: 60%;
+    height: 100%;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.user-panel-details>div>h2 {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.user-panel-details>div>h3 {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.user-panel-rating {
+    display: flex;
+    align-items: center;
+}
+
+.user-panel-details>p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--text-light);
+    height: 40%;
+}

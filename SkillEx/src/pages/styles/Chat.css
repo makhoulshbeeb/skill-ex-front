@@ -1,0 +1,256 @@
+/********* Chat *********/
+
+.chat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 80dvw;
+    height: 80dvh;
+    margin-left: 10dvw;
+
+    background-color: var(--background-color);
+    border-radius: 1rem;
+    box-shadow: 0.1rem 0.2rem 0.5rem 0.1rem var(--shadow-color);
+
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+.chat-container>hr {
+    height: 100%;
+    border: 0.05rem solid var(--background-dark);
+}
+
+/********* Chat Sidebar *********/
+
+.chat-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    width: 35%;
+    height: 100%;
+    padding: 1.5rem;
+}
+
+.chat-sidebar hr {
+    width: 80%;
+    border: 0.05rem solid var(--background-light);
+}
+
+.chat-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    width: 100%;
+}
+
+.chat-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    height: 90%;
+    overflow-y: scroll;
+}
+
+.chat-list>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+
+/********* Chat Panel *********/
+
+.chat-panel {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    font-weight: 400;
+
+    cursor: pointer;
+}
+
+.chat-panel>div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.chat-panel>div>img {
+    object-fit: contain;
+    width: 3.6rem;
+    height: 3.6rem;
+}
+
+.chat-panel>div>div {
+    width: 24%;
+    height: 24%;
+    position: absolute;
+    align-self: flex-end;
+    border: 3px solid #555;
+    border-radius: 100%;
+}
+
+/********* Chat Log *********/
+
+.chat-log {
+    width: 65%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chat-log>img {
+    object-fit: cover;
+    height: 60%;
+    align-self: center;
+    padding: 0 2rem 3rem 2rem;
+}
+
+.chat-log>h1 {
+    align-self: center;
+    text-align: center;
+    width: 60%;
+    height: 25%;
+    color: var(--primary-light);
+}
+
+/* CHAT HEADER */
+
+.chat-header {
+    width: 100%;
+    height: 5rem;
+    padding: 0.6rem 1.8rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: var(--primary-color);
+    border: unset;
+}
+
+.chat-header>div {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    height: 100%;
+    font-size: 1.2rem;
+}
+
+.chat-header img {
+    object-fit: contain;
+    height: 100%;
+}
+
+/* CHAT MESSAGES */
+
+.chat-messages {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: scroll;
+    width: 100%;
+    padding: 1rem;
+}
+
+.chat-reverse {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.message {
+    max-height: fit-content;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.message>p {
+    color: var(--text-light);
+    font-size: 1rem;
+    padding: 0 0.5rem;
+}
+
+.message>div {
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    max-width: 100%;
+    word-wrap: break-word;
+    font-size: 1.2rem;
+}
+
+.sent {
+    align-items: flex-end;
+    align-self: flex-end;
+}
+
+.sent>div {
+    background-color: var(--primary-light);
+    color: var(--background-color);
+    border-radius: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.recieved {
+    align-items: flex-start;
+    align-self: flex-start;
+}
+
+.recieved>div {
+    background-color: var(--background-light);
+    border-radius: 1.5rem 1.5rem 1.5rem 0;
+}
+
+/* CHAT INPUT */
+
+.chat-input {
+    width: 100%;
+    height: 5rem;
+    padding: 1rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.chat-input>input {
+    all: unset;
+}
+
+.chat-input>input {
+    font-size: 1.15rem;
+    padding: 0.75rem 1.8rem;
+    width: calc(100% - 2.4rem);
+    border-radius: 1.8rem;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    flex-grow: 1;
+}
+
+.chat-input>input::placeholder {
+    color: var(--text-light);
+}
+
+.chat-input>input:-webkit-autofill,
+.chat-input>input:-webkit-autofill:hover,
+.chat-input>input:-webkit-autofill:focus,
+.chat-input>input:-webkit-autofill:active {
+    transition: all 5000s ease-in-out 0s;
+    font-size: 1rem;
+}

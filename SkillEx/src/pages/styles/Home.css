@@ -1,0 +1,131 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100dvw;
+}
+
+/********* HERO SECTION *********/
+
+.hero-section {
+    height: 100dvh;
+    width: 100dvw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section>img {
+    object-fit: cover;
+    width: 100dvw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.hero-section>div {
+    height: 70%;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-section>div>img {
+    object-fit: cover;
+    width: 100%;
+
+}
+
+.hero-slogan {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hero-slogan>h1 {
+    color: var(--primary-color);
+    font-size: 2.4rem;
+}
+
+.hero-slogan>p {
+    color: var(--primary-light);
+    width: 90%;
+    font-size: 1.5rem;
+}
+
+/********* DISPLAY *********/
+
+.display {
+    width: 72%;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    background-color: var(--primary-color);
+    gap: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+
+.display-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+
+    color: var(--background-light);
+
+}
+
+.display-header>h2 {
+    font-size: 2.2rem;
+    align-self: flex-start;
+
+}
+
+.scroll-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline-start: 2em;
+    scroll-padding-inline-end: 2em;
+
+    gap: 2rem;
+    padding: 1rem 1rem 2rem 1rem;
+    border-radius: 2rem;
+
+}
+
+.scroll-display::-webkit-scrollbar {
+    display: none;
+}
+
+
+/********* FOOTER *********/
+
+footer {
+    background-image: url(/Footer\ Background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    width: 100dvw;
+    height: 18rem;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+footer>img {
+    object-fit: cover;
+    width: 20%;
+}

@@ -1,0 +1,404 @@
+.user-page {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    width: 80dvw;
+    height: 80dvh;
+    margin-left: 10dvw;
+    padding: 2rem;
+
+    background-color: var(--background-color);
+    border-radius: 1rem;
+    box-shadow: 0.1rem 0.2rem 0.5rem 0.1rem var(--shadow-color);
+
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+/********* SIDE PANEL *********/
+
+.user-side-panel {
+    width: 25%;
+    height: 100%;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.user-page-picture {
+    width: 100%;
+    height: 50%;
+    padding: 4.75dvw;
+    background-image: url(/User\ Panel\ Background.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-page-picture>div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.user-page-picture>div>img {
+    object-fit: cover;
+    width: 100%;
+    clip-path: circle();
+}
+
+.user-page-picture>div>div {
+    width: 24%;
+    height: 24%;
+    position: absolute;
+    align-self: flex-end;
+    border: 6px solid #555;
+    border-radius: 100%;
+}
+
+.user-page-contact {
+    position: relative;
+}
+
+.user-page-contact>div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-page-contact>div>h2 {
+    font-size: 1.6rem;
+}
+
+.user-page-contact>h3 {
+    color: var(--text-light);
+    font-weight: 500;
+    line-height: 1.8rem;
+}
+
+.user-page-rating {
+    display: flex;
+    align-items: center;
+}
+
+.user-side-panel>p {
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: fit-content;
+}
+
+/* EDIT PROFILE PANEL*/
+
+.edit-profile-panel {
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    box-shadow: 0 0.5rem 1.5rem -0.5rem var(--shadow-color),
+        0 0 0.5rem 0 var(--shadow-color);
+    border-radius: 2rem;
+
+    width: 25%;
+    height: 70%;
+    scale: 1.2;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+}
+
+.edit-profile-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.edit-profile-tag>img {
+    object-fit: cover;
+    height: 8rem;
+    width: 8rem;
+    clip-path: circle();
+}
+
+.edit-profile-panel>label {
+    height: 65%;
+    padding-bottom: 0.5rem;
+}
+
+.edit-profile-panel>label>textarea {
+    all: unset;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+    width: calc(100% - 2.4rem);
+    border-radius: 0.5rem;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    height: 90%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    cursor: auto;
+}
+
+/********* USER PROFILE REVIEWS *********/
+
+.user-profile-reviews {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.user-profile-reviews>span {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.user-profile-reviews>span>h2>span {
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+.add-reviews-button {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    align-self: flex-end;
+
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--background-color);
+
+    background-color: var(--primary-color);
+    padding: 0.5rem 0.8rem;
+    border-radius: 2rem;
+    text-wrap: nowrap;
+
+    cursor: pointer;
+}
+
+.user-profile-reviews>div {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    word-wrap: break-word;
+}
+
+.user-profile-reviews>div>div {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.review-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding: 1rem;
+    scroll-snap-align: start;
+    scroll-snap-type: y proximity;
+}
+
+.reviewer-tag {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.reviewer-tag>img {
+    object-fit: cover;
+    width: 3rem;
+    height: 3rem;
+}
+
+/* USER ADD REVIEWS PANEL */
+
+dialog[open] {
+    border: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: var(--shadow-color);
+
+    width: 100dvw;
+    height: 100dvh;
+    z-index: 10;
+}
+
+.add-reviews-panel>div {
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    box-shadow: 0 0.5rem 1.5rem -0.5rem var(--shadow-color),
+        0 0 0.5rem 0 var(--shadow-color);
+    border-radius: 2rem;
+
+    width: 32%;
+    height: 50%;
+    scale: 1.2;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.add-rating {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.add-rating>svg:hover {
+    background-color: gold;
+    clip-path: url("/Star.svg");
+    mask: url("/Star.svg");
+
+}
+
+.add-rating>svg:hover+svg {
+    background-color: gold;
+    clip-path: url("/Star.svg");
+    mask: url("/Star.svg");
+}
+
+.add-rating>svg:hover+svg+svg {
+    background-color: gold;
+    clip-path: url("/Star.svg");
+    mask: url("/Star.svg");
+}
+
+.add-rating>svg:hover+svg+svg+svg {
+    background-color: gold;
+    clip-path: url("/Star.svg");
+    mask: url("/Star.svg");
+}
+
+.add-rating>svg:hover+svg+svg+svg+svg {
+    background-color: gold;
+    clip-path: url("/Star.svg");
+    mask: url("/Star.svg");
+}
+
+.add-reviews-panel>div>textarea {
+    all: unset;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+    width: calc(100% - 2.4rem);
+    border-radius: 0.5rem;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    height: 65%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    cursor: auto;
+}
+
+/********* USER PROFILE CATEGORIES *********/
+
+.user-categories {
+    width: 30%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+.user-categories>svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.user-categories-display {
+    height: 50%;
+
+}
+
+.user-categories-display>span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-categories-display>div {
+    overflow-y: scroll;
+    scroll-padding-inline-start: 1em;
+    padding: 0.5rem 0;
+    height: 84%;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 0.5rem;
+}
+
+.user-categories-display>div>div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    height: fit-content;
+
+    background-color: var(--shadow-primary);
+}
+
+.user-categories-display>div>div>p {
+    color: var(--primary-dark);
+    font-weight: bold;
+    font-size: 0.9rem;
+
+    padding: 0.2rem 0;
+}
+
+.user-categories-display>div>div>span {
+    background-color: var(--primary-light);
+    padding: 0.2rem 0.8rem;
+    border-radius: 0.5rem;
+
+    color: var(--background-color);
+    font-weight: 500;
+    font-size: 0.9rem;
+
+    cursor: pointer;
+}
+
+.add-endorsement {
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    box-shadow: 0 0.5rem 1.5rem -0.5rem var(--shadow-color),
+        0 0 0.5rem 0 var(--shadow-color);
+    border-radius: 2rem;
+
+    width: 32%;
+    height: fit-content;
+    scale: 1.2;
+    padding: 1.2rem 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

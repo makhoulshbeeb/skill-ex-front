@@ -1,0 +1,120 @@
+.video-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100dvh;
+
+    background-color: var(--text-color);
+}
+
+/********* VIDEO STREAM *********/
+
+.video-stream {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 1rem;
+    border-radius: 2rem;
+
+    width: 100dvw;
+    height: 86dvh;
+    padding: 3rem 3rem 0 3rem;
+
+}
+
+.video-stream>div {
+    background-color: var(--shadow-color);
+    border-radius: 2rem;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    height: 24dvh;
+    width: 20dvw;
+    overflow: hidden;
+}
+
+.video-stream>.pinned-stream {
+    grid-column-start: span 3;
+    grid-row-start: span 3;
+    background-color: var(--shadow-color);
+    font-size: 30px;
+    height: 100%;
+    width: 72dvw;
+}
+
+.video-stream>div>img {
+    position: absolute;
+    object-fit: cover;
+    height: 40%;
+    clip-path: circle();
+}
+
+.video-stream-panel {
+    object-fit: cover;
+    height: 100%;
+    width: inherit;
+    z-index: 2;
+}
+
+
+/********* VIDEO BAR *********/
+
+.video-bar {
+    display: flex;
+    padding: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    background-color: var(--text-color);
+    width: 100%;
+}
+
+.video-bar>div {
+    font-size: 1.5rem;
+    clip-path: circle(1.8rem);
+    color: var(--background-color);
+    width: 4rem;
+    height: 4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+/********* VIDEO CHAT *********/
+
+.video-text-messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    position: absolute;
+    height: 100dvh;
+    top: 0;
+    right: 0;
+    border-radius: 2rem 0 0 2rem;
+
+    background-color: var(--background-color);
+    box-shadow: 0 0.5rem 1.5rem -0.5rem var(--shadow-color),
+        0 0 0.5rem 0 var(--shadow-color);
+
+    transition: 0.5s;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.video-text-messages>h1 {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--background-light);
+}

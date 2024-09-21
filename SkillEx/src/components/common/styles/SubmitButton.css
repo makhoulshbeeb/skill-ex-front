@@ -1,0 +1,16 @@
+.submit-button {
+    width: 35%;
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 400;
+    text-wrap: nowrap;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    border: unset;
+}
+
+.submit-button:active {
+    scale: 0.95;
+}

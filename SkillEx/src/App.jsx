@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { Route, Routes, useNavigate } from "react-router-dom";
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+import Auth from './pages/Auth.jsx';
+import Chat from './pages/Chat.jsx';
+import Home from './pages/Home.jsx';
+import Explore from './pages/Explore.jsx';
+import User from './pages/User.jsx';
+import Video from './pages/Video.jsx';
+import Search from './pages/Search.jsx';
+import Admin from './pages/Admin.jsx';
+
+function App() {
+    return (
+        <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/admin' element={<Admin />} />
+            <Route path='/explore/:type' element={<Explore />} />
+            <Route path='/search/' element={<Search />} />
+            <Route path='/user/:username' element={<User />} />
+            <Route path='/sessions' element={<Video />} />
+            <Route path='/auth/:sign' element={<Auth />} />
+            <Route path='/auth/signup/categories' element={<Auth />} />
+            <Route path='/chats' element={<Chat />} />
+        </Routes>
+    )
 }
 
 export default App

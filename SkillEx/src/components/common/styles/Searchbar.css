@@ -1,0 +1,40 @@
+.search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    width: 100%;
+}
+
+.search svg {
+    position: absolute;
+    padding-left: 1rem;
+}
+
+input.search-bar {
+    all: unset;
+}
+
+input.search-bar {
+    font-size: 1.1rem;
+    padding: 0.6rem 1.4rem 0.6rem 3rem;
+    width: calc(100% - 2.4rem);
+    border-radius: 1.5rem;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    flex-grow: 1;
+
+    vertical-align: middle;
+}
+
+input.search-bar::placeholder {
+    color: var(--text-light);
+}
+
+input.search-bar:-webkit-autofill,
+input.search-bar:-webkit-autofill:hover,
+input.search-bar:-webkit-autofill:focus,
+input.search-bar:-webkit-autofill:active {
+    transition: all 5000s ease-in-out 0s;
+    font-size: 1rem;
+}

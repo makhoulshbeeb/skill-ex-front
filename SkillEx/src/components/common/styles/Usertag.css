@@ -1,0 +1,28 @@
+.user-tag {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+
+    border-radius: 2.5rem;
+    padding: 0.25rem 0.25rem 0.25rem 0.75rem;
+    background-color: var(--primary-light);
+
+    position: relative;
+    cursor: pointer;
+}
+
+.user-tag:active {
+    opacity: 0.8;
+}
+
+.user-tag>p {
+    color: var(--background-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.user-tag>img {
+    width: 2.5rem;
+    height: 2.5rem;
+}

@@ -1,0 +1,39 @@
+.category-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+
+    height: 16rem;
+    width: 12rem;
+
+    background-color: var(--background-color);
+    padding: 1rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 0.5rem 1.5rem -0.5rem var(--shadow-color),
+        0 0 0.5rem 0 var(--shadow-color);
+
+    overflow: hidden;
+    scroll-snap-align: start;
+    scroll-snap-type: x proximity;
+    cursor: pointer;
+}
+
+.category-panel:hover {
+    scale: 1.02;
+}
+
+.category-panel>h3 {
+    height: 30%;
+    align-content: center;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.category-panel>img {
+    object-fit: contain;
+    height: 10rem;
+    min-width: 10rem;
+    clip-path: circle();
+}
