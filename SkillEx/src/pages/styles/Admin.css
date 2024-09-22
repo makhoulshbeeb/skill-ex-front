@@ -116,6 +116,7 @@
 
 .categories-admin-body {
     display: flex;
+    align-content: flex-start;
     flex-wrap: wrap;
     gap: 1rem;
 

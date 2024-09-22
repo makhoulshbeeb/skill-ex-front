@@ -1,7 +1,7 @@
 
 
 import { useState } from "react";
-import { useDeleteUserAdminMutation, useGetUsersBySearchQuery, useUpdateRoleMutation } from "../../api/UsersApi";
+import { useDeleteUserAdminMutation, useGetUsersBySearchQuery, usersApi, useUpdateRoleMutation } from "../../api/UsersApi";
 import Searchbar from "../common/Searchbar";
 import UsersAdminCard from "./UsersAdminCard";
 import { useDeleteReviewAdminMutation, useGetReviewsQuery } from "../../api/ReviewsApi";

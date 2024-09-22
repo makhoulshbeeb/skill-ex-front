@@ -7,7 +7,7 @@ import { useGetMessagesQuery } from "../../api/MessagesApi";
 
 export default function ChatLog() {
     const receiver = useSelector(state => state.receiver);
-    const { data, isLoading, isSuccess, isError, error } = useGetMessagesQuery(receiver._id, { refetchOnMountOrArgChange: true });
+    const { data, isLoading, isSuccess, isError, error } = useGetMessagesQuery(receiver._id, { refetchOnMountOrArgChange: true, refetchOnFocus: true, refetchOnReconnect: true });
     const [messages, setMessages] = useState(data);
 
     return (

@@ -65,30 +65,6 @@ export const CallContextProvider = ({ children }) => {
             callRef.current = newCall;
 
         });
-
-        socket && socket.on('callEnded', () => {
-            setCallAccepted(false);
-
-            updateMediaStream(false, false);
-
-            setLocalStream(null);
-            setRemoteStream(null);
-            connectionRef.current && connectionRef.current.destroy();
-            callRef.current = {};
-
-            dispatch(setVideoReceiver({
-                _id: '',
-                displayName: '',
-                username: '',
-                email: '',
-                picture: '',
-            }));
-
-            navigate(-1);
-            setTimeout(() => windowRef.current.location.reload(), 100);
-        });
-        return () => socket && socket.close();
-
     }, [socket]);
 
     useEffect(() => {

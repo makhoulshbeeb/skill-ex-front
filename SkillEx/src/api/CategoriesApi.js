@@ -9,14 +9,14 @@ export const categoriesApi = createApi({
         },
         credentials: 'include'
     }),
-    tagTypes: ['Categories'],
+    tagTypes: ["Categories"],
     endpoints: (builder) => ({
         getCategories: builder.query({
             query: () => `categories/`,
             providesTags: (result, error, arg) =>
                 result
-                    ? [...result.map(({ id }) => ({ type: 'Categories', id })), 'Categories']
-                    : ['Categories'],
+                    ? [...result.map(({ id }) => ({ type: "Categories", id })), "Categories"]
+                    : ["Categories"],
         }),
         addCategory: builder.mutation({
             query: (data) => ({
@@ -32,14 +32,14 @@ export const categoriesApi = createApi({
                 method: 'PATCH',
                 body: data
             }),
-            invalidatesTags: (result, error, arg) => [{ type: "Categories", id: arg.id }],
+            invalidatesTags: ["Categories"],
         }),
         deleteCategory: builder.mutation({
             query: (data) => ({
                 url: `categories/${data.id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: (result, error, arg) => [{ type: "Categories", id: arg.id }],
+            invalidatesTags: ["Categories"],
         }),
     }),
 });
