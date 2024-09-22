@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAddCategoryMutation, useDeleteCategoryMutation, useEditCategoryMutation, useGetCategoriesQuery } from "../../api/CategoriesApi";
 import Searchbar from "../common/Searchbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,7 +31,7 @@ export default function CategoriesAdminPanel() {
     const editPictureRef = useRef();
 
     const [categorySearch, setCategorySearch] = useState('');
-    const { data, isLoading, isSuccess, isError, error } = useGetCategoriesQuery();
+    const { data, isLoading, isSuccess, isError, error } = useGetCategoriesQuery({}, { refetchOnMountOrArgChange: true });
 
     var categories = data;
 

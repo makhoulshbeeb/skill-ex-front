@@ -38,7 +38,7 @@ export const reviewsApi = createApi({
                 url: `reviews/admin/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: (result, error, arg) => [{ type: 'Reviews', id: arg.id }],
+            invalidatesTags: ['Reviews'],
         })
     }),
 });

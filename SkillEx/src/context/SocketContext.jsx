@@ -54,7 +54,11 @@ export const SocketContextProvider = ({ children }) => {
                 }
                 )
             });
-            return () => socket.off("newMessage");
+        } else {
+            if (socket) {
+                socket.off("newMessage");
+                setSocket(null);
+            }
         }
     }, [user]);
 
